@@ -1,0 +1,3222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hot Ones English — 일상 영어 듣기 트레이너</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+
+<!-- GoatCounter analytics -->
+<script data-goatcounter="https://takwon-sungshin.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+<!-- YouTube IFrame API ready callback (MUST be defined BEFORE API loads) -->
+<script>
+  window._ytApiReady = false;
+  window._ytApiCallbacks = [];
+  function onYouTubeIframeAPIReady() {
+    window._ytApiReady = true;
+    window._ytApiCallbacks.forEach(function(cb) { try { cb(); } catch(e) { console.error(e); } });
+    window._ytApiCallbacks = [];
+  }
+</script>
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<style>
+:root {
+    /* GitHub-dark base */
+    --bg: #0d1117;
+    --bg-panel: #161b22;
+    --bg-elev: #21262d;
+    --bg-hover: #30363d;
+    --border: #30363d;
+    --border-muted: #21262d;
+
+    /* Text */
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --text-dim: #6e7681;
+
+    /* Hot Ones accents (spicy theme) */
+    --accent: #ff6b35;
+    --accent-bright: #ff8c42;
+    --accent-dim: #cc4f1f;
+    --hot: #ef4444;
+    --hot-glow: rgba(239, 68, 68, 0.15);
+
+    /* Difficulty colors */
+    --easy: #3fb950;
+    --medium: #d29922;
+    --hard: #f85149;
+
+    /* Typography */
+    --font-sans: 'IBM Plex Sans', 'Noto Sans KR', -apple-system, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+    --font-kr: 'Noto Sans KR', 'IBM Plex Sans', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* === Header === */
+.header {
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, var(--bg-panel) 0%, var(--bg) 100%);
+    padding: 32px 24px 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.logo-icon {
+    width: 40px; height: 40px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--hot) 100%);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 0 24px var(--hot-glow);
+}
+
+.logo h1 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.logo h1 .accent { color: var(--accent); }
+
+.tagline {
+    color: var(--text-muted);
+    font-family: var(--font-kr);
+    font-size: 14px;
+    margin-left: 52px;
+}
+
+/* === Navigation === */
+.nav {
+    background: var(--bg-panel);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.nav-inner::-webkit-scrollbar { display: none; }
+
+.nav-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    padding: 14px 20px;
+    cursor: pointer;
+    font-family: var(--font-kr);
+    font-size: 14px;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    transition: all 0.15s;
+    white-space: nowrap;
+}
+
+.nav-btn:hover {
+    color: var(--text);
+    background: var(--bg-hover);
+}
+
+.nav-btn.active {
+    color: var(--accent-bright);
+    border-bottom-color: var(--accent);
+}
+
+/* === Main === */
+.main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.section { display: none; }
+.section.active { display: block; animation: fadeIn 0.3s; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.section-header {
+    margin-bottom: 24px;
+}
+
+.section-header h2 {
+    font-family: var(--font-kr);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.section-header p {
+    color: var(--text-muted);
+    font-family: var(--font-kr);
+    font-size: 14px;
+}
+
+/* === Panels === */
+.panel {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+.panel-title {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.panel-title .icon { color: var(--accent); }
+
+/* === Filters === */
+.filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 6px 14px;
+    border-radius: 16px;
+    font-family: var(--font-kr);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.filter-btn:hover { background: var(--bg-hover); color: var(--text); }
+.filter-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+}
+
+/* === Episode cards === */
+.episode-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 12px;
+}
+
+.ep-card {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    transition: all 0.15s;
+}
+
+.ep-card:hover {
+    border-color: var(--accent-dim);
+    transform: translateY(-1px);
+}
+
+.ep-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 8px;
+}
+
+.ep-name {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.ep-badge {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.badge-easy { background: rgba(63, 185, 80, 0.15); color: var(--easy); }
+.badge-medium { background: rgba(210, 153, 34, 0.15); color: var(--medium); }
+.badge-hard { background: rgba(248, 81, 73, 0.15); color: var(--hard); }
+
+.ep-note {
+    font-family: var(--font-kr);
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.ep-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.ep-tag {
+    font-size: 11px;
+    padding: 2px 6px;
+    background: var(--bg);
+    border-radius: 4px;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+}
+
+.ep-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.ep-passes {
+    display: flex;
+    gap: 4px;
+}
+
+.pass-dot {
+    width: 22px; height: 22px;
+    border: 1.5px solid var(--border);
+    border-radius: 50%;
+    background: var(--bg);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-dim);
+    transition: all 0.15s;
+}
+
+.pass-dot:hover { border-color: var(--accent); }
+
+.pass-dot.done {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+}
+
+.yt-link {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.15s;
+}
+
+.yt-link:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+}
+
+.ep-buttons {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.play-btn {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-bright) 100%);
+    border: none;
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-family: var(--font-kr);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.25);
+    transition: all 0.15s;
+}
+
+.play-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+}
+
+.setup-btn {
+    background: var(--bg);
+    border: 1px dashed var(--border);
+    color: var(--text-muted);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-family: var(--font-kr);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.setup-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent-bright);
+    border-style: solid;
+}
+
+.ep-icon-btn {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.ep-icon-btn:hover {
+    background: var(--bg-hover);
+    color: var(--text);
+}
+
+.saved-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--easy);
+    margin-left: 4px;
+    vertical-align: middle;
+    box-shadow: 0 0 6px rgba(63, 185, 80, 0.6);
+}
+
+/* === Phrase bank === */
+.phrase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 10px;
+}
+
+.phrase {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 14px;
+    transition: all 0.15s;
+}
+
+.phrase:hover { border-color: var(--accent-dim); }
+
+.phrase-en {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--accent-bright);
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+.phrase-kr {
+    font-family: var(--font-kr);
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+.phrase-ex {
+    font-size: 12px;
+    color: var(--text-dim);
+    font-style: italic;
+    border-left: 2px solid var(--border);
+    padding-left: 8px;
+    margin-top: 6px;
+}
+
+/* === Reduction drill === */
+.drill-card {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px 24px;
+    text-align: center;
+    margin-bottom: 16px;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.drill-formal {
+    font-family: var(--font-mono);
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.drill-label {
+    font-family: var(--font-kr);
+    font-size: 12px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+}
+
+.drill-arrow {
+    color: var(--accent);
+    font-size: 24px;
+    margin: 12px 0;
+}
+
+.drill-reduced {
+    font-family: var(--font-mono);
+    font-size: 24px;
+    color: var(--accent-bright);
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.drill-reduced.hidden { color: transparent; text-shadow: 0 0 16px var(--text-muted); user-select: none; }
+
+.drill-meaning {
+    font-family: var(--font-kr);
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 12px;
+}
+
+.drill-controls {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-family: var(--font-kr);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.btn:hover { background: var(--bg-hover); }
+.btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-bright); border-color: var(--accent-bright); }
+
+.drill-progress {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 12px;
+    font-family: var(--font-mono);
+    margin-top: 12px;
+}
+
+/* === Notes === */
+.note-input-area {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.note-input-area select, .note-input-area textarea, .note-input-area input {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-family: var(--font-kr);
+    font-size: 13px;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.note-input-area textarea {
+    font-family: var(--font-mono);
+    min-height: 80px;
+    resize: vertical;
+}
+
+.note-input-area select:focus, .note-input-area textarea:focus, .note-input-area input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.notes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.note-item {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    padding: 12px 14px;
+    position: relative;
+}
+
+.note-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.note-ep {
+    font-size: 12px;
+    color: var(--accent-bright);
+    font-weight: 500;
+}
+
+.note-date {
+    font-size: 11px;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+}
+
+.note-content {
+    font-family: var(--font-kr);
+    font-size: 13px;
+    color: var(--text);
+    white-space: pre-wrap;
+    line-height: 1.6;
+}
+
+.note-delete {
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-size: 14px;
+    padding: 4px;
+}
+
+.note-delete:hover { color: var(--hot); }
+
+.empty-state {
+    text-align: center;
+    padding: 32px 16px;
+    color: var(--text-muted);
+    font-family: var(--font-kr);
+    font-size: 13px;
+}
+
+/* === Stats === */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.stat-card {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+}
+
+.stat-num {
+    font-family: var(--font-mono);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent-bright);
+    line-height: 1;
+}
+
+.stat-label {
+    font-family: var(--font-kr);
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 6px;
+}
+
+/* ============ STUDY CALENDAR ============ */
+.streak-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.streak-card {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    position: relative;
+}
+
+.streak-card.fire {
+    border-color: var(--accent-bright);
+    background: linear-gradient(135deg, var(--bg-elev), rgba(255,107,53,0.08));
+}
+
+.streak-num {
+    font-family: var(--font-mono);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--accent-bright);
+    line-height: 1;
+}
+
+.streak-num .unit {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-left: 2px;
+}
+
+.streak-label {
+    font-family: var(--font-kr);
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 6px;
+}
+
+.streak-emoji {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+.cal-wrapper {
+    overflow-x: auto;
+    padding: 12px 4px;
+}
+
+.cal-grid {
+    display: grid;
+    grid-template-rows: repeat(7, 12px);
+    grid-auto-flow: column;
+    grid-auto-columns: 12px;
+    gap: 3px;
+    width: max-content;
+    margin: 0 auto;
+}
+
+.cal-cell {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.cal-cell:hover {
+    transform: scale(1.4);
+    z-index: 2;
+    position: relative;
+}
+
+.cal-cell.future {
+    background: transparent;
+    border-color: transparent;
+    cursor: default;
+}
+
+.cal-cell.future:hover {
+    transform: none;
+}
+
+.cal-cell.lvl-1 { background: rgba(255, 107, 53, 0.25); border-color: rgba(255, 107, 53, 0.3); }
+.cal-cell.lvl-2 { background: rgba(255, 107, 53, 0.5); border-color: rgba(255, 107, 53, 0.55); }
+.cal-cell.lvl-3 { background: rgba(255, 107, 53, 0.75); border-color: rgba(255, 107, 53, 0.8); }
+.cal-cell.lvl-4 { background: var(--accent-bright); border-color: var(--accent-bright); box-shadow: 0 0 6px rgba(255, 107, 53, 0.5); }
+
+.cal-cell.today {
+    outline: 2px solid var(--accent-bright);
+    outline-offset: 2px;
+}
+
+.cal-legend {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    justify-content: flex-end;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 12px;
+    font-family: var(--font-mono);
+}
+
+.cal-legend .cal-cell {
+    cursor: default;
+}
+
+.cal-legend .cal-cell:hover {
+    transform: none;
+}
+
+.cal-month-row {
+    display: flex;
+    justify-content: space-around;
+    padding: 4px 0 8px;
+    color: var(--text-dim);
+    font-size: 10px;
+    font-family: var(--font-mono);
+    width: max-content;
+    margin: 0 auto;
+}
+
+.cal-recent-list {
+    margin-top: 16px;
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.cal-recent-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 6px;
+    font-size: 12px;
+}
+
+.cal-recent-date {
+    font-family: var(--font-mono);
+    color: var(--text);
+    font-weight: 500;
+    min-width: 90px;
+}
+
+.cal-recent-detail {
+    color: var(--text-muted);
+    font-family: var(--font-kr);
+    flex: 1;
+    margin: 0 12px;
+}
+
+.cal-recent-bar {
+    width: 60px;
+    height: 6px;
+    background: var(--bg-elev);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.cal-recent-bar-fill {
+    height: 100%;
+    background: var(--accent-bright);
+}
+
+.progress-bar {
+    background: var(--bg);
+    height: 6px;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.progress-fill {
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent-bright) 100%);
+    height: 100%;
+    transition: width 0.3s;
+}
+
+/* === Method guide === */
+.method-step {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 14px;
+    padding: 12px;
+    background: var(--bg-elev);
+    border-radius: 6px;
+    border-left: 3px solid var(--accent);
+}
+
+.method-num {
+    background: var(--accent);
+    color: #fff;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+    font-size: 13px;
+}
+
+.method-content { flex: 1; }
+.method-title {
+    font-family: var(--font-kr);
+    font-weight: 600;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+.method-desc {
+    font-family: var(--font-kr);
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* === Footer === */
+.footer {
+    border-top: 1px solid var(--border);
+    padding: 24px;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 12px;
+    font-family: var(--font-kr);
+}
+
+.footer a { color: var(--text-muted); text-decoration: none; }
+.footer a:hover { color: var(--accent-bright); }
+
+/* === Player === */
+.player-input-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.player-input-row input {
+    flex: 1;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 9px 12px;
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+}
+
+.player-input-row input:focus { outline: none; border-color: var(--accent); }
+
+.player-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+}
+
+.player-wrap iframe,
+.player-wrap #yt-player {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.player-empty {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    color: var(--text-dim);
+    font-family: var(--font-kr);
+    font-size: 14px;
+    background: var(--bg-panel);
+}
+
+.player-empty .icon { font-size: 48px; opacity: 0.5; }
+
+.player-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+    align-items: center;
+}
+
+.control-group {
+    display: flex;
+    gap: 4px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 3px;
+}
+
+.ctrl-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.12s;
+}
+
+.ctrl-btn:hover { background: var(--bg-hover); color: var(--text); }
+.ctrl-btn.active { background: var(--accent); color: #fff; }
+
+.mark-btn {
+    background: linear-gradient(135deg, var(--hot) 0%, var(--accent) 100%);
+    border: none;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-family: var(--font-kr);
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 16px var(--hot-glow);
+    transition: all 0.15s;
+    margin-left: auto;
+}
+
+.mark-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px var(--hot-glow);
+}
+
+.mark-btn:active { transform: translateY(0); }
+
+.mark-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.kbd-hint {
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    margin-left: 8px;
+}
+
+.kbd {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 1px 5px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text);
+}
+
+.markers-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.marker {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--hot);
+    border-radius: 6px;
+    padding: 10px 12px;
+    transition: all 0.12s;
+}
+
+.marker:hover { background: var(--bg-hover); }
+
+.marker-time {
+    background: var(--bg);
+    color: var(--accent-bright);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+    transition: all 0.12s;
+}
+
+.marker-time:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+
+.marker-note {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-family: var(--font-kr);
+    font-size: 13px;
+    padding: 4px 6px;
+    border-radius: 4px;
+}
+
+.marker-note:focus {
+    outline: none;
+    background: var(--bg);
+}
+
+.marker-note::placeholder { color: var(--text-dim); }
+
+.marker-del {
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-size: 14px;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.marker-del:hover { color: var(--hot); background: var(--bg); }
+
+.video-info {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.video-title {
+    font-family: var(--font-kr);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.video-id {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    flex-shrink: 0;
+}
+
+.recent-videos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.recent-vid-chip {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 6px 10px;
+    border-radius: 14px;
+    font-family: var(--font-kr);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.12s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.recent-vid-chip:hover {
+    background: var(--bg-hover);
+    border-color: var(--accent-dim);
+}
+
+.recent-vid-chip .count {
+    background: var(--hot);
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 8px;
+}
+
+/* === Sync === */
+.sync-status-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: var(--font-kr);
+    font-size: 13px;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: var(--text-dim);
+    transition: all 0.2s;
+}
+
+.status-dot.status-off { background: var(--text-dim); }
+.status-dot.status-syncing {
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+    animation: syncPulse 1s infinite;
+}
+.status-dot.status-synced {
+    background: var(--easy);
+    box-shadow: 0 0 6px rgba(63, 185, 80, 0.5);
+}
+.status-dot.status-error {
+    background: var(--hot);
+    box-shadow: 0 0 6px var(--hot-glow);
+}
+
+@keyframes syncPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+#sync-status-time {
+    margin-left: auto;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    font-size: 11px;
+}
+
+.sync-details {
+    margin-top: 12px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+}
+
+.sync-details summary {
+    cursor: pointer;
+    color: var(--accent-bright);
+    font-family: var(--font-kr);
+    font-size: 13px;
+    user-select: none;
+}
+
+.sync-details summary:hover { color: var(--accent); }
+
+.sync-form {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+}
+
+.sync-form label {
+    display: block;
+    font-family: var(--font-kr);
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+    margin-top: 8px;
+    font-weight: 500;
+}
+
+.sync-form input[type="text"], .sync-form input[type="password"] {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.sync-form input:focus { outline: none; border-color: var(--accent); }
+
+.sync-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.sync-auto-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-kr);
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.sync-auto-label input[type="checkbox"] {
+    accent-color: var(--accent);
+}
+
+/* === Mobile === */
+@media (max-width: 640px) {
+    .header { padding: 24px 16px 16px; }
+    .logo h1 { font-size: 22px; }
+    .tagline { margin-left: 0; margin-top: 6px; font-size: 13px; }
+    .main { padding: 16px; }
+    .nav-btn { padding: 12px 14px; font-size: 13px; }
+    .episode-grid { grid-template-columns: 1fr; }
+    .drill-formal, .drill-reduced { font-size: 18px; }
+    .player-controls { gap: 6px; }
+    .mark-btn { margin-left: 0; width: 100%; margin-top: 8px; }
+    .kbd-hint { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div id="file-protocol-warning" style="display:none; background:#7c2d12; color:#fff; padding:12px 16px; text-align:center; font-family:'Noto Sans KR',sans-serif; font-size:13px; line-height:1.6;">
+    ⚠️ <strong>file:// 프로토콜로 열렸습니다.</strong> YouTube 임베드가 작동하지 않을 수 있습니다 (오류 153 등).
+    <br>
+    <span style="font-size:12px; opacity:0.9;">
+        해결: 터미널에서 <code style="background:#000; padding:2px 6px; border-radius:3px; font-family:monospace;">cd 파일이있는폴더 && python3 -m http.server 8000</code> 실행 후
+        <a href="#" onclick="event.preventDefault(); alert('브라우저 주소창에 http://localhost:8000/hot-ones-english.html 입력');" style="color:#fef3c7; text-decoration:underline;">localhost로 접속</a>
+        — 또는 GitHub Pages에 업로드
+    </span>
+</div>
+
+<script>
+    if (window.location.protocol === 'file:') {
+        document.getElementById('file-protocol-warning').style.display = 'block';
+    }
+</script>
+
+<header class="header">
+    <div class="header-inner">
+        <div class="logo">
+            <div class="logo-icon">🌶️</div>
+            <h1>Hot Ones <span class="accent">English</span></h1>
+        </div>
+        <div class="tagline">매운 윙으로 키우는 일상 영어 듣기 — Sean Evans와 함께하는 5-Step 트레이닝</div>
+    </div>
+</header>
+
+<nav class="nav">
+    <div class="nav-inner">
+        <button class="nav-btn active" data-tab="player">📺 플레이어</button>
+        <button class="nav-btn" data-tab="method">🔥 학습법</button>
+        <button class="nav-btn" data-tab="episodes">🎬 에피소드</button>
+        <button class="nav-btn" data-tab="phrases">💬 표현 사전</button>
+        <button class="nav-btn" data-tab="drill">⚡ Reduction 드릴</button>
+        <button class="nav-btn" data-tab="notes">📝 메모장</button>
+        <button class="nav-btn" data-tab="calendar">📅 학습 달력</button>
+        <button class="nav-btn" data-tab="stats">📊 통계</button>
+    </div>
+</nav>
+
+<main class="main">
+
+<!-- ========== PLAYER ========== -->
+<section class="section active" id="player">
+    <div class="section-header">
+        <h2>플레이어 — 보면서 어려운 곳 마킹</h2>
+        <p>YouTube URL 붙여넣고, 안 들리는 순간마다 <strong style="color:var(--accent-bright);">🚨 어려움</strong> 버튼을 누르세요. 나중에 클릭해서 그 순간으로 바로 점프할 수 있습니다.</p>
+    </div>
+
+    <div class="panel">
+        <div class="panel-title"><span class="icon">▸</span> 영상 불러오기</div>
+        <div class="player-input-row">
+            <input type="text" id="video-url-input" placeholder="https://www.youtube.com/watch?v=... 또는 비디오 ID 붙여넣기">
+            <button class="btn btn-primary" id="video-load-btn">불러오기</button>
+        </div>
+
+        <div id="recent-videos-wrap" style="display:none;">
+            <div style="font-family:var(--font-kr); font-size:12px; color:var(--text-muted); margin-bottom:6px;">최근 시청한 영상:</div>
+            <div class="recent-videos" id="recent-videos"></div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div id="video-info-wrap" style="display:none;">
+            <div class="video-info">
+                <div class="video-title" id="video-title">—</div>
+                <div class="video-id" id="video-id-display">—</div>
+            </div>
+        </div>
+
+        <div class="player-wrap" id="player-wrap">
+            <div class="player-empty" id="player-empty">
+                <div class="icon">📺</div>
+                <div>YouTube URL을 붙여넣고 시작하세요</div>
+                <div style="font-size:12px;">Hot Ones 에피소드든 다른 영상이든 모두 가능</div>
+            </div>
+            <div id="yt-player"></div>
+        </div>
+
+        <div class="player-controls">
+            <div class="control-group">
+                <button class="ctrl-btn" data-rate="0.5">0.5x</button>
+                <button class="ctrl-btn" data-rate="0.75">0.75x</button>
+                <button class="ctrl-btn active" data-rate="1">1x</button>
+                <button class="ctrl-btn" data-rate="1.25">1.25x</button>
+            </div>
+            <div class="control-group">
+                <button class="ctrl-btn" id="seek-back-5" title="5초 뒤로">⏪ 5s</button>
+                <button class="ctrl-btn" id="replay-last" title="마지막 5초 반복">🔁 반복</button>
+                <button class="ctrl-btn" id="seek-fwd-5" title="5초 앞으로">5s ⏩</button>
+            </div>
+            <button class="mark-btn" id="mark-difficult-btn" disabled>🚨 어려움 마커</button>
+            <span class="kbd-hint"><span class="kbd">D</span> 키로도 마커 추가 · <span class="kbd">Space</span> 재생/정지</span>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-title"><span class="icon">▸</span> 어려움 마커 <span id="marker-count" style="color:var(--accent-bright); margin-left:4px;"></span></div>
+        <div class="markers-list" id="markers-list">
+            <div class="empty-state">아직 마커가 없습니다. 영상을 보면서 안 들리는 곳에 🚨 버튼을 눌러보세요.</div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== METHOD ========== -->
+<section class="section" id="method">
+    <div class="section-header">
+        <h2>5-Step 학습법</h2>
+        <p>한 에피소드를 5단계로 우려먹는 게 새 영상 10개 흘려듣는 것보다 효과 큽니다. 단계별로 인지 부하를 분산해서 오버로드 방지.</p>
+    </div>
+
+    <div class="panel">
+        <div class="panel-title"><span class="icon">▸</span> 5단계 루틴 — 에피소드별로 진행</div>
+
+        <div class="method-step">
+            <div class="method-num">1</div>
+            <div class="method-content">
+                <div class="method-title">Pass 1 — 자막 ON 첫 청취 (Overview)</div>
+                <div class="method-desc">영어 자막 <span style="color:var(--accent-bright);">켜고</span> 처음부터 끝까지 한 번. 게스트가 누구인지, 어떤 주제인지, 분위기는 어떤지 파악. <strong style="color:var(--text);">모르는 부분에 멈추지 말고 그냥 흘려보내세요.</strong> 이 단계는 "지도 그리기"입니다.</div>
+            </div>
+        </div>
+
+        <div class="method-step">
+            <div class="method-num">2</div>
+            <div class="method-content">
+                <div class="method-title">Pass 2 — 자막 ON + 표현 채집 (Mining)</div>
+                <div class="method-desc">자막 켜고 다시 보면서 멈춤 버튼 적극 활용. 마음에 드는 표현이나 모르는 슬랭을 <span style="color:var(--accent-bright);">5~10개만</span> 📝 메모장에 저장. 욕심내면 외우다 지칩니다 — 한 영상에 5~10개가 이상적입니다. 표현 사전 탭도 함께 참고.</div>
+            </div>
+        </div>
+
+        <div class="method-step">
+            <div class="method-num">3</div>
+            <div class="method-content">
+                <div class="method-title">Pass 3 — 자막 OFF + 마커 (Decoding)</div>
+                <div class="method-desc">자막 <span style="color:var(--accent-bright);">끄고</span> 보면서 안 들리는 순간마다 <strong style="color:var(--accent-bright);">🚨 어려움 마커</strong> 클릭 (단축키: D). 받아쓰기는 안 합니다. 마커만 찍어두세요. 진짜 안 들리는 곳이 어디인지 정확히 진단하는 단계입니다.</div>
+            </div>
+        </div>
+
+        <div class="method-step">
+            <div class="method-num">4</div>
+            <div class="method-content">
+                <div class="method-title">Pass 4 — 마커 집중 복습 (Intensive)</div>
+                <div class="method-desc">저장된 마커들을 클릭하면 그 순간 -1초로 점프. <strong style="color:var(--text);">0.75x 속도</strong>로 슬로우 다운, ⏪/⏩ 5초 버튼으로 그 구간만 반복. 안 들리는 이유 분석 — 모르는 단어? 연결발음(<code style="background:var(--bg-elev); padding:1px 4px; border-radius:3px; font-family:var(--font-mono); color:var(--accent-bright);">whaddaya</code>)? 슬랭? Reduction 드릴 탭에서 패턴 학습.</div>
+            </div>
+        </div>
+
+        <div class="method-step">
+            <div class="method-num">5</div>
+            <div class="method-content">
+                <div class="method-title">Pass 5 — Shadowing (Production)</div>
+                <div class="method-desc">자막 <span style="color:var(--accent-bright);">끄고</span> 1.0x 정상 속도로 처음부터 끝까지. 들리는 영어를 <strong style="color:var(--text);">0.5~1초 늦게 따라 말하기</strong>. 입이 같이 움직이면 발화 회로가 형성됩니다. 통역사 훈련법 (Tamai 1992)으로 30년 넘게 검증된 방법입니다. Sean Evans 질문 부분만 따로 해도 좋아요 — 인터뷰어 영어가 깔끔해서 발음 모델로 최고.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-title"><span class="icon">▸</span> 페이스 가이드</div>
+        <div style="font-family:var(--font-kr); font-size:14px; line-height:1.8; color:var(--text-muted);">
+            <p style="margin-bottom:8px;">• <strong style="color:var(--text);">한 에피소드 1주일 기준</strong>이 표준 — 월(P1), 화(P2), 수(P3), 목(P4), 금(P5). 주말은 휴식 또는 다음 영상 P1.</p>
+            <p style="margin-bottom:8px;">• <strong style="color:var(--text);">짧게 자주</strong>가 핵심 — Pass 하나당 22분 정도면 충분. 한 번에 5개 다 하려고 하지 마세요.</p>
+            <p style="margin-bottom:8px;">• 하루 빠지면 다음 날 같은 Pass 다시 해도 OK. 학습 달력 streak 끊기지 않게 영상 30초만 봐도 카운트됩니다.</p>
+            <p>• 어려운 영상은 Pass 4를 두 번 해도 무방. 본인이 끝났다고 느낄 때 점 클릭.</p>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-title"><span class="icon">▸</span> 핵심 원칙</div>
+        <div style="font-family:var(--font-kr); font-size:14px; line-height:1.8; color:var(--text-muted);">
+            <p style="margin-bottom:10px;">• <strong style="color:var(--text);">안 들리는 건 단어를 몰라서가 아니라 발음 변형을 몰라서</strong>입니다 (약 80%).</p>
+            <p style="margin-bottom:10px;">• <code style="background:var(--bg-elev); padding:2px 6px; border-radius:4px; font-family:var(--font-mono); color:var(--accent-bright);">What are you going to do?</code> → 실제로는 <code style="background:var(--bg-elev); padding:2px 6px; border-radius:4px; font-family:var(--font-mono); color:var(--accent-bright);">Whaddaya gonna do?</code> 로 들립니다.</p>
+            <p style="margin-bottom:10px;">• 어려우면 0.75x로 시작해도 OK. 단, 결국 1.0x에서 들려야 진짜 학습입니다.</p>
+            <p>• 받아쓰기 어려운 표현은 <a href="https://youglish.com" target="_blank" style="color:var(--accent-bright);">youglish.com</a>에서 검색하면 다른 영상 사용례 확인 가능.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ========== EPISODES ========== -->
+<section class="section" id="episodes">
+    <div class="section-header">
+        <h2>추천 에피소드</h2>
+        <p>난이도 순 큐레이션 — 입문자는 Easy부터 시작하세요. YouTube 검색 페이지로 바로 이동합니다.</p>
+    </div>
+
+    <div class="panel">
+        <div class="panel-title"><span class="icon">▸</span> 필터</div>
+        <div class="filters" id="ep-filters">
+            <button class="filter-btn active" data-level="all">전체</button>
+            <button class="filter-btn" data-level="easy">🟢 Easy (입문)</button>
+            <button class="filter-btn" data-level="medium">🟡 Medium (중급)</button>
+            <button class="filter-btn" data-level="hard">🔴 Hard (고급)</button>
+        </div>
+
+        <div class="episode-grid" id="episode-grid"></div>
+    </div>
+</section>
+
+<!-- ========== PHRASES ========== -->
+<section class="section" id="phrases">
+    <div class="section-header">
+        <h2>표현 사전</h2>
+        <p>Hot Ones에서 반복적으로 나오는 일상 표현 — 이거 익숙해지면 일상 영어 절반은 따라잡습니다</p>
+    </div>
+
+    <div class="filters" id="phrase-filters">
+        <button class="filter-btn active" data-cat="all">전체</button>
+        <button class="filter-btn" data-cat="reaction">🌶️ 매운 반응</button>
+        <button class="filter-btn" data-cat="sean">🎤 Sean 질문 패턴</button>
+        <button class="filter-btn" data-cat="agree">👍 일상 맞장구</button>
+        <button class="filter-btn" data-cat="filler">💭 Filler</button>
+    </div>
+
+    <div class="panel">
+        <div class="phrase-grid" id="phrase-grid"></div>
+    </div>
+</section>
+
+<!-- ========== DRILL ========== -->
+<section class="section" id="drill">
+    <div class="section-header">
+        <h2>Reduction 드릴</h2>
+        <p>"안 들리는 영어"의 정체 — 격식체에서 실제 발음을 맞춰보세요</p>
+    </div>
+
+    <div class="panel">
+        <div class="drill-card" id="drill-card">
+            <div class="drill-label">실제로는 어떻게 들릴까?</div>
+            <div class="drill-formal" id="drill-formal">—</div>
+            <div class="drill-arrow">↓</div>
+            <div class="drill-reduced hidden" id="drill-reduced">—</div>
+            <div class="drill-meaning" id="drill-meaning"></div>
+        </div>
+
+        <div class="drill-controls">
+            <button class="btn" id="drill-reveal">🔍 정답 보기</button>
+            <button class="btn btn-primary" id="drill-next">다음 →</button>
+        </div>
+
+        <div class="drill-progress" id="drill-progress"></div>
+    </div>
+</section>
+
+<!-- ========== NOTES ========== -->
+<section class="section" id="notes">
+    <div class="section-header">
+        <h2>메모장</h2>
+        <p>에피소드별로 새로 배운 표현·단어를 기록하세요</p>
+    </div>
+
+    <div class="panel">
+        <div class="panel-title"><span class="icon">▸</span> 새 메모</div>
+        <div class="note-input-area">
+            <select id="note-episode">
+                <option value="">에피소드 선택…</option>
+            </select>
+            <textarea id="note-content" placeholder="표현 / 의미 / 예문 등을 자유롭게 적어두세요&#10;예) 'It's creeping up on me' — 매운맛이 서서히 올라온다"></textarea>
+            <button class="btn btn-primary" id="note-save">저장</button>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-title"><span class="icon">▸</span> 저장된 메모</div>
+        <div class="notes-list" id="notes-list"></div>
+    </div>
+</section>
+
+<!-- ========== CALENDAR ========== -->
+<section class="section" id="calendar">
+    <div class="section-header">
+        <h2>학습 달력 — 얼마나 꾸준히 했는지</h2>
+        <p>영상을 30초 이상 보거나, 마커/메모/Pass 체크를 하면 그 날이 자동으로 기록됩니다. GitHub의 contribution graph 스타일.</p>
+    </div>
+
+    <div class="panel">
+        <div class="streak-row">
+            <div class="streak-card fire">
+                <div class="streak-emoji">🔥</div>
+                <div class="streak-num"><span id="current-streak">0</span><span class="unit">일</span></div>
+                <div class="streak-label">연속 학습일 (현재)</div>
+            </div>
+            <div class="streak-card">
+                <div class="streak-emoji">🏆</div>
+                <div class="streak-num"><span id="longest-streak">0</span><span class="unit">일</span></div>
+                <div class="streak-label">최장 연속 기록</div>
+            </div>
+            <div class="streak-card">
+                <div class="streak-emoji">📅</div>
+                <div class="streak-num"><span id="total-days">0</span><span class="unit">일</span></div>
+                <div class="streak-label">총 학습한 날</div>
+            </div>
+            <div class="streak-card">
+                <div class="streak-emoji">⏱️</div>
+                <div class="streak-num"><span id="total-minutes">0</span><span class="unit">분</span></div>
+                <div class="streak-label">총 시청 시간</div>
+            </div>
+        </div>
+
+        <div class="cal-wrapper">
+            <div class="cal-month-row" id="cal-month-row"></div>
+            <div class="cal-grid" id="cal-grid"></div>
+            <div class="cal-legend">
+                <span>적음</span>
+                <div class="cal-cell"></div>
+                <div class="cal-cell lvl-1"></div>
+                <div class="cal-cell lvl-2"></div>
+                <div class="cal-cell lvl-3"></div>
+                <div class="cal-cell lvl-4"></div>
+                <span>많음</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-title"><span class="icon">▸</span> 최근 학습 기록</div>
+        <div class="cal-recent-list" id="cal-recent-list"></div>
+    </div>
+</section>
+
+<!-- ========== STATS ========== -->
+<section class="section" id="stats">
+    <div class="section-header">
+        <h2>학습 통계</h2>
+        <p>모든 진행 상황은 브라우저 localStorage에 저장됩니다</p>
+    </div>
+
+    <div class="panel">
+        <div class="panel-title"><span class="icon">▸</span> 진행률</div>
+        <div class="stats-grid" id="stats-grid"></div>
+
+        <div style="margin-top:20px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; font-family:var(--font-kr); font-size:13px;">
+                <span style="color:var(--text-muted);">전체 에피소드 완료율</span>
+                <span id="overall-pct" style="color:var(--accent-bright); font-family:var(--font-mono);">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="overall-bar" style="width:0%"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-title"><span class="icon">▸</span> ☁️ 클라우드 동기화 (GitHub Gist)</div>
+
+        <div class="sync-status-row">
+            <span class="status-dot status-off" id="sync-status-dot"></span>
+            <span id="sync-status-text">동기화 비활성화</span>
+            <span id="sync-status-time"></span>
+        </div>
+
+        <details class="sync-details">
+            <summary>⚙️ 설정 (토큰 입력)</summary>
+            <div class="sync-form">
+                <label>GitHub Personal Access Token <span style="color:var(--text-dim); font-weight:400;">(gist 권한 필요)</span></label>
+                <input type="text" id="sync-token-input" placeholder="ghp_... 또는 github_pat_..." autocomplete="off" spellcheck="false">
+                <div style="font-size:11px; color:var(--text-dim); margin-bottom:10px; line-height:1.6;">
+                    아직 없으면 → <a href="https://github.com/settings/tokens/new?scopes=gist&description=Hot%20Ones%20English%20Sync" target="_blank" style="color:var(--accent-bright);">여기서 발급 받기 (gist 권한만, Expiration: No expiration 권장)</a><br>
+                    토큰은 이 브라우저의 localStorage에만 저장되며 GitHub 외부로는 전송되지 않습니다.
+                </div>
+
+                <label>Gist ID <span style="color:var(--text-dim); font-weight:400;">(처음이면 비워두면 자동 생성)</span></label>
+                <input type="text" id="sync-gist-input" placeholder="자동 생성됨 (다른 기기와 공유하려면 이 ID 복사)" autocomplete="off" spellcheck="false">
+
+                <div style="display:flex; gap:8px; margin-top:10px;">
+                    <button class="btn btn-primary" id="sync-save-btn">저장</button>
+                    <button class="btn" id="sync-clear-btn" style="color:var(--hot);">설정 초기화</button>
+                </div>
+            </div>
+        </details>
+
+        <div class="sync-actions">
+            <button class="btn" id="sync-push-btn">🔼 지금 푸시</button>
+            <button class="btn" id="sync-pull-btn">🔽 지금 풀</button>
+            <label class="sync-auto-label">
+                <input type="checkbox" id="sync-auto-checkbox" checked>
+                자동 동기화 (변경 시 3초 후 자동 푸시)
+            </label>
+        </div>
+
+        <div style="margin-top:10px; padding:10px; background:var(--bg); border-radius:6px; font-size:12px; color:var(--text-muted); line-height:1.6;">
+            💡 <strong style="color:var(--text);">다른 기기에서 사용하려면:</strong> 같은 토큰 + 같은 Gist ID를 입력하시면 됩니다. 위 Gist ID 복사 → 다른 기기에서 붙여넣기 → 풀.
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-title"><span class="icon">▸</span> 데이터 관리</div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button class="btn" id="export-data">📤 데이터 내보내기 (JSON)</button>
+            <button class="btn" id="import-data">📥 데이터 가져오기</button>
+            <button class="btn" id="reset-data" style="color:var(--hot); border-color:var(--hot);">🗑️ 전체 초기화</button>
+        </div>
+        <input type="file" id="import-file" accept=".json" style="display:none;">
+    </div>
+</section>
+
+</main>
+
+<footer class="footer">
+    <p>Hot Ones English Trainer · 매일 1편씩, 두 달이면 귀가 트입니다 🌶️</p>
+    <p style="margin-top:6px;">Sungshin Women's University · made with focus on conversational English</p>
+</footer>
+
+<script>
+// ============ DATA ============
+const EPISODES = [
+    // ==================== EASY (입문) ====================
+    // 표준 영어, 또렷, 느림. 처음 시작하기 좋음.
+    { id: 'gordon-ramsay', name: 'Gordon Ramsay', videoId: 'U9DyHthJ6LA', level: 'easy', tags: ['British', '셰프', '욕설'], note: '영국 영어지만 발음 또렷. 살아있는 표현 학습 1순위. 욕도 풍부.' },
+    { id: 'hugh-jackman', name: 'Hugh Jackman & Ryan Reynolds', videoId: 'DLEL6i0YmkY', level: 'easy', tags: ['Aussie', 'Canadian', '배우'], note: 'Deadpool & Wolverine 두 배우. 케미 폭발, 농담 풍부.' },
+    { id: 'shaquille-oneal', name: 'Shaquille O\'Neal', videoId: '_sZH-psg9yE', level: 'easy', tags: ['American', 'NBA'], note: '천천히 또렷하게 말함. 입문자 강력 추천.' },
+    { id: 'paul-rudd', name: 'Paul Rudd', videoId: 'gWVHses2GCY', level: 'easy', tags: ['American', '배우'], note: '표준 미국 영어. "Historic Dab" 명장면.' },
+    { id: 'natalie-portman', name: 'Natalie Portman', videoId: 'zF2QwHnk3EE', level: 'easy', tags: ['American', '배우'], note: '깔끔한 미국 영어. Harvard 출신.' },
+    { id: 'halle-berry', name: 'Halle Berry', videoId: 'VwHwq5W18uY', level: 'easy', tags: ['American', '배우'], note: '또렷한 미국 영어. John Wick 액션 훈련 얘기.' },
+    { id: 'tom-holland', name: 'Tom Holland', videoId: 'qxGmGGmvFD8', level: 'easy', tags: ['British', '배우'], note: '영국 영어, 친근한 톤. Spider-Man 얘기.' },
+    { id: 'pedro-pascal', name: 'Pedro Pascal', videoId: 'zVRwUHbHgt8', level: 'easy', tags: ['Chilean-American', '배우'], note: '약간의 라틴 액센트, 매우 또렷. The Last of Us 얘기.' },
+    { id: 'stephen-curry', name: 'Stephen Curry', videoId: 'nbxVfd1bw3s', level: 'easy', tags: ['American', 'NBA'], note: '미디어 베테랑. 또렷하고 친근.' },
+    { id: 'will-ferrell', name: 'Will Ferrell', videoId: 'd7qqu9HC7V0', level: 'easy', tags: ['American', '코미디언'], note: '느리고 또렷한 코미디 톤.' },
+    { id: 'matt-damon', name: 'Matt Damon', videoId: 'yaXma6K9mzo', level: 'easy', tags: ['American', '배우'], note: '보스턴 출신, 표준 미국 영어. 영화 일화.' },
+    { id: 'olivia-rodrigo', name: 'Olivia Rodrigo', videoId: '_BkGfxfr76Q', level: 'easy', tags: ['American', '뮤지션'], note: '깔끔한 젊은 미국 영어.' },
+    { id: 'sydney-sweeney', name: 'Sydney Sweeney', videoId: 'a9ZhleGV4Qc', level: 'easy', tags: ['American', '배우'], note: '또렷한 미국 영어. Euphoria 얘기.' },
+    { id: 'brie-larson', name: 'Brie Larson', videoId: 'KgqtZaW8cec', level: 'easy', tags: ['American', '배우'], note: 'Captain Marvel. 또렷한 미국 영어, 코로나 시기 집에서 출연.' },
+    { id: 'drew-barrymore', name: 'Drew Barrymore', videoId: 'GriVUALC6Wg', level: 'easy', tags: ['American', '배우'], note: '친근한 톤, 빠르지 않음. 토크쇼 호스트 출신.' },
+    { id: 'kevin-bacon', name: 'Kevin Bacon', videoId: '6DOOUeBUOYc', level: 'easy', tags: ['American', '배우'], note: '40년 경력 배우의 안정적 발음.' },
+    { id: 'jeff-goldblum', name: 'Jeff Goldblum', videoId: 'TMfVEkfXEV8', level: 'easy', tags: ['American', '배우', '특이'], note: '특유의 끊어 말하는 화법. 어휘 풍부하지만 또렷.' },
+    { id: 'jenna-ortega', name: 'Jenna Ortega', videoId: 'UGuC6wunr-I', level: 'easy', tags: ['American', '배우'], note: '깔끔한 젊은 미국 영어. Wednesday 명연. "Doesn\'t Flinch".' },
+    { id: 'anna-kendrick', name: 'Anna Kendrick', videoId: 'NzlTuDX7veY', level: 'easy', tags: ['American', '배우'], note: '또박또박, 약간 빠르지만 또렷. Pitch Perfect.' },
+    { id: 'bryan-cranston', name: 'Bryan Cranston', videoId: 'OXEteCPQcGc', level: 'easy', tags: ['American', '배우', '연극톤'], note: 'Breaking Bad 주연. 연극 배우 톤으로 또렷.' },
+    { id: 'mila-kunis', name: 'Mila Kunis', videoId: 'NAeOzDhL6tc', level: 'easy', tags: ['American', '배우'], note: 'That \'70s Show. 약간 허스키하지만 또렷.' },
+    { id: 'leslie-mann', name: 'Leslie Mann', videoId: 'jWp5cr_Zpt4', level: 'easy', tags: ['American', '배우'], note: '코미디 영화 배우. 친근한 미국 영어.' },
+    { id: 'kate-hudson', name: 'Kate Hudson', videoId: 'ufOYjXBcNuc', level: 'easy', tags: ['American', '배우'], note: '느긋하고 또렷한 미국 영어.' },
+    { id: 'jennifer-garner', name: 'Jennifer Garner', videoId: 'qmAYZz3gAfo', level: 'easy', tags: ['American', '배우'], note: '소박하고 또렷한 발음. "Says Golly" 명장면.' },
+    { id: 'elijah-wood', name: 'Elijah Wood', videoId: '2-cQ_Wtv0sQ', level: 'easy', tags: ['American', '배우'], note: 'LOTR Frodo. 또렷한 미국 영어. "Lava of Mount Doom".' },
+    { id: 'elizabeth-olsen', name: 'Elizabeth Olsen', videoId: 'OFl9IRb9sEE', level: 'easy', tags: ['American', '배우'], note: 'WandaVision. 또렷한 미국 영어.' },
+    { id: 'salma-hayek', name: 'Salma Hayek', videoId: '9Lhbm87KmOc', level: 'easy', tags: ['Mexican', '배우'], note: '멕시코 액센트, 또렷함. 따뜻한 톤.' },
+    { id: 'sam-rockwell', name: 'Sam Rockwell', videoId: 'ay4wdqaH4AQ', level: 'easy', tags: ['American', '배우'], note: '또렷한 연기 톤. 100편 이상 출연한 베테랑.' },
+    { id: 'bear-grylls', name: 'Bear Grylls', videoId: '2pnBCHN9EOE', level: 'easy', tags: ['British', '서바이벌'], note: 'Man vs Wild. 또렷한 영국 영어.' },
+    { id: 'mark-rober', name: 'Mark Rober', videoId: 'CJbP71RI-V4', level: 'easy', tags: ['American', 'YouTube'], note: 'NASA 출신 유튜버. 명료한 설명체.' },
+    { id: 'marques-brownlee', name: 'Marques Brownlee (MKBHD)', videoId: '5bFhjb7Zw4I', level: 'easy', tags: ['American', 'YouTube'], note: '테크 유튜버. 매우 또렷하고 정돈된 발음.' },
+    { id: 'hilary-duff', name: 'Hilary Duff', videoId: 'TIlag-QNXbE', level: 'easy', tags: ['American', '뮤지션', '배우'], note: 'Lizzie McGuire. 친근한 미국 영어.' },
+    { id: 'melissa-mccarthy', name: 'Melissa McCarthy', videoId: 'jPP2xBDbsbE', level: 'easy', tags: ['American', '배우'], note: '코미디 배우, 또렷함.' },
+    { id: 'david-blaine', name: 'David Blaine', videoId: '4E2EbGoXlPQ', level: 'easy', tags: ['American', '마술사'], note: '느리고 신비로운 톤. 또렷.' },
+    { id: 'joseph-gordon-levitt', name: 'Joseph Gordon-Levitt', videoId: 'HDduzIB8HjU', level: 'easy', tags: ['American', '배우'], note: 'Inception. 깔끔한 발음.' },
+    { id: 'kenan-thompson', name: 'Kenan Thompson', videoId: 'Nk1P_VTENFo', level: 'easy', tags: ['American', '코미디언'], note: 'SNL 최장수 멤버. 친근하고 또렷한 톤.' },
+    { id: 'jessica-alba', name: 'Jessica Alba', videoId: '50U1S_OLEOQ', level: 'easy', tags: ['American', '배우'], note: '또렷한 캘리포니아 영어.' },
+    { id: 'ed-helms', name: 'Ed Helms', videoId: 'A5YxwFgRRCI', level: 'easy', tags: ['American', '배우'], note: 'The Office, Hangover. 또렷.' },
+
+    // ==================== MEDIUM (중급) ====================
+    // 어휘 풍부, 살짝 빠르거나 액센트 있음. 메인 학습 풀.
+    { id: 'conan-obrien', name: 'Conan O\'Brien', videoId: 'FALlhXl6CmA', level: 'medium', tags: ['American', '코미디언', '어휘'], note: '어휘 풍부, 농담 빠름. "Needs a Doctor".' },
+    { id: 'jennifer-lawrence', name: 'Jennifer Lawrence', videoId: 'u1hVAhIVa-4', level: 'medium', tags: ['American', '배우'], note: '캐주얼한 미국 영어, 욕설+슬랭. 매운맛에 sob 명장면.' },
+    { id: 'ed-sheeran', name: 'Ed Sheeran', videoId: 'mKy5K-S4QpU', level: 'medium', tags: ['British', '뮤지션'], note: '영국 영어, 살짝 웅얼거림. Eminem 협업 얘기.' },
+    { id: 'jimmy-kimmel', name: 'Jimmy Kimmel', videoId: '2Rq-9iR4sRw', level: 'medium', tags: ['American', '토크쇼'], note: '비꼼 많은 토크쇼 호스트 톤.' },
+    { id: 'idris-elba', name: 'Idris Elba', videoId: 'tYRS0aXaBC8', level: 'medium', tags: ['British', '배우'], note: '깊이 있는 영국 영어. UK 힙합, Cockney 슬랭.' },
+    { id: 'dj-khaled', name: 'DJ Khaled', videoId: '1HYEC_FlgAg', level: 'medium', tags: ['American', '힙합'], note: '힙합 슬랭. 3번째 윙에서 포기 전설 에피.' },
+    { id: 'charlize-theron', name: 'Charlize Theron', videoId: 'ZgQMW4eVrzw', level: 'medium', tags: ['South African', '배우'], note: '남아공 출신. Afrikaans 슬랭 등장.' },
+    { id: 'matthew-mcconaughey', name: 'Matthew McConaughey', videoId: 'sz1ovZUA4nQ', level: 'medium', tags: ['American', 'Texas'], note: '텍사스 drawl. "Alright alright alright".' },
+    { id: 'daniel-radcliffe', name: 'Daniel Radcliffe', videoId: 'kS6IhBaE7Eo', level: 'medium', tags: ['British', '배우'], note: '영국 영어, 빠른 편. Harry Potter 얘기.' },
+    { id: 'aubrey-plaza', name: 'Aubrey Plaza', videoId: 'iS68LmqFVeA', level: 'medium', tags: ['American', '데드팬'], note: '데드팬 톤, 농담인지 진심인지 헷갈림.' },
+    { id: 'scarlett-johansson', name: 'Scarlett Johansson', videoId: 'SR5kfWXfxto', level: 'medium', tags: ['American', 'NY'], note: 'NY 톤, 음성 허스키.' },
+    { id: 'trevor-noah', name: 'Trevor Noah', videoId: '_AB1mxhd_H8', level: 'medium', tags: ['South African', '코미디언'], note: '다국어. The Daily Show 호스트라 명료.' },
+    { id: 'lewis-hamilton', name: 'Lewis Hamilton', videoId: '0PdtS98IlcM', level: 'medium', tags: ['British', 'F1'], note: '영국 영어, F1 레이서. 자동차 어휘.' },
+    { id: 'lady-gaga', name: 'Lady Gaga', videoId: 'zp5TYOxtZqY', level: 'medium', tags: ['American', '뮤지션'], note: 'NY 영어. 작곡 과정 얘기.' },
+    { id: 'sterling-k-brown', name: 'Sterling K. Brown', videoId: 'KT6Mn-5uO4M', level: 'medium', tags: ['American', '연극톤'], note: '연극 배우 톤, 어휘 고급. Shakespeare 인용.' },
+    { id: 'bill-murray', name: 'Bill Murray', videoId: 'RUyryfKyQgU', level: 'medium', tags: ['American', '특이'], note: '특유의 웅얼거림과 즉흥적 화법.' },
+    { id: 'will-smith', name: 'Will Smith', videoId: 'OVADZrhZF1E', level: 'medium', tags: ['American', '힙합'], note: '필라델피아 출신. 리듬감 있는 영어.' },
+    { id: 'donald-glover', name: 'Donald Glover', videoId: '7Nk5C6o3PkQ', level: 'medium', tags: ['American', '배우', '뮤지션'], note: 'Childish Gambino. 지적, 사색적 화법.' },
+    { id: 'dua-lipa', name: 'Dua Lipa', videoId: 'l9qacGzTJXc', level: 'medium', tags: ['British', '뮤지션'], note: '런던 출신. 침착하게 클리어. "Sweats from Eyes".' },
+    { id: 'john-mulaney', name: 'John Mulaney', videoId: 'W78ChV1ZE-A', level: 'medium', tags: ['American', '코미디언'], note: '스탠드업 또박또박. SNL 작가 출신.' },
+    { id: 'pete-davidson', name: 'Pete Davidson', videoId: '-6BvA4U1dLI', level: 'medium', tags: ['American', 'Staten Island'], note: 'Staten Island 톤. SNL 비하인드.' },
+    { id: 'lizzo', name: 'Lizzo', videoId: 'Tdje6vlVXuA', level: 'medium', tags: ['American', '뮤지션'], note: '큰 목소리, 캐주얼. "piece of cake" 뒤집힘.' },
+    { id: 'doja-cat', name: 'Doja Cat', videoId: 'm81jtcDCIKU', level: 'medium', tags: ['American', '뮤지션'], note: '독특한 화법, 인터넷 슬랭.' },
+    { id: 'halsey', name: 'Halsey', videoId: 'TeMnMqPVRsw', level: 'medium', tags: ['American', '뮤지션'], note: 'New Jersey 출신. 또렷하지만 빠른 톤.' },
+    { id: 'mark-ruffalo', name: 'Mark Ruffalo', videoId: 'oWMW2umf41A', level: 'medium', tags: ['American', '배우'], note: 'Hulk. 사색적 톤. 작품 철학.' },
+    { id: 'florence-pugh', name: 'Florence Pugh', videoId: '9oSm0c6bPTM', level: 'medium', tags: ['British', '배우'], note: '영국 영어, 빠른 편. Black Widow.' },
+    { id: 'jake-gyllenhaal', name: 'Jake Gyllenhaal', videoId: 'K8YwZkdCcGw', level: 'medium', tags: ['American', '배우'], note: '깊이 있는 톤, 살짝 mumbly. 실존주의 얘기.' },
+    { id: 'sebastian-stan', name: 'Sebastian Stan', videoId: 'OtQNjYHoWEI', level: 'medium', tags: ['Romanian-American', '배우'], note: 'Winter Soldier. 살짝 동유럽 톤.' },
+    { id: 'john-oliver', name: 'John Oliver', videoId: 'p-3HZggJzwk', level: 'medium', tags: ['British', '코미디언'], note: '영국 영어, 빠르고 어휘 고급. Last Week Tonight.' },
+    { id: 'theo-von', name: 'Theo Von', videoId: 'yEmyUQsiPT4', level: 'medium', tags: ['American', 'Louisiana'], note: '루이지애나 액센트, 독특한 비유. 친근.' },
+    { id: 'tom-segura', name: 'Tom Segura', videoId: 'bIfUsQRyymU', level: 'medium', tags: ['American', '코미디언'], note: 'Your Mom\'s House 팟캐스트. 캐주얼한 톤.' },
+    { id: 'bert-kreischer', name: 'Bert Kreischer', videoId: '1B9cdcjI2_U', level: 'medium', tags: ['American', '코미디언'], note: '큰 목소리, 스토리텔링.' },
+    { id: 'awkwafina', name: 'Awkwafina', videoId: 'beJD7y1mGLA', level: 'medium', tags: ['American', '배우'], note: 'NY 출신, 허스키한 음성. Crazy Rich Asians.' },
+    { id: 'daniel-kaluuya', name: 'Daniel Kaluuya', videoId: 'THWSA5aNeak', level: 'medium', tags: ['British', '배우'], note: '영국 (London) 영어. Get Out, Black Panther.' },
+    { id: 'queen-latifah', name: 'Queen Latifah', videoId: 'ao26pluo36I', level: 'medium', tags: ['American', '힙합', '배우'], note: 'Newark 출신. 힙합 + 배우 양쪽 다.' },
+    { id: 'bob-odenkirk', name: 'Bob Odenkirk', videoId: 'JGzkeRHG5Zw', level: 'medium', tags: ['American', '배우'], note: 'Better Call Saul. 또렷한 연기 톤.' },
+    { id: 'cate-blanchett', name: 'Cate Blanchett', videoId: '4_OzoinTmw0', level: 'medium', tags: ['Australian', '배우'], note: '호주 출신, 우아한 영어. 어휘 고급.' },
+    { id: 'colin-farrell', name: 'Colin Farrell', videoId: 'pf9M8Ckomo0', level: 'medium', tags: ['Irish', '배우'], note: '아일랜드 액센트, 사색적.' },
+    { id: 'courteney-cox', name: 'Courteney Cox', videoId: 'GTCKN_XBpxQ', level: 'medium', tags: ['American', '배우'], note: 'Friends Monica. 친근한 미국 영어.' },
+    { id: 'dan-levy', name: 'Dan Levy', videoId: 'jl84QblsNP8', level: 'medium', tags: ['Canadian', '배우'], note: 'Schitt\'s Creek. 캐나다 영어.' },
+    { id: 'dave-grohl', name: 'Dave Grohl', videoId: 'nutcZOBGhjs', level: 'medium', tags: ['American', '뮤지션'], note: 'Foo Fighters. 록 뮤지션 톤. 위스키 마시며 진행.' },
+    { id: 'david-chang', name: 'David Chang', videoId: 'n8ZaV9d5j_k', level: 'medium', tags: ['Korean-American', '셰프'], note: 'Momofuku. 한국계 미국인 셰프. 친근.' },
+    { id: 'david-harbour', name: 'David Harbour', videoId: 'ZOfVbtOUhU0', level: 'medium', tags: ['American', '배우'], note: 'Stranger Things Hopper. 깊은 음성.' },
+    { id: 'anthony-mackie', name: 'Anthony Mackie', videoId: 'JjniK9a91og', level: 'medium', tags: ['American', '배우'], note: '뉴올리언스 출신. Captain America.' },
+    { id: 'austin-butler', name: 'Austin Butler', videoId: 'XgmTqdPd34Y', level: 'medium', tags: ['American', '배우'], note: 'Elvis 역할 후 액센트 영향. 캘리 출신.' },
+    { id: 'james-corden', name: 'James Corden', videoId: 'U7rm_01SIuA', level: 'medium', tags: ['British', '토크쇼'], note: '영국 영어, 활기찬 톤.' },
+    { id: 'jason-sudeikis', name: 'Jason Sudeikis', videoId: 'sIdR332rqs8', level: 'medium', tags: ['American', '배우'], note: 'Ted Lasso. 친근한 미국 영어.' },
+    { id: 'jeffrey-dean-morgan', name: 'Jeffrey Dean Morgan', videoId: 'OMQ-6prInz8', level: 'medium', tags: ['American', '배우'], note: 'Walking Dead Negan. 깊은 음성.' },
+    { id: 'jeremy-renner', name: 'Jeremy Renner', videoId: 'jCOE-561-t8', level: 'medium', tags: ['American', '배우'], note: 'Hawkeye. 캘리포니아 출신.' },
+    { id: 'jon-bernthal', name: 'Jon Bernthal', videoId: 'KCVjsbmVi0E', level: 'medium', tags: ['American', '배우'], note: 'The Punisher. 강렬하고 빠른 톤.' },
+    { id: 'josh-brolin', name: 'Josh Brolin', videoId: 'c0ZtaaMml90', level: 'medium', tags: ['American', '배우'], note: 'Thanos, No Country. 깊은 캘리포니아 톤.' },
+    { id: 'julia-louis-dreyfus', name: 'Julia Louis-Dreyfus', videoId: 'TvS1lHEQoKk', level: 'medium', tags: ['American', '배우'], note: 'Veep, Seinfeld. 코미디 베테랑.' },
+    { id: 'kevin-james', name: 'Kevin James', videoId: 'OGCZXEtoOw4', level: 'medium', tags: ['American', '코미디언'], note: 'King of Queens. 친근한 NY 톤.' },
+    { id: 'khloe-kardashian', name: 'Khloé Kardashian', videoId: 'k4d0laRb7_Q', level: 'medium', tags: ['American', 'Cali'], note: '캘리포니아 발음, vocal fry.' },
+    { id: 'kid-cudi', name: 'Kid Cudi', videoId: '0allwd60wS4', level: 'medium', tags: ['American', '힙합'], note: 'Cleveland 출신. 멜로딕한 톤.' },
+    { id: 'kieran-culkin', name: 'Kieran Culkin', videoId: 'xv8e6GG1PyM', level: 'medium', tags: ['American', '배우'], note: 'Succession Roman. 빠른 NY 톤.' },
+    { id: 'lenny-kravitz', name: 'Lenny Kravitz', videoId: 'KqYgHpI6oXA', level: 'medium', tags: ['American', '뮤지션'], note: '록 뮤지션, 침착한 톤.' },
+    { id: 'malcolm-gladwell', name: 'Malcolm Gladwell', videoId: 'ZAG_WxMm_8E', level: 'medium', tags: ['Canadian', '작가'], note: 'Tipping Point 저자. 사색적, 어휘 고급.' },
+    { id: 'michael-che', name: 'Michael Che', videoId: 'B0h52vcXG-0', level: 'medium', tags: ['American', '코미디언'], note: 'SNL Weekend Update.' },
+    { id: 'millie-bobby-brown', name: 'Millie Bobby Brown', videoId: 'n5Qpg-iZPT8', level: 'medium', tags: ['British', '배우'], note: 'Stranger Things. 영국+미국 혼합 액센트.' },
+    { id: 'naomi-campbell', name: 'Naomi Campbell', videoId: 'nCNhmHihR1U', level: 'medium', tags: ['British', '모델'], note: '영국 모델. 우아한 톤.' },
+    { id: 'neil-patrick-harris', name: 'Neil Patrick Harris', videoId: 'q4CpcZjayh4', level: 'medium', tags: ['American', '배우'], note: 'How I Met Your Mother. 또렷.' },
+    { id: 'niall-horan', name: 'Niall Horan', videoId: 'QnoG0a7dZk8', level: 'medium', tags: ['Irish', '뮤지션'], note: 'One Direction. 아일랜드 액센트.' },
+    { id: 'paris-hilton', name: 'Paris Hilton', videoId: 'I9EpzsU1hHk', level: 'medium', tags: ['American', '셀럽'], note: '"That\'s Hot". 특이한 톤.' },
+    { id: 'paul-dano', name: 'Paul Dano', videoId: '0fsxF-OrKsA', level: 'medium', tags: ['American', '배우'], note: 'There Will Be Blood. 차분하고 또렷.' },
+    { id: 'sebastian-maniscalco', name: 'Sebastian Maniscalco', videoId: 'fyQ_Zr6M2ls', level: 'medium', tags: ['Italian-American', '코미디언'], note: '이탈리안 NY 톤. 빠른 화법.' },
+    { id: 't-pain', name: 'T-Pain', videoId: 'O0g2EtKFAcA', level: 'medium', tags: ['American', '힙합'], note: 'Auto-tune 선구자. Hot Ones 광팬.' },
+    { id: 'gal-gadot', name: 'Gal Gadot', videoId: 'rChxcj3fu5c', level: 'medium', tags: ['Israeli', '배우'], note: 'Wonder Woman. 이스라엘 액센트.' },
+    { id: 'jacob-elordi', name: 'Jacob Elordi', videoId: 'BDbBia1GwUM', level: 'medium', tags: ['Australian', '배우'], note: 'Euphoria, Saltburn. 호주 액센트.' },
+    { id: 'j-balvin', name: 'J Balvin', videoId: 'LI1gowcJ8yg', level: 'medium', tags: ['Colombian', '뮤지션'], note: '콜롬비아 액센트, 영어 사용.' },
+    { id: 'll-cool-j', name: 'LL COOL J', videoId: '96E4vXlXq9U', level: 'medium', tags: ['American', '힙합'], note: 'Queens 출신 힙합 레전드.' },
+    { id: 'andrew-zimmern', name: 'Andrew Zimmern', videoId: 'A6C1tpdyagA', level: 'medium', tags: ['American', '셰프'], note: 'Bizarre Foods. 음식 어휘 풍부.' },
+    { id: 'priyanka-chopra', name: 'Priyanka Chopra Jonas', videoId: 'yXonUKbd3aU', level: 'medium', tags: ['Indian', '배우'], note: '인도 액센트, Bollywood + Hollywood.' },
+    { id: 'anitta', name: 'Anitta', videoId: '5BpPzL27ij4', level: 'medium', tags: ['Brazilian', '뮤지션'], note: '브라질 출신, 영어 사용.' },
+
+    // ==================== HARD (고급) ====================
+    // 빠름, 슬랭, 강한 액센트. 기본기 다진 후 도전.
+    { id: 'kevin-hart', name: 'Kevin Hart', videoId: 'GTW8IplsKmM', level: 'hard', tags: ['American', '코미디언', '빠름'], note: '매우 빠른 속도, 슬랭 폭격. "Catches a High".' },
+    { id: 'margot-robbie', name: 'Margot Robbie', videoId: 'JeUFrZtKkn8', level: 'hard', tags: ['Australian', '배우', '빠름'], note: '호주 영어 + 빠름. Birds of Prey.' },
+    { id: 'chris-hemsworth', name: 'Chris Hemsworth', videoId: '0HZPyhnErFo', level: 'hard', tags: ['Australian', '배우'], note: '강한 호주 액센트. Furiosa.' },
+    { id: 'cardi-b', name: 'Cardi B', videoId: 'pfAiLSwczQ8', level: 'hard', tags: ['American', 'NY', '힙합'], note: 'Bronx 출신, 빠른 NY 영어 + 슬랭. 도전 정점.' },
+    { id: 'megan-thee-stallion', name: 'Megan Thee Stallion', videoId: 'kDx5WNdbCSU', level: 'hard', tags: ['American', 'Houston', '힙합'], note: 'Houston AAVE + 힙합 슬랭.' },
+    { id: 'billie-eilish', name: 'Billie Eilish', videoId: 'YDr4ITrp7YI', level: 'hard', tags: ['American', '뮤지션', '웅얼거림'], note: '특유의 웅얼거리는 톤.' },
+    { id: 'lorde', name: 'Lorde', videoId: 'qaoEyTZpv18', level: 'hard', tags: ['New Zealand', '뮤지션'], note: '뉴질랜드 액센트, 흔치 않은 발음.' },
+    { id: 'post-malone', name: 'Post Malone', videoId: 'eCEG4QyQbF4', level: 'hard', tags: ['American', '힙합'], note: '힙합 슬랭 + 빠름.' },
+    { id: 'gordon-ramsay-2', name: 'Gordon Ramsay (Holiday Round 2)', videoId: 'GJlNvSC5v6s', level: 'hard', tags: ['British', '셰프'], note: '두 번째 출연. 더 빠르고 욕설 더 많음.' },
+    { id: 'bill-burr', name: 'Bill Burr', videoId: '8Lvrikv6oPs', level: 'hard', tags: ['American', 'Boston', '빠름'], note: 'Boston 액센트 + 빠른 화법. 욕설 폭격.' },
+    { id: 'action-bronson', name: 'Action Bronson', videoId: 'x2JkhZd_Kxc', level: 'hard', tags: ['American', 'NY', '힙합'], note: 'Queens 출신, 빠른 NY 슬랭 + 음식 어휘.' },
+    { id: 'eric-andre', name: 'Eric Andre', videoId: '1kBnlL-XpPc', level: 'hard', tags: ['American', '카오스'], note: '예측 불가능 화법, 카오스. 어렵.' },
+    { id: 'jack-harlow', name: 'Jack Harlow', videoId: 'ECsVN3AEJsQ', level: 'hard', tags: ['American', 'Kentucky', '힙합'], note: 'Kentucky 출신 래퍼.' },
+    { id: 'lil-nas-x', name: 'Lil Nas X', videoId: 'WW7bhd08e08', level: 'hard', tags: ['American', '힙합'], note: 'Atlanta 출신. 힙합 슬랭. Thanksgiving 편.' },
+    { id: 'pusha-t', name: 'Pusha T', videoId: 'LIqpT0_ul8s', level: 'hard', tags: ['American', '힙합'], note: 'Virginia 래퍼. 빠르고 의식적인 가사 스타일.' },
+    { id: 'quavo', name: 'Quavo', videoId: '97LOvGao4Co', level: 'hard', tags: ['American', 'Atlanta', '힙합'], note: 'Migos. Atlanta 트랩 슬랭.' },
+    { id: 'lewis-capaldi', name: 'Lewis Capaldi', videoId: '5_7VoVwkkME', level: 'hard', tags: ['Scottish', '뮤지션'], note: '스코틀랜드 액센트, 매우 어려움. 욕설 풍부.' },
+    { id: 'andrew-callaghan', name: 'Andrew Callaghan', videoId: 'UhwijXZoncM', level: 'hard', tags: ['American', '저널리스트'], note: 'Channel 5 다큐. 빠르고 어휘 다양.' },
+];
+
+const PHRASES = [
+    // 매운 반응
+    { en: "Oh my god, this is insane.", kr: "와 이거 미쳤다.", ex: '윙 한 입 먹은 직후 가장 흔한 반응', cat: 'reaction' },
+    { en: "It's creeping up on me.", kr: "(매운맛이) 서서히 올라오네.", ex: '뒤늦게 매워질 때 사용', cat: 'reaction' },
+    { en: "It hits you on the back end.", kr: "끝맛으로 후려친다.", ex: '뒷맛이 매울 때', cat: 'reaction' },
+    { en: "I'm sweating already.", kr: "벌써 땀나.", ex: '버티는 중', cat: 'reaction' },
+    { en: "That's no joke.", kr: "장난 아니다.", ex: '진지하게 매울 때', cat: 'reaction' },
+    { en: "Whew, that's got some heat.", kr: "와, 이거 좀 맵네.", ex: '인정하는 톤', cat: 'reaction' },
+    { en: "I can feel it in my chest.", kr: "가슴에서 느껴져.", ex: '진짜 매울 때', cat: 'reaction' },
+    { en: "It's not that bad… oh, there it is.", kr: "안 매운 것 같… 아 왔다.", ex: '방심하다 후회', cat: 'reaction' },
+
+    // Sean 질문 패턴
+    { en: "Speaking of...", kr: "~ 얘기가 나왔으니 말인데", ex: 'Speaking of your new album, what was the inspiration?', cat: 'sean' },
+    { en: "On the topic of...", kr: "~에 관해서는", ex: 'On the topic of your early career...', cat: 'sean' },
+    { en: "I'd be remiss if I didn't ask...", kr: "안 물어보면 섭섭하니까", ex: '중요 질문 도입부', cat: 'sean' },
+    { en: "Walk me through...", kr: "~에 대해 설명해줘", ex: 'Walk me through your creative process.', cat: 'sean' },
+    { en: "What's the deal with...?", kr: "~는 도대체 뭐야?", ex: '캐주얼한 질문 도입', cat: 'sean' },
+    { en: "Take me back to...", kr: "~ 시절로 돌아가보자", ex: 'Take me back to your first audition.', cat: 'sean' },
+    { en: "Is there any truth to...?", kr: "~ 사실이야?", ex: '루머 확인할 때', cat: 'sean' },
+    { en: "How did that come about?", kr: "어쩌다 그렇게 됐어?", ex: '계기 묻기', cat: 'sean' },
+
+    // 일상 맞장구
+    { en: "For sure.", kr: "당연하지 / 그럼.", ex: '강한 동의', cat: 'agree' },
+    { en: "100%.", kr: "완전 동의.", ex: 'For sure보다 더 강함', cat: 'agree' },
+    { en: "Right, right.", kr: "맞아 맞아.", ex: '리스닝 시그널', cat: 'agree' },
+    { en: "No way!", kr: "말도 안 돼!", ex: '놀랐을 때', cat: 'agree' },
+    { en: "Get out!", kr: "에이 설마!", ex: 'No way와 비슷, 친근한 톤', cat: 'agree' },
+    { en: "That's wild.", kr: "그거 미쳤다.", ex: '신기/충격적인 얘기에', cat: 'agree' },
+    { en: "Totally.", kr: "완전.", ex: '동의', cat: 'agree' },
+    { en: "Hundred percent.", kr: "100%.", ex: '구어로 자주 들리는 형태', cat: 'agree' },
+    { en: "I hear you.", kr: "무슨 말인지 알아.", ex: '공감 표현', cat: 'agree' },
+    { en: "You bet.", kr: "당연하지.", ex: 'Of course의 캐주얼 버전', cat: 'agree' },
+
+    // Filler
+    { en: "You know what I mean?", kr: "무슨 말인지 알지?", ex: '확인 + 시간 벌기', cat: 'filler' },
+    { en: "Like, kind of...", kr: "뭐랄까, 약간…", ex: '말 고를 때', cat: 'filler' },
+    { en: "I mean...", kr: "그러니까…", ex: '말 시작/수정', cat: 'filler' },
+    { en: "Long story short...", kr: "간단히 말하면", ex: '긴 얘기 줄일 때', cat: 'filler' },
+    { en: "At the end of the day...", kr: "결국엔", ex: '결론 도입', cat: 'filler' },
+    { en: "Honestly...", kr: "솔직히 말하면", ex: '솔직한 의견 도입', cat: 'filler' },
+];
+
+const REDUCTIONS = [
+    { formal: "What are you going to do?", reduced: "Whaddaya gonna do?", meaning: "뭐 할 거야?" },
+    { formal: "Did you eat yet?", reduced: "Didja eat yet?", meaning: "밥 먹었어?" },
+    { formal: "I don't know.", reduced: "I dunno.", meaning: "몰라." },
+    { formal: "Let me see.", reduced: "Lemme see.", meaning: "어디 보자." },
+    { formal: "Going to", reduced: "Gonna", meaning: "~할 거야" },
+    { formal: "Want to", reduced: "Wanna", meaning: "~하고 싶어" },
+    { formal: "Got to", reduced: "Gotta", meaning: "~해야 돼" },
+    { formal: "Out of", reduced: "Outta", meaning: "~밖으로 / ~중에서" },
+    { formal: "Kind of", reduced: "Kinda", meaning: "약간, 뭐랄까" },
+    { formal: "Sort of", reduced: "Sorta", meaning: "약간, 뭐랄까" },
+    { formal: "What do you", reduced: "Whaddya / Whatcha", meaning: "너 뭐 ~?" },
+    { formal: "What are you doing?", reduced: "Whatcha doin'?", meaning: "뭐 해?" },
+    { formal: "How are you?", reduced: "How ya doin'? / Howya?", meaning: "어떻게 지내?" },
+    { formal: "Give me", reduced: "Gimme", meaning: "줘" },
+    { formal: "Should have", reduced: "Shoulda", meaning: "~했어야 했어" },
+    { formal: "Could have", reduced: "Coulda", meaning: "~할 수도 있었어" },
+    { formal: "Would have", reduced: "Woulda", meaning: "~했을 거야" },
+    { formal: "Don't you", reduced: "Doncha", meaning: "너 ~ 안 해?" },
+    { formal: "Won't you", reduced: "Woncha", meaning: "너 ~ 안 할래?" },
+    { formal: "Got you", reduced: "Gotcha", meaning: "알겠어 / 잡았다" },
+    { formal: "Because", reduced: "'Cause / Cuz", meaning: "왜냐하면" },
+    { formal: "Probably", reduced: "Prolly", meaning: "아마" },
+    { formal: "I'm going to", reduced: "I'mma / Ima", meaning: "나 ~할 거야" },
+    { formal: "Tell him", reduced: "Tell 'im", meaning: "걔한테 말해" },
+    { formal: "Did you", reduced: "Didja", meaning: "너 ~했어?" },
+    { formal: "Would you", reduced: "Wouldja", meaning: "너 ~할래?" },
+    { formal: "Could you", reduced: "Couldja", meaning: "너 ~해줄래?" },
+    { formal: "What's up?", reduced: "Sup?", meaning: "뭐 하냐?" },
+    { formal: "A lot of", reduced: "A lotta", meaning: "많은" },
+    { formal: "I have to", reduced: "I hafta", meaning: "나 ~해야 돼" },
+];
+
+// ============ STATE ============
+const STORAGE_KEY = 'hotones-english-v1';
+const SYNC_TOKEN_KEY = 'hotones-sync-token';
+const SYNC_GIST_KEY = 'hotones-sync-gist';
+const SYNC_AUTO_KEY = 'hotones-sync-auto';
+const SYNC_LAST_PUSH_KEY = 'hotones-sync-lastpush';
+const SYNC_LAST_PULL_KEY = 'hotones-sync-lastpull';
+const SCHEMA_NAME = 'hot-ones-english';
+const SCHEMA_VERSION = 2;
+
+// Default state factory
+function defaultState() {
+    return {
+        version: SCHEMA_VERSION,
+        schema: SCHEMA_NAME,
+        savedAt: null,
+        passes: {},
+        notes: [],
+        drillIdx: 0,
+        videos: {},
+        currentVideo: null,
+        episodeUrls: {},
+        studyDates: {}
+    };
+}
+
+function loadState() {
+    try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return defaultState();
+        const parsed = JSON.parse(raw);
+
+        // Start with parsed (preserves ALL fields including unknown ones for forward compat)
+        // then ensure required fields have defaults
+        const s = { ...parsed };
+        if (typeof s.passes !== 'object' || s.passes === null) s.passes = {};
+        if (!Array.isArray(s.notes)) s.notes = [];
+        if (typeof s.drillIdx !== 'number') s.drillIdx = 0;
+        if (typeof s.videos !== 'object' || s.videos === null) s.videos = {};
+        if (!('currentVideo' in s)) s.currentVideo = null;
+        if (typeof s.episodeUrls !== 'object' || s.episodeUrls === null) s.episodeUrls = {};
+        if (typeof s.studyDates !== 'object' || s.studyDates === null) s.studyDates = {};
+
+        // Migrate 3-Pass → 5-Step: extend any pass arrays shorter than 5
+        Object.keys(s.passes).forEach(id => {
+            const arr = s.passes[id];
+            if (Array.isArray(arr)) {
+                while (arr.length < 5) arr.push(false);
+            } else {
+                s.passes[id] = [false, false, false, false, false];
+            }
+        });
+        s.schema = SCHEMA_NAME;
+        if (!s.version) s.version = 1; // legacy v1 detected
+
+        return s;
+    } catch (e) {
+        console.error('loadState failed:', e);
+        return defaultState();
+    }
+}
+
+function saveState(s) {
+    try {
+        s.savedAt = new Date().toISOString();
+        s.version = SCHEMA_VERSION;
+        s.schema = SCHEMA_NAME;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(s));
+        // Trigger auto-push if enabled and not in the middle of pulling
+        if (typeof scheduleAutoPush === 'function' && !window._suppressAutoPush) {
+            scheduleAutoPush();
+        }
+    } catch (e) {
+        console.error('saveState failed:', e);
+    }
+}
+
+let state = loadState();
+
+// ============ CLOUD SYNC (GitHub Gist) ============
+const GIST_FILENAME = 'hot-ones-english.json';
+const GIST_DESCRIPTION = 'Hot Ones English — sync data';
+let _autoPushTimer = null;
+let _isSyncing = false;
+window._suppressAutoPush = false;
+
+function getSyncToken() { return localStorage.getItem(SYNC_TOKEN_KEY) || ''; }
+function setSyncToken(t) { t ? localStorage.setItem(SYNC_TOKEN_KEY, t) : localStorage.removeItem(SYNC_TOKEN_KEY); }
+function getSyncGistId() { return localStorage.getItem(SYNC_GIST_KEY) || ''; }
+function setSyncGistId(id) { id ? localStorage.setItem(SYNC_GIST_KEY, id) : localStorage.removeItem(SYNC_GIST_KEY); }
+function getSyncAuto() { return localStorage.getItem(SYNC_AUTO_KEY) !== '0'; } // default ON
+function setSyncAuto(v) { localStorage.setItem(SYNC_AUTO_KEY, v ? '1' : '0'); }
+function getLastPush() { return parseInt(localStorage.getItem(SYNC_LAST_PUSH_KEY) || '0', 10); }
+function getLastPull() { return parseInt(localStorage.getItem(SYNC_LAST_PULL_KEY) || '0', 10); }
+
+function isSyncConfigured() {
+    return !!getSyncToken();
+}
+
+function timeAgo(ts) {
+    if (!ts) return '없음';
+    const sec = Math.floor((Date.now() - ts) / 1000);
+    if (sec < 5) return '방금';
+    if (sec < 60) return sec + '초 전';
+    if (sec < 3600) return Math.floor(sec / 60) + '분 전';
+    if (sec < 86400) return Math.floor(sec / 3600) + '시간 전';
+    return Math.floor(sec / 86400) + '일 전';
+}
+
+async function gistRequest(method, path, body) {
+    const token = getSyncToken();
+    if (!token) throw new Error('토큰이 설정되지 않았습니다');
+    const opts = {
+        method,
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Accept': 'application/vnd.github+json',
+            'X-GitHub-Api-Version': '2022-11-28'
+        }
+    };
+    if (body !== undefined) {
+        opts.headers['Content-Type'] = 'application/json';
+        opts.body = JSON.stringify(body);
+    }
+    const res = await fetch(`https://api.github.com${path}`, opts);
+    if (!res.ok) {
+        const text = await res.text();
+        if (res.status === 401) throw new Error('인증 실패: 토큰이 잘못됐거나 만료됐습니다');
+        if (res.status === 404) throw new Error('Gist를 찾을 수 없습니다 (삭제됐거나 권한 없음)');
+        if (res.status === 403) throw new Error('권한 부족 또는 rate limit 초과');
+        throw new Error(`GitHub API ${res.status}: ${text}`);
+    }
+    return res.json();
+}
+
+async function pushToCloud(silent) {
+    if (_isSyncing) return { ok: false, error: '이미 동기화 중' };
+    if (!isSyncConfigured()) return { ok: false, error: '토큰 미설정' };
+
+    _isSyncing = true;
+    if (!silent) updateSyncStatus('syncing', '푸시 중...');
+
+    try {
+        const content = JSON.stringify(state, null, 2);
+        const body = {
+            description: GIST_DESCRIPTION,
+            public: false,
+            files: { [GIST_FILENAME]: { content } }
+        };
+
+        let gistId = getSyncGistId();
+        let result;
+        if (gistId) {
+            result = await gistRequest('PATCH', `/gists/${gistId}`, body);
+        } else {
+            result = await gistRequest('POST', '/gists', body);
+            setSyncGistId(result.id);
+        }
+
+        localStorage.setItem(SYNC_LAST_PUSH_KEY, String(Date.now()));
+        updateSyncStatus('synced', '푸시 완료');
+        return { ok: true, gistId: result.id };
+    } catch (err) {
+        console.error('Push failed:', err);
+        updateSyncStatus('error', '푸시 실패: ' + err.message);
+        return { ok: false, error: err.message };
+    } finally {
+        _isSyncing = false;
+    }
+}
+
+async function pullFromCloud(silent) {
+    if (_isSyncing) return { ok: false, error: '이미 동기화 중' };
+    if (!isSyncConfigured()) return { ok: false, error: '토큰 미설정' };
+    const gistId = getSyncGistId();
+    if (!gistId) return { ok: false, error: 'Gist ID 없음 (먼저 푸시하세요)' };
+
+    _isSyncing = true;
+    if (!silent) updateSyncStatus('syncing', '풀 중...');
+
+    try {
+        const gist = await gistRequest('GET', `/gists/${gistId}`);
+        const file = gist.files && gist.files[GIST_FILENAME];
+        if (!file) throw new Error('Gist에 데이터 파일이 없습니다');
+
+        let content = file.content;
+        if (file.truncated && file.raw_url) {
+            const rawRes = await fetch(file.raw_url);
+            if (rawRes.ok) content = await rawRes.text();
+        }
+
+        const remote = JSON.parse(content);
+
+        // Apply remote state (preserves all fields including unknown ones)
+        // Don't trigger autopush for this save
+        window._suppressAutoPush = true;
+        state = remote;
+        // Ensure required fields
+        if (!state.passes) state.passes = {};
+        if (!state.notes) state.notes = [];
+        if (!state.videos) state.videos = {};
+        if (!state.episodeUrls) state.episodeUrls = {};
+        if (!state.studyDates) state.studyDates = {};
+        if (typeof state.drillIdx !== 'number') state.drillIdx = 0;
+        // Migrate 3-Pass → 5-Step
+        Object.keys(state.passes).forEach(id => {
+            const arr = state.passes[id];
+            if (Array.isArray(arr)) {
+                while (arr.length < 5) arr.push(false);
+            }
+        });
+        saveState(state);
+        window._suppressAutoPush = false;
+
+        // Re-render everything
+        try {
+            renderEpisodes(currentEpFilter);
+            renderPhrases();
+            renderDrill();
+            populateNoteEpisodes();
+            renderNotes();
+            renderStats();
+            renderCalendar();
+            renderRecentVideos();
+            renderMarkers();
+        } catch (e) { console.error('Re-render failed:', e); }
+
+        localStorage.setItem(SYNC_LAST_PULL_KEY, String(Date.now()));
+        updateSyncStatus('synced', '풀 완료');
+        return { ok: true };
+    } catch (err) {
+        console.error('Pull failed:', err);
+        updateSyncStatus('error', '풀 실패: ' + err.message);
+        return { ok: false, error: err.message };
+    } finally {
+        _isSyncing = false;
+    }
+}
+
+function scheduleAutoPush() {
+    if (!isSyncConfigured() || !getSyncAuto()) return;
+    clearTimeout(_autoPushTimer);
+    _autoPushTimer = setTimeout(() => {
+        pushToCloud(true).then(() => updateSyncUI());
+    }, 3000); // 3-second debounce
+}
+
+function updateSyncStatus(state, message) {
+    const dot = document.getElementById('sync-status-dot');
+    const text = document.getElementById('sync-status-text');
+    if (!dot || !text) return;
+    dot.className = 'status-dot status-' + state;
+    text.textContent = message || ({
+        off: '동기화 비활성화',
+        synced: '동기화됨',
+        syncing: '동기화 중...',
+        error: '오류'
+    }[state] || state);
+    updateSyncUI();
+}
+
+function updateSyncUI() {
+    const cfg = isSyncConfigured();
+    const tokenInput = document.getElementById('sync-token-input');
+    const gistInput = document.getElementById('sync-gist-input');
+    const autoCheck = document.getElementById('sync-auto-checkbox');
+    const timeEl = document.getElementById('sync-status-time');
+    const statusText = document.getElementById('sync-status-text');
+    const dot = document.getElementById('sync-status-dot');
+
+    if (tokenInput && document.activeElement !== tokenInput) {
+        const t = getSyncToken();
+        tokenInput.value = t ? t.slice(0, 4) + '••••••••' + t.slice(-4) : '';
+        tokenInput.dataset.masked = '1';
+    }
+    if (gistInput && document.activeElement !== gistInput) {
+        gistInput.value = getSyncGistId();
+    }
+    if (autoCheck) autoCheck.checked = getSyncAuto();
+
+    if (timeEl) {
+        const lp = getLastPush();
+        const lr = getLastPull();
+        const latest = Math.max(lp, lr);
+        if (latest && cfg) {
+            const which = lp >= lr ? '푸시' : '풀';
+            timeEl.textContent = `마지막 ${which}: ${timeAgo(latest)}`;
+        } else {
+            timeEl.textContent = '';
+        }
+    }
+
+    if (!cfg && dot && statusText) {
+        dot.className = 'status-dot status-off';
+        statusText.textContent = '동기화 비활성화 (토큰 미설정)';
+    }
+}
+// ============ NAVIGATION ============
+document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+        if (btn.dataset.tab === 'stats') renderStats();
+        if (btn.dataset.tab === 'calendar') renderCalendar();
+        if (btn.dataset.tab === 'notes') renderNotes();
+        if (btn.dataset.tab === 'player') { renderRecentVideos(); renderMarkers(); }
+    });
+});
+
+// ============ EPISODES ============
+function ytSearch(name) {
+    return `https://www.youtube.com/results?search_query=${encodeURIComponent('Hot Ones ' + name)}`;
+}
+
+function renderEpisodes(level = 'all') {
+    const grid = document.getElementById('episode-grid');
+    const filtered = level === 'all' ? EPISODES : EPISODES.filter(e => e.level === level);
+
+    grid.innerHTML = filtered.map(ep => {
+        const passes = state.passes[ep.id] || [false, false, false, false, false];
+        const badgeClass = `badge-${ep.level}`;
+        const levelLabel = { easy: 'EASY', medium: 'MEDIUM', hard: 'HARD' }[ep.level];
+        const customId = state.episodeUrls[ep.id];
+        const effectiveId = customId || ep.videoId;
+        const isCustom = !!customId;
+
+        return `
+        <div class="ep-card">
+            <div class="ep-header">
+                <div class="ep-name">${ep.name}${isCustom ? ' <span class="saved-dot" title="사용자 지정 영상"></span>' : ''}</div>
+                <span class="ep-badge ${badgeClass}">${levelLabel}</span>
+            </div>
+            <div class="ep-note">${ep.note}</div>
+            <div class="ep-tags">
+                ${ep.tags.map(t => `<span class="ep-tag">${t}</span>`).join('')}
+            </div>
+            <div class="ep-actions">
+                <div class="ep-passes">
+                    ${[1, 2, 3, 4, 5].map(n => `
+                        <div class="pass-dot ${passes[n-1] ? 'done' : ''}" data-ep="${ep.id}" data-pass="${n-1}" title="Pass ${n}">${n}</div>
+                    `).join('')}
+                </div>
+                <div class="ep-buttons">
+                    <button class="ep-icon-btn" data-action="changeurl" data-ep="${ep.id}" title="다른 영상으로 변경">🔄</button>
+                    <button class="play-btn" data-action="play" data-ep="${ep.id}" title="플레이어에서 재생">▶ 재생</button>
+                </div>
+            </div>
+        </div>
+        `;
+    }).join('');
+
+    // Pass dots
+    grid.querySelectorAll('.pass-dot').forEach(dot => {
+        dot.addEventListener('click', () => {
+            const id = dot.dataset.ep;
+            const pass = parseInt(dot.dataset.pass);
+            if (!state.passes[id]) state.passes[id] = [false, false, false, false, false];
+            state.passes[id][pass] = !state.passes[id][pass];
+            if (state.passes[id][pass]) recordStudy({ activity: 'pass', episode: id });
+            saveState(state);
+            renderEpisodes(currentEpFilter);
+        });
+    });
+
+    // Action buttons
+    grid.querySelectorAll('[data-action]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const action = btn.dataset.action;
+            const epId = btn.dataset.ep;
+            const ep = EPISODES.find(x => x.id === epId);
+            if (!ep) return;
+
+            if (action === 'play') {
+                playEpisode(epId);
+            } else if (action === 'changeurl') {
+                promptForEpisodeUrl(ep);
+            }
+        });
+    });
+}
+
+function promptForEpisodeUrl(ep) {
+    const current = state.episodeUrls[ep.id];
+    const isCustom = !!current;
+    const msg = isCustom
+        ? `Hot Ones ${ep.name}의 새 YouTube URL.\n빈칸 + 확인 = 기본 영상으로 복귀\n\n현재 사용자 지정 ID: ${current}\n기본 영상 ID: ${ep.videoId}`
+        : `Hot Ones ${ep.name}의 다른 YouTube URL을 등록할 수 있습니다.\n현재는 기본 추천 영상이 재생됩니다.\n\n기본 영상 ID: ${ep.videoId}`;
+    const url = prompt(msg, '');
+    if (url === null) return;
+
+    const trimmed = url.trim();
+    if (trimmed === '') {
+        if (isCustom && confirm('사용자 지정 URL을 해제하고 기본 영상으로 돌아갈까요?')) {
+            delete state.episodeUrls[ep.id];
+            saveState(state);
+            renderEpisodes(currentEpFilter);
+        }
+        return;
+    }
+
+    const id = parseVideoId(trimmed);
+    if (!id) {
+        alert('유효한 YouTube URL 또는 11자리 비디오 ID가 아닙니다.');
+        return;
+    }
+    state.episodeUrls[ep.id] = id;
+    saveState(state);
+    renderEpisodes(currentEpFilter);
+    playEpisode(ep.id);
+}
+
+function playEpisode(epId) {
+    const ep = EPISODES.find(x => x.id === epId);
+    if (!ep) return;
+    const videoId = state.episodeUrls[epId] || ep.videoId;
+    if (!videoId) return;
+    document.querySelector('[data-tab="player"]').click();
+    createPlayer(videoId);
+}
+
+let currentEpFilter = 'all';
+document.querySelectorAll('#ep-filters .filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('#ep-filters .filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentEpFilter = btn.dataset.level;
+        renderEpisodes(currentEpFilter);
+    });
+});
+
+// ============ PHRASES ============
+function renderPhrases(cat = 'all') {
+    const grid = document.getElementById('phrase-grid');
+    const filtered = cat === 'all' ? PHRASES : PHRASES.filter(p => p.cat === cat);
+    grid.innerHTML = filtered.map(p => `
+        <div class="phrase">
+            <div class="phrase-en">${p.en}</div>
+            <div class="phrase-kr">${p.kr}</div>
+            <div class="phrase-ex">${p.ex}</div>
+        </div>
+    `).join('');
+}
+
+document.querySelectorAll('#phrase-filters .filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('#phrase-filters .filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderPhrases(btn.dataset.cat);
+    });
+});
+
+// ============ DRILL ============
+function renderDrill() {
+    const idx = state.drillIdx % REDUCTIONS.length;
+    const r = REDUCTIONS[idx];
+    document.getElementById('drill-formal').textContent = r.formal;
+    document.getElementById('drill-reduced').textContent = r.reduced;
+    document.getElementById('drill-reduced').classList.add('hidden');
+    document.getElementById('drill-meaning').textContent = '';
+    document.getElementById('drill-progress').textContent = `${idx + 1} / ${REDUCTIONS.length}`;
+}
+
+document.getElementById('drill-reveal').addEventListener('click', () => {
+    const idx = state.drillIdx % REDUCTIONS.length;
+    const r = REDUCTIONS[idx];
+    document.getElementById('drill-reduced').classList.remove('hidden');
+    document.getElementById('drill-meaning').textContent = r.meaning;
+});
+
+document.getElementById('drill-next').addEventListener('click', () => {
+    state.drillIdx = (state.drillIdx + 1) % REDUCTIONS.length;
+    saveState(state);
+    renderDrill();
+});
+
+// ============ NOTES ============
+function populateNoteEpisodes() {
+    const sel = document.getElementById('note-episode');
+    sel.innerHTML = '<option value="">에피소드 선택…</option>' +
+        EPISODES.map(e => `<option value="${e.id}">${e.name}</option>`).join('') +
+        '<option value="general">일반 (에피소드 무관)</option>';
+}
+
+function renderNotes() {
+    const list = document.getElementById('notes-list');
+    if (!state.notes || state.notes.length === 0) {
+        list.innerHTML = '<div class="empty-state">아직 메모가 없습니다. 에피소드 보면서 새 표현을 기록해보세요.</div>';
+        return;
+    }
+
+    const sorted = [...state.notes].sort((a, b) => b.ts - a.ts);
+    list.innerHTML = sorted.map(n => {
+        const ep = EPISODES.find(e => e.id === n.epId);
+        const epName = ep ? ep.name : (n.epId === 'general' ? '일반' : n.epId);
+        const date = new Date(n.ts).toLocaleDateString('ko-KR');
+        return `
+            <div class="note-item">
+                <div class="note-meta">
+                    <span class="note-ep">🌶️ ${epName}</span>
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span class="note-date">${date}</span>
+                        <button class="note-delete" data-id="${n.id}" title="삭제">✕</button>
+                    </div>
+                </div>
+                <div class="note-content">${escapeHTML(n.content)}</div>
+            </div>
+        `;
+    }).join('');
+
+    list.querySelectorAll('.note-delete').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const id = btn.dataset.id;
+            if (confirm('이 메모를 삭제하시겠어요?')) {
+                state.notes = state.notes.filter(n => n.id !== id);
+                saveState(state);
+                renderNotes();
+            }
+        });
+    });
+}
+
+function escapeHTML(s) {
+    return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+document.getElementById('note-save').addEventListener('click', () => {
+    const epId = document.getElementById('note-episode').value;
+    const content = document.getElementById('note-content').value.trim();
+    if (!epId) { alert('에피소드를 선택해주세요.'); return; }
+    if (!content) { alert('내용을 입력해주세요.'); return; }
+
+    state.notes = state.notes || [];
+    state.notes.push({
+        id: 'n_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7),
+        epId, content,
+        ts: Date.now()
+    });
+    recordStudy({ activity: 'note', episode: epId });
+    saveState(state);
+    document.getElementById('note-content').value = '';
+    renderNotes();
+});
+
+// ============ STATS ============
+// ============ STUDY CALENDAR ============
+function todayDateKey() {
+    return formatDateKey(new Date());
+}
+
+function formatDateKey(d) {
+    return d.getFullYear() + '-' +
+           String(d.getMonth() + 1).padStart(2, '0') + '-' +
+           String(d.getDate()).padStart(2, '0');
+}
+
+function recordStudy(opts) {
+    if (!state.studyDates) state.studyDates = {};
+    const key = todayDateKey();
+    if (!state.studyDates[key]) {
+        state.studyDates[key] = { duration: 0, activities: [], episodes: [] };
+    }
+    const day = state.studyDates[key];
+    if (opts.duration) day.duration = (day.duration || 0) + opts.duration;
+    if (opts.activity) {
+        day.activities = day.activities || [];
+        day.activities.push({ type: opts.activity, ts: Date.now() });
+    }
+    if (opts.episode) {
+        day.episodes = day.episodes || [];
+        if (!day.episodes.includes(opts.episode)) day.episodes.push(opts.episode);
+    }
+    saveState(state);
+}
+
+function calcStudyStats() {
+    const dates = Object.keys(state.studyDates || {}).filter(k => /^\d{4}-\d{2}-\d{2}$/.test(k)).sort();
+    if (dates.length === 0) return { current: 0, longest: 0, total: 0, totalMinutes: 0 };
+
+    let totalSeconds = 0;
+    Object.values(state.studyDates).forEach(d => {
+        if (d && typeof d.duration === 'number') totalSeconds += d.duration;
+    });
+    const totalMinutes = Math.round(totalSeconds / 60);
+
+    // Current streak: count back from today (or yesterday if today not yet)
+    const dateSet = new Set(dates);
+    const today = new Date(); today.setHours(0,0,0,0);
+    let cursor;
+    if (dateSet.has(formatDateKey(today))) {
+        cursor = new Date(today);
+    } else {
+        const y = new Date(today); y.setDate(y.getDate() - 1);
+        cursor = dateSet.has(formatDateKey(y)) ? y : null;
+    }
+    let current = 0;
+    if (cursor) {
+        while (dateSet.has(formatDateKey(cursor))) {
+            current++;
+            cursor.setDate(cursor.getDate() - 1);
+        }
+    }
+
+    // Longest streak: walk through sorted dates
+    let longest = 1, run = 1;
+    for (let i = 1; i < dates.length; i++) {
+        const prev = new Date(dates[i-1] + 'T00:00:00');
+        const cur = new Date(dates[i] + 'T00:00:00');
+        const diff = Math.round((cur - prev) / 86400000);
+        if (diff === 1) {
+            run++;
+            if (run > longest) longest = run;
+        } else {
+            run = 1;
+        }
+    }
+    longest = Math.max(longest, current);
+
+    return { current, longest, total: dates.length, totalMinutes };
+}
+
+function calcDayLevel(dayData) {
+    if (!dayData) return 0;
+    const minutes = (dayData.duration || 0) / 60;
+    const acts = (dayData.activities || []).length;
+    // Score: each minute = 1pt, each activity = 5pt
+    const score = minutes + acts * 5;
+    if (score === 0) return 0;
+    if (score < 10) return 1;
+    if (score < 25) return 2;
+    if (score < 60) return 3;
+    return 4;
+}
+
+function renderCalendar() {
+    const grid = document.getElementById('cal-grid');
+    const monthRow = document.getElementById('cal-month-row');
+    if (!grid) return;
+
+    const today = new Date(); today.setHours(0,0,0,0);
+    // Start: 52 weeks ago, then back to Sunday
+    const start = new Date(today);
+    start.setDate(start.getDate() - 364);
+    start.setDate(start.getDate() - start.getDay()); // back to Sunday
+
+    // Build cells column-by-column (each column = a week, rows = Sun-Sat)
+    grid.innerHTML = '';
+    const studyDates = state.studyDates || {};
+    const cur = new Date(start);
+    const monthLabels = [];
+    let lastMonth = -1;
+
+    // We need to determine the number of weeks
+    // From start (Sunday) until end of current week (Saturday after today)
+    const end = new Date(today);
+    end.setDate(end.getDate() + (6 - end.getDay()));
+
+    let weekIdx = 0;
+    while (cur <= end) {
+        // Track month label at start of each week
+        if (cur.getMonth() !== lastMonth) {
+            monthLabels.push({ idx: weekIdx, month: cur.getMonth() });
+            lastMonth = cur.getMonth();
+        }
+
+        for (let dow = 0; dow < 7; dow++) {
+            const cell = document.createElement('div');
+            cell.className = 'cal-cell';
+            const cellDate = new Date(cur);
+            const key = formatDateKey(cellDate);
+
+            if (cellDate > today) {
+                cell.classList.add('future');
+            } else {
+                const data = studyDates[key];
+                const lvl = calcDayLevel(data);
+                if (lvl > 0) cell.classList.add('lvl-' + lvl);
+                if (cellDate.getTime() === today.getTime()) cell.classList.add('today');
+                const dur = data ? Math.round((data.duration || 0) / 60) : 0;
+                const eps = data ? (data.episodes || []).length : 0;
+                const acts = data ? (data.activities || []).length : 0;
+                cell.title = `${key}\n시청: ${dur}분, 에피소드: ${eps}개, 활동: ${acts}회`;
+            }
+            grid.appendChild(cell);
+            cur.setDate(cur.getDate() + 1);
+        }
+        weekIdx++;
+    }
+
+    // Render month labels (approximately)
+    const months = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+    const seen = new Set();
+    monthRow.innerHTML = monthLabels
+        .filter(m => !seen.has(m.month) && seen.add(m.month))
+        .filter((_, i, arr) => i === 0 || arr.length <= 12)
+        .map(m => `<span style="min-width:40px;">${months[m.month]}</span>`)
+        .join('');
+
+    // Update streak cards
+    const stats = calcStudyStats();
+    document.getElementById('current-streak').textContent = stats.current;
+    document.getElementById('longest-streak').textContent = stats.longest;
+    document.getElementById('total-days').textContent = stats.total;
+    document.getElementById('total-minutes').textContent = stats.totalMinutes;
+
+    // Recent list (last 14 study days, sorted desc)
+    const recentList = document.getElementById('cal-recent-list');
+    const recentDates = Object.keys(studyDates)
+        .filter(k => /^\d{4}-\d{2}-\d{2}$/.test(k))
+        .sort()
+        .reverse()
+        .slice(0, 14);
+
+    if (recentDates.length === 0) {
+        recentList.innerHTML = '<div style="text-align:center; color:var(--text-dim); padding:30px; font-size:13px;">아직 학습 기록이 없습니다. 영상을 30초 이상 보거나 마커/메모를 추가하면 자동으로 기록됩니다.</div>';
+    } else {
+        const maxDur = Math.max(...recentDates.map(k => (studyDates[k].duration || 0)));
+        recentList.innerHTML = recentDates.map(k => {
+            const d = studyDates[k];
+            const minutes = Math.round((d.duration || 0) / 60);
+            const eps = (d.episodes || []).length;
+            const acts = (d.activities || []).length;
+            const barPct = maxDur > 0 ? Math.round(((d.duration || 0) / maxDur) * 100) : 0;
+            const dateObj = new Date(k + 'T00:00:00');
+            const dayName = ['일','월','화','수','목','금','토'][dateObj.getDay()];
+            return `
+                <div class="cal-recent-item">
+                    <span class="cal-recent-date">${k} (${dayName})</span>
+                    <span class="cal-recent-detail">${minutes}분 · 에피 ${eps}개 · 활동 ${acts}회</span>
+                    <div class="cal-recent-bar"><div class="cal-recent-bar-fill" style="width:${barPct}%"></div></div>
+                </div>
+            `;
+        }).join('');
+    }
+}
+
+function renderStats() {
+    const grid = document.getElementById('stats-grid');
+
+    let totalPasses = 0;
+    let completedEps = 0;
+    Object.values(state.passes).forEach(p => {
+        totalPasses += p.filter(Boolean).length;
+        if (p.every(Boolean)) completedEps++;
+    });
+
+    const startedEps = Object.values(state.passes).filter(p => p.some(Boolean)).length;
+    const totalNotes = (state.notes || []).length;
+
+    grid.innerHTML = `
+        <div class="stat-card">
+            <div class="stat-num">${completedEps}</div>
+            <div class="stat-label">완료한 에피소드 (5-Step)</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num">${startedEps}</div>
+            <div class="stat-label">시작한 에피소드</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num">${totalPasses}</div>
+            <div class="stat-label">완료한 Pass 총합</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num">${totalNotes}</div>
+            <div class="stat-label">저장된 메모</div>
+        </div>
+    `;
+
+    const pct = Math.round((completedEps / EPISODES.length) * 100);
+    document.getElementById('overall-pct').textContent = pct + '%';
+    document.getElementById('overall-bar').style.width = pct + '%';
+}
+
+// ============ DATA MGMT ============
+document.getElementById('export-data').addEventListener('click', () => {
+    const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `hot-ones-english-${new Date().toISOString().slice(0,10)}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+});
+
+document.getElementById('import-data').addEventListener('click', () => {
+    document.getElementById('import-file').click();
+});
+
+document.getElementById('import-file').addEventListener('change', (e) => {
+    const f = e.target.files[0];
+    if (!f) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+        try {
+            const imported = JSON.parse(ev.target.result);
+            if (confirm('현재 데이터를 가져온 데이터로 덮어쓸까요?')) {
+                state = imported;
+                saveState(state);
+                renderEpisodes(currentEpFilter);
+                renderNotes();
+                renderStats();
+                alert('가져오기 완료!');
+            }
+        } catch (err) { alert('파일 형식 오류: ' + err.message); }
+    };
+    reader.readAsText(f);
+});
+
+document.getElementById('reset-data').addEventListener('click', () => {
+    if (confirm('모든 학습 기록을 삭제합니다. 정말 진행하시겠어요?')) {
+        if (confirm('정말로요? 되돌릴 수 없습니다.')) {
+            state = { passes: {}, notes: [], drillIdx: 0, videos: {}, episodeUrls: {}, studyDates: {} };
+            saveState(state);
+            renderEpisodes(currentEpFilter);
+            renderNotes();
+            renderStats();
+            renderCalendar();
+            renderDrill();
+        }
+    }
+});
+
+// ============ PLAYER ============
+let ytPlayer = null;
+let _watchTimer = null;
+
+function startWatchTracking() {
+    if (_watchTimer) return;
+    // Record 10 seconds of watch time every 10 seconds while playing
+    _watchTimer = setInterval(() => {
+        if (state.currentVideo) {
+            recordStudy({ duration: 10, episode: state.currentVideo });
+        }
+    }, 10000);
+}
+
+function stopWatchTracking() {
+    if (_watchTimer) {
+        clearInterval(_watchTimer);
+        _watchTimer = null;
+    }
+}
+
+// Robust ready check using callback queue defined in head
+function whenYTReady(cb) {
+    if (window._ytApiReady && window.YT && window.YT.Player) {
+        cb();
+    } else if (window._ytApiCallbacks) {
+        window._ytApiCallbacks.push(cb);
+    } else {
+        // Fallback polling (should never happen, but just in case)
+        let attempts = 0;
+        const iv = setInterval(() => {
+            attempts++;
+            if (window.YT && window.YT.Player) { clearInterval(iv); cb(); }
+            else if (attempts > 100) { clearInterval(iv); console.error('YT API timeout'); }
+        }, 100);
+    }
+}
+
+// Auto-load last video on page load (if any)
+whenYTReady(function() {
+    if (state.currentVideo && !ytPlayer) {
+        createPlayer(state.currentVideo, true);
+    }
+});
+
+function parseVideoId(input) {
+    if (!input) return null;
+    input = input.trim();
+    if (/^[a-zA-Z0-9_-]{11}$/.test(input)) return input;
+    const m = input.match(/(?:youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|v\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+    return m ? m[1] : null;
+}
+
+function ensureVideoState(videoId) {
+    if (!state.videos[videoId]) {
+        state.videos[videoId] = { title: '', markers: [], lastSeen: Date.now() };
+    } else {
+        state.videos[videoId].lastSeen = Date.now();
+    }
+    saveState(state);
+}
+
+function createPlayer(videoId, suppressAutoplay) {
+    ensureVideoState(videoId);
+    state.currentVideo = videoId;
+    saveState(state);
+
+    document.getElementById('player-empty').style.display = 'none';
+    document.getElementById('video-info-wrap').style.display = 'block';
+    document.getElementById('mark-difficult-btn').disabled = false;
+    document.getElementById('video-id-display').textContent = videoId;
+    document.getElementById('video-title').textContent = state.videos[videoId].title || '제목 불러오는 중…';
+
+    whenYTReady(function() {
+        if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
+            if (suppressAutoplay) ytPlayer.cueVideoById(videoId);
+            else ytPlayer.loadVideoById(videoId);
+            setTimeout(() => updateVideoTitle(videoId), 1500);
+        } else {
+            try {
+                ytPlayer = new YT.Player('yt-player', {
+                    host: 'https://www.youtube-nocookie.com',
+                    width: '100%',
+                    height: '100%',
+                    videoId: videoId,
+                    playerVars: {
+                        rel: 0,
+                        modestbranding: 1,
+                        autoplay: suppressAutoplay ? 0 : 1,
+                        playsinline: 1
+                    },
+                    events: {
+                        onReady: () => { updateVideoTitle(videoId); setActiveRate(1); },
+                        onStateChange: (e) => {
+                            if (e.data === YT.PlayerState.PLAYING) {
+                                updateVideoTitle(state.currentVideo);
+                                startWatchTracking();
+                            } else {
+                                stopWatchTracking();
+                            }
+                        },
+                        onError: (e) => handlePlayerError(e.data, videoId)
+                    }
+                });
+            } catch (err) {
+                console.error('YT.Player init failed:', err);
+                showPlayerError('플레이어 초기화 실패: ' + err.message, videoId);
+            }
+        }
+    });
+
+    renderMarkers();
+    renderRecentVideos();
+}
+
+function showPlayerError(msg, videoId) {
+    const empty = document.getElementById('player-empty');
+    empty.style.display = 'flex';
+    empty.innerHTML = `
+        <div class="icon">⚠️</div>
+        <div style="color:var(--text); font-weight:500;">${msg}</div>
+        <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank"
+           style="color:var(--accent-bright); margin-top:8px; text-decoration:underline; font-size:13px;">
+           ▶ YouTube에서 직접 열기
+        </a>
+        <div style="color:var(--text-dim); font-size:11px; margin-top:4px;">
+            ID: ${videoId}
+        </div>
+    `;
+}
+
+function handlePlayerError(code, videoId) {
+    const messages = {
+        2: '잘못된 영상 ID입니다.',
+        5: 'HTML5 플레이어 오류 (브라우저 호환성 문제일 수 있음)',
+        100: '영상을 찾을 수 없습니다 (삭제됐거나 비공개)',
+        101: '이 영상은 외부 사이트 임베드가 차단되어 있습니다',
+        150: '이 영상은 외부 사이트 임베드가 차단되어 있습니다'
+    };
+    const msg = messages[code] || ('재생 오류 코드: ' + code);
+    showPlayerError(msg, videoId);
+}
+
+function updateVideoTitle(videoId) {
+    if (!ytPlayer || !ytPlayer.getVideoData) return;
+    try {
+        const data = ytPlayer.getVideoData();
+        if (data && data.title) {
+            state.videos[videoId].title = data.title;
+            saveState(state);
+            document.getElementById('video-title').textContent = data.title;
+        }
+    } catch (e) { /* not ready yet */ }
+}
+
+document.getElementById('video-load-btn').addEventListener('click', () => {
+    const input = document.getElementById('video-url-input').value;
+    const id = parseVideoId(input);
+    if (!id) {
+        alert('유효한 YouTube URL 또는 11자리 비디오 ID가 아닙니다.');
+        return;
+    }
+    document.getElementById('video-url-input').value = '';
+    createPlayer(id);
+});
+
+document.getElementById('video-url-input').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') document.getElementById('video-load-btn').click();
+});
+
+// Speed controls
+function setActiveRate(rate) {
+    document.querySelectorAll('[data-rate]').forEach(b => {
+        b.classList.toggle('active', parseFloat(b.dataset.rate) === rate);
+    });
+}
+
+document.querySelectorAll('[data-rate]').forEach(btn => {
+    btn.addEventListener('click', () => {
+        if (!ytPlayer || !ytPlayer.setPlaybackRate) return;
+        const rate = parseFloat(btn.dataset.rate);
+        ytPlayer.setPlaybackRate(rate);
+        setActiveRate(rate);
+    });
+});
+
+// Seek
+document.getElementById('seek-back-5').addEventListener('click', () => {
+    if (!ytPlayer || !ytPlayer.getCurrentTime) return;
+    ytPlayer.seekTo(Math.max(0, ytPlayer.getCurrentTime() - 5), true);
+});
+document.getElementById('seek-fwd-5').addEventListener('click', () => {
+    if (!ytPlayer || !ytPlayer.getCurrentTime) return;
+    ytPlayer.seekTo(ytPlayer.getCurrentTime() + 5, true);
+});
+document.getElementById('replay-last').addEventListener('click', () => {
+    if (!ytPlayer || !ytPlayer.getCurrentTime) return;
+    ytPlayer.seekTo(Math.max(0, ytPlayer.getCurrentTime() - 5), true);
+    ytPlayer.playVideo();
+});
+
+// Add marker
+function addMarker() {
+    if (!ytPlayer || !ytPlayer.getCurrentTime || !state.currentVideo) return;
+    const t = ytPlayer.getCurrentTime();
+    const vid = state.currentVideo;
+    state.videos[vid].markers.push({
+        id: 'm_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6),
+        time: t,
+        note: '',
+        ts: Date.now()
+    });
+    recordStudy({ activity: 'marker', episode: vid });
+    saveState(state);
+    renderMarkers();
+    renderRecentVideos();
+    const btn = document.getElementById('mark-difficult-btn');
+    const originalText = btn.textContent;
+    btn.textContent = '✓ 저장됨 (' + formatTime(t) + ')';
+    setTimeout(() => { btn.textContent = originalText; }, 1200);
+}
+
+document.getElementById('mark-difficult-btn').addEventListener('click', addMarker);
+
+// Keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+    if (!document.getElementById('player').classList.contains('active')) return;
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (!ytPlayer) return;
+
+    if (e.key === 'd' || e.key === 'D') {
+        e.preventDefault();
+        addMarker();
+    } else if (e.key === ' ') {
+        e.preventDefault();
+        const s = ytPlayer.getPlayerState && ytPlayer.getPlayerState();
+        if (s === YT.PlayerState.PLAYING) ytPlayer.pauseVideo();
+        else ytPlayer.playVideo();
+    } else if (e.key === 'ArrowLeft' && e.shiftKey) {
+        e.preventDefault();
+        ytPlayer.seekTo(Math.max(0, ytPlayer.getCurrentTime() - 5), true);
+    } else if (e.key === 'ArrowRight' && e.shiftKey) {
+        e.preventDefault();
+        ytPlayer.seekTo(ytPlayer.getCurrentTime() + 5, true);
+    }
+});
+
+function formatTime(seconds) {
+    const s = Math.floor(seconds);
+    const h = Math.floor(s / 3600);
+    const m = Math.floor((s % 3600) / 60);
+    const sec = s % 60;
+    if (h > 0) return `${h}:${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+    return `${m}:${String(sec).padStart(2,'0')}`;
+}
+
+function renderMarkers() {
+    const list = document.getElementById('markers-list');
+    const countEl = document.getElementById('marker-count');
+    if (!state.currentVideo || !state.videos[state.currentVideo]) {
+        list.innerHTML = '<div class="empty-state">아직 마커가 없습니다. 영상을 보면서 안 들리는 곳에 🚨 버튼을 눌러보세요.</div>';
+        countEl.textContent = '';
+        return;
+    }
+    const markers = [...state.videos[state.currentVideo].markers].sort((a, b) => a.time - b.time);
+    countEl.textContent = markers.length > 0 ? `(${markers.length})` : '';
+
+    if (markers.length === 0) {
+        list.innerHTML = '<div class="empty-state">아직 마커가 없습니다. 영상 보면서 🚨 버튼 또는 D 키로 추가.</div>';
+        return;
+    }
+
+    list.innerHTML = markers.map(m => `
+        <div class="marker">
+            <button class="marker-time" data-time="${m.time}">⏱ ${formatTime(m.time)}</button>
+            <input class="marker-note" type="text" placeholder="메모 (선택사항)…" value="${escapeAttr(m.note || '')}" data-id="${m.id}">
+            <button class="marker-del" data-id="${m.id}" title="삭제">✕</button>
+        </div>
+    `).join('');
+
+    // Attach handlers
+    list.querySelectorAll('.marker-time').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const t = parseFloat(btn.dataset.time);
+            if (ytPlayer && ytPlayer.seekTo) {
+                ytPlayer.seekTo(Math.max(0, t - 1), true); // -1s for context
+                ytPlayer.playVideo();
+            }
+        });
+    });
+
+    list.querySelectorAll('.marker-note').forEach(inp => {
+        inp.addEventListener('input', () => {
+            const id = inp.dataset.id;
+            const marker = state.videos[state.currentVideo].markers.find(x => x.id === id);
+            if (marker) { marker.note = inp.value; saveState(state); }
+        });
+    });
+
+    list.querySelectorAll('.marker-del').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const id = btn.dataset.id;
+            state.videos[state.currentVideo].markers =
+                state.videos[state.currentVideo].markers.filter(x => x.id !== id);
+            saveState(state);
+            renderMarkers();
+            renderRecentVideos();
+        });
+    });
+}
+
+function escapeAttr(s) { return String(s).replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
+
+function renderRecentVideos() {
+    const wrap = document.getElementById('recent-videos-wrap');
+    const list = document.getElementById('recent-videos');
+    const vids = Object.entries(state.videos)
+        .sort((a, b) => (b[1].lastSeen || 0) - (a[1].lastSeen || 0))
+        .slice(0, 8);
+
+    if (vids.length === 0) { wrap.style.display = 'none'; return; }
+    wrap.style.display = 'block';
+
+    list.innerHTML = vids.map(([id, v]) => {
+        const label = v.title ? (v.title.length > 30 ? v.title.slice(0, 30) + '…' : v.title) : id;
+        const cnt = (v.markers || []).length;
+        return `<div class="recent-vid-chip" data-id="${id}">
+            ${escapeAttr(label)}
+            ${cnt > 0 ? `<span class="count">${cnt}</span>` : ''}
+        </div>`;
+    }).join('');
+
+    list.querySelectorAll('.recent-vid-chip').forEach(chip => {
+        chip.addEventListener('click', () => createPlayer(chip.dataset.id));
+    });
+}
+
+
+// ============ INIT ============
+renderEpisodes();
+renderPhrases();
+renderDrill();
+populateNoteEpisodes();
+renderNotes();
+renderStats();
+renderRecentVideos();
+renderMarkers();
+
+// ============ SYNC UI HANDLERS ============
+(function setupSyncUI() {
+    const tokenInput = document.getElementById('sync-token-input');
+    const gistInput = document.getElementById('sync-gist-input');
+    const saveBtn = document.getElementById('sync-save-btn');
+    const clearBtn = document.getElementById('sync-clear-btn');
+    const pushBtn = document.getElementById('sync-push-btn');
+    const pullBtn = document.getElementById('sync-pull-btn');
+    const autoCheck = document.getElementById('sync-auto-checkbox');
+
+    if (!tokenInput) return;
+
+    // Unmask on focus, remask on blur
+    tokenInput.addEventListener('focus', () => {
+        if (tokenInput.dataset.masked === '1') {
+            tokenInput.value = getSyncToken();
+            tokenInput.dataset.masked = '0';
+        }
+    });
+    tokenInput.addEventListener('blur', () => updateSyncUI());
+
+    saveBtn.addEventListener('click', () => {
+        const t = tokenInput.value.trim();
+        const g = gistInput.value.trim();
+        if (t && t.length < 20) { alert('토큰이 너무 짧습니다. 다시 확인해주세요.'); return; }
+        setSyncToken(t);
+        if (g) setSyncGistId(g);
+        updateSyncUI();
+        if (t) {
+            updateSyncStatus('synced', '설정 저장됨 — 첫 푸시를 시작합니다');
+            pushToCloud().then(r => {
+                if (r.ok) alert('설정 완료! Gist ID: ' + getSyncGistId() + '\n\n다른 기기에서 같은 토큰 + 이 Gist ID 입력 후 풀 하시면 동기화됩니다.');
+                updateSyncUI();
+            });
+        }
+    });
+
+    clearBtn.addEventListener('click', () => {
+        if (!confirm('클라우드 동기화 설정을 초기화합니다 (토큰, Gist ID 삭제). 진행할까요?\n\n* 로컬 데이터(마커, 메모 등)는 영향 없음\n* Gist 자체는 GitHub에 그대로 남음 (수동 삭제 필요 시 https://gist.github.com)')) return;
+        setSyncToken('');
+        setSyncGistId('');
+        localStorage.removeItem(SYNC_LAST_PUSH_KEY);
+        localStorage.removeItem(SYNC_LAST_PULL_KEY);
+        updateSyncStatus('off');
+        updateSyncUI();
+    });
+
+    pushBtn.addEventListener('click', async () => {
+        if (!isSyncConfigured()) { alert('먼저 ⚙️ 설정에서 토큰을 등록해주세요.'); return; }
+        const r = await pushToCloud();
+        updateSyncUI();
+        if (!r.ok) alert('푸시 실패: ' + r.error);
+    });
+
+    pullBtn.addEventListener('click', async () => {
+        if (!isSyncConfigured()) { alert('먼저 ⚙️ 설정에서 토큰을 등록해주세요.'); return; }
+        if (!confirm('클라우드의 데이터로 현재 로컬 데이터를 덮어씁니다. 진행할까요?\n(현재 로컬 데이터가 더 최신이라면 먼저 🔼 푸시 하세요)')) return;
+        const r = await pullFromCloud();
+        updateSyncUI();
+        if (!r.ok) alert('풀 실패: ' + r.error);
+    });
+
+    autoCheck.addEventListener('change', () => {
+        setSyncAuto(autoCheck.checked);
+    });
+
+    // Auto-pull on page load if configured
+    if (isSyncConfigured() && getSyncGistId() && getSyncAuto()) {
+        setTimeout(() => {
+            pullFromCloud(true).then(r => {
+                updateSyncUI();
+                if (!r.ok) console.warn('Auto-pull failed:', r.error);
+            });
+        }, 500);
+    } else if (isSyncConfigured()) {
+        updateSyncStatus('synced', '설정됨');
+    }
+
+    updateSyncUI();
+
+    // Refresh time display every 30 seconds
+    setInterval(() => {
+        if (document.getElementById('stats').classList.contains('active')) {
+            updateSyncUI();
+        }
+    }, 30000);
+})();
+
+</script>
+
+</body>
+</html>
