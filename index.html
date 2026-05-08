@@ -2,8 +2,18 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Hot Ones English — 일상 영어 듣기 트레이너</title>
+
+<!-- ============ PWA / iOS Add-to-Home ============ -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Hot Ones">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0d1117">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiSG90IE9uZXMgRW5nbGlzaCIsInNob3J0X25hbWUiOiJIb3QgT25lcyIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMGQxMTE3IiwidGhlbWVfY29sb3IiOiIjMGQxMTE3Iiwib3JpZW50YXRpb24iOiJwb3J0cmFpdCIsImljb25zIjpbeyJzcmMiOiJkYXRhOmltYWdlL3BuZztiYXNlNjQsaVZCT1J3MEtHZ29BQUFBTlNVaEVVZ0FBQUxRQUFBQzBDQVlBQUFBOXpRWXlBQUFITEVsRVFWUjQydTJkMjI0YlZSU0c5MHpkTkkyVUEyL0FTM0FRM01ScEE3VHBnU2VBQ3dvVWVBVXVlUVdnb3FXVUJscmdFbWdLVFpOSU5LRWNYb0kzb0hFaVg1UTA1aUp4VHZZNE0rTjlXSHZ0NzVOR2xTb2xkbVovOC90ZjluZ21NMExvZlBSQ3gwQzBaSi8rbllsNEhxRWVlUHREQk5aTS9sa1l3VE1rQmsxeVowZ01tdVRPRUJrMGlXMzlsMjUvZ01oUVFlelA3WXFkSXpPRXhMWXpHU0tEcHJUT2tSazBwWFdPektCSjZsb1J2MzBWa2NGREJibFd2WUxreUF4aTA3cUdhNVdPZ0dkWFgwUm04TTZKYTMrVjlqUkhacEJPRmZjYXBYOHJPa01NdmJ2VUVmSSs2UXlCVTdxa2d6a3lneWFwYzJRR1RWTG43Q0xRUk9IYkljL2VJNTFCTGllKzZQOVdYbzdNRUdYMUtIQ1V5Z0dxeUVsbjBKVFNQUitzZE5BWnRBeUZXKysraE00UUhZM3JmMlowYU85VCtSOXQ5a0tBRGcxSXJVSm82Z1pTeDhwQmQvZUhRblIySi9IMUl4S3pyNmtjcWdVSHUwSnZYYUZ1SUhYa3RXUFhZUklhcWFrY2dOUlNhVENrT0JiMlJnbGgyZi9XeVA1N2gvN3NOREZ1bEV2Z3JTc3ZqN0czcUJ6SmlRL0hDcDBaTnBkYlZhblpaOE5zdWVuc2RqZzJOMXZscEg3Y1pyL1YzNmdjTG12RWw0K3BFWFJvNEVCQWFLUUdoRVpxalVJelNJZ1pDQXVsWmw4eUZBWlAxNXVrSzVVRE9EaUdGWnBYS2JGdG8wZHE5dXZ4R3gwNkZxT05NU2R2MHFmcDBNbzQrUlgxWStBcm1ZZjcxeWNvM2UrT3BXUE5HQW81WUJBYWtEbytvUmtrb2hnSUM2Vm1mek1VQXBVRHlxYm1MYjlWd1BmaklUUUFRZ01wWFk4R0Z6alhJL1hUdDE5Si9wdmpKTFJGUnI0bUtSRWFPS0FRR3FDZ1E1c081d1ZvUyttbmI3MmFiSmNtb1cySmRIdXR6WE5CYUFDRUJsSWFvU0VSb1RsRHEvUTJjbnV0WGZqL3gvQmtkdGI3b0ZiMGZEbmJEc3pJL0k2MDNYL3JFRVRxK2JTcUIwTFhrS0txSkNGRVRyWnkwQ1FHYjBYeWpzeXZ0ZXVjeng4cXBWTlpyd2IzOXlqbTFEZURrL2pVdk16dTNKZEUxcG5LVVZQbVlRZ2h1Y3UvQjZFVGtYbVF1RWp0QnE3TDBiUG9xOG9YWGZkNms5Q09aQzZUd0dGU1d2Y0J5MURZWGVodlY5TjV2MWJ4bXBQUURtU3VrcnhCVWxyeHdac2pjL2pGNVlNWGhCWXJNM0lpTkowNXdJR2d0WFlrZVJtRDBUdHVGak8yZE5hNDlqa3lwNXZTVkE1d0xpTlNJN1NLZEFaYlFuUGRabkdwNml1bFIrK3NxdnRHU3pMbmNvemVmVVE2OTBYWCt0T2hoYVlwWFJxaDFhVXpVaU0wd2pFVTZoNEVZKy9PcmcrYTBidVAybHpHQUVobnFRbXRPYUJIdjlQeHpvYnJnMGZYemV1QmRGYUUybStzblA2ZTk1MHJSVFR2Y3BET1doNVgwOEd2VW1qU09lR2hrRjNnSnlXblBubWVIZWhINk14bzJpU21jMWRtMlZMcldIOHVZd0NxQmtOVmxlUDBENytKdXg3ZDBWUWVKcVdkRG9ZTzl4MUNBNlF1dE1TRUtVcGpCa1IzY1BONjJLL1JDbHlnY2pqcXJzZWxNQ21OMEdBNGp3U2hCWFZuVWhxaEFTb0t6U1VLckw3RVYwMWRVU25OTjFZQXhGVU9MZWR4eE5PZGgvMDVkNE5oL0I2UTBNQlFtQXBWa25EWUxzdzdIbmJnYkRzNFBCVEdMalErZ3lLZnFSelc2c25ILzNqOWVUNHhSR2lFb1VNRG5ZT0VCa0JvYVV3dExyWjVmZ2pOWUJoZ29BU0VCcjFEWWNaZWdOMmhNSDRYU09nSWV5cjlHYUVCb2NISGdNZEFhTGxEY3hrRDJLdlFmTEJDajZZL0k3UVROdCtjRm5QdVJka2FJYWx1U05wL0NCMWhsNlk3STNSMEtWTWtyVFNadGFUemp0RGE3dVVtckxjZWxYY1ltWjMxWjI2OEtUaWxMOHRMbTY3RUVtdUd4UDFGNVZEUXFjR2EwTHJ1c1dKTVpqWXZOL20yU2FsMGJvNXBXM3NTT25SL2plVHhHUW9EYjV1WFNPbUI2WHlwT2FaeDNibU1RYUpvWGZlc2RYRmF0ZFBqUDY1WWY2bjIrWTF3RjFWalEvR3JGeDFhY0orbE45ZEo2QXZUNmx2SCtFOHI0dTVmR0Vya2pZdTZad3NTV3BoOHBESUpIVHlsYmFTMUQ1RzFwek1KTFNTdFNXVVNXbXhLVjBscm55S25rTTQ3Q2EzMGd4V2ZOeGFxSTZ2M1ZFNWtqYlBXWERPcHoxYkdmMTcyL3ZKK01LMUQxSXVOQ3pQSmZHcEtoL2FZMW5SbER4M2FHR1BXRTB0cFk0eVpDSkRVdm1rbGxNekdHRE41YnlYTFUrcFhCN2ZXbk83RmJzM05qQ1czcnNhWVJzb3ZUMTJwSis3cFNXdnRCeW9kT2lFSlVwZDVyME1iWTh6NitTWm5ra2FhMW9oc3pPVENTa1pDSzVBRG1RK3ozNkhKNTMxSnp1OTI2d1c1YWQxOWpsRFFvU2Z2cjNEbDgwaWtRZVlqZGVPQXV3MTJSenhwamNnVkVocGt5NFRNNWVpcEdldm5abWpURlpoWVdHcmJsL2NNOHBhdUc4dFovNkd3T3h1aWN5WFd6L1hLTjNtL3ZPVDlmaDRzSnJReHhqeDVnNVMybnlSTGJlUzF5OVF2eXhrZFdsQ1NnNmVoc0ovNUFOTFR1YkJ5N0ZXUDE2a2VJRkRtWDRzRGw4b0IraXRIbVNNQlFGbzZsMHBvcElaWVpDNWRPWkFhWXBEWm1Dcm5jakFlUXV3ZCt0QVI4b0NVaGtEcFhNRzl5cEwrKzlvWnNocTg4ZHlEcFVxTzVxNGZBTUNYekxVUytsQmF6NUxXNEVEa3hmcWhtWWQ2WUFBWFR1V2hud0NBVFplc3lrZ0ZnZENobUV0OVlvRE13UlA2VUZxZkphMWhnTWdQM1lTZjgwUkZiUEFoc2plaGtSdGNTeHhNYU9SR1lyVkM5d3ArRnNHakZ2aWhDSmYrQnpxdFgyc21EUjh2QUFBQUFFbEZUa1N1UW1DQyIsInNpemVzIjoiMTgweDE4MCIsInR5cGUiOiJpbWFnZS9wbmcifV19">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -60,12 +70,68 @@
 
 html { scroll-behavior: smooth; }
 
+/* PWA install hint banner (shown only on iOS Safari, not in standalone mode) */
+.pwa-hint {
+    background: linear-gradient(135deg, rgba(255,107,53,0.1), rgba(239,68,68,0.05));
+    border-bottom: 1px solid var(--accent-dim);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+.pwa-hint-text {
+    flex: 1;
+    color: var(--text);
+}
+.pwa-hint-close {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 11px;
+    flex-shrink: 0;
+}
+.pwa-hint-close:hover {
+    color: var(--accent-bright);
+    border-color: var(--accent-bright);
+}
+@media (display-mode: standalone) {
+    .pwa-hint { display: none !important; }
+}
+
 body {
     background: var(--bg);
     color: var(--text);
     font-family: var(--font-sans);
     line-height: 1.6;
     min-height: 100vh;
+    /* Safe-area for notch/home indicator (iPhone X+) */
+    padding-top: env(safe-area-inset-top, 0);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    padding-left: env(safe-area-inset-left, 0);
+    padding-right: env(safe-area-inset-right, 0);
+}
+
+/* PWA standalone (Add to Home Screen) tweaks */
+@media (display-mode: standalone) {
+    body {
+        /* No browser chrome, ensure status bar tint */
+        -webkit-tap-highlight-color: transparent;
+    }
+    .header {
+        /* Slightly more top padding when status bar overlays */
+        padding-top: calc(32px + env(safe-area-inset-top, 0));
+    }
+    /* Prevent text size adjustment, smoother scrolling */
+    html {
+        -webkit-text-size-adjust: 100%;
+        -webkit-overflow-scrolling: touch;
+    }
 }
 
 /* === Header === */
@@ -321,9 +387,8 @@ body {
 
 .ep-actions {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .ep-passes {
@@ -352,6 +417,171 @@ body {
     background: var(--accent);
     border-color: var(--accent);
     color: #fff;
+}
+
+/* ============ CHUNK BUTTONS ============ */
+.ep-buttons {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.play-btn-chunk {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-family: var(--font-mono);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+}
+.play-btn-chunk:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+.chunk-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin: 12px 0;
+    font-size: 12px;
+}
+.chunk-bar-label {
+    color: var(--text-muted);
+    font-family: var(--font-kr);
+    font-size: 11px;
+    margin-right: 4px;
+}
+.chunk-bar-btn {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 11px;
+    font-family: var(--font-mono);
+    cursor: pointer;
+    transition: all 0.15s;
+}
+.chunk-bar-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent-bright);
+}
+.chunk-bar-btn.active {
+    background: var(--accent-bright);
+    border-color: var(--accent-bright);
+    color: white;
+}
+
+/* Per-chunk pass row in episode card */
+.ep-chunk-row {
+    display: grid;
+    grid-template-columns: 50px 1fr auto;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+}
+.ep-chunk-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent-bright);
+    font-weight: 700;
+    line-height: 1.3;
+}
+.ep-chunk-time {
+    font-size: 10px;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+.ep-chunk-row .ep-passes {
+    justify-self: center;
+}
+.ep-chunk-row .pass-dot {
+    width: 22px; height: 22px;
+    font-size: 11px;
+}
+.ep-chunk-row .play-btn-chunk {
+    background: var(--accent);
+    border: 1px solid var(--accent);
+    color: white;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 13px;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ep-chunk-row .play-btn-chunk:hover {
+    background: var(--accent-bright);
+    border-color: var(--accent-bright);
+    transform: scale(1.05);
+}
+.ep-chunk-row.single {
+    grid-template-columns: 1fr auto;
+}
+
+/* Bottom action row: full-play + edit chunks + change url */
+.ep-bottom-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+    align-items: center;
+}
+.ep-full-play {
+    flex: 1;
+    min-width: 140px;
+    background: var(--bg);
+    border: 1.5px solid var(--accent-bright);
+    color: var(--accent-bright);
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: var(--font-kr);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+.ep-full-play:hover {
+    background: var(--accent-bright);
+    color: white;
+}
+.ep-bottom-row .ep-icon-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 7px 10px;
+    border-radius: 5px;
+    font-size: 11px;
+    font-family: var(--font-kr);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+}
+.ep-bottom-row .ep-icon-btn:hover {
+    color: var(--accent-bright);
+    border-color: var(--accent-bright);
 }
 
 .yt-link {
@@ -1365,6 +1595,15 @@ body {
     </div>
 </header>
 
+<!-- iOS PWA install hint (shown only in iOS Safari, hidden in standalone mode) -->
+<div id="pwa-install-hint" class="pwa-hint" style="display:none;">
+    <div class="pwa-hint-text">
+        <strong>📱 앱처럼 사용하기:</strong>
+        Safari 하단 <span style="display:inline-block;border:1px solid var(--border);padding:1px 5px;border-radius:3px;font-family:var(--font-mono);">⬆️</span> 공유 버튼 → "홈 화면에 추가" → 풀스크린 앱 모드로 실행됩니다.
+    </div>
+    <button id="pwa-hint-close" class="pwa-hint-close" title="닫기">✕</button>
+</div>
+
 <nav class="nav">
     <div class="nav-inner">
         <button class="nav-btn active" data-tab="player">📺 플레이어</button>
@@ -1430,8 +1669,11 @@ body {
                 <button class="ctrl-btn" id="seek-fwd-5" title="5초 앞으로">5s ⏩</button>
             </div>
             <button class="mark-btn" id="mark-difficult-btn" disabled>🚨 어려움 마커</button>
+            <button class="mark-btn" id="split-here-btn" style="background:var(--bg-elev); border:1px solid var(--accent); color:var(--accent-bright);" title="현재 시각에 청크 분할 추가">✂️ 여기서 자르기</button>
             <span class="kbd-hint"><span class="kbd">D</span> 키로도 마커 추가 · <span class="kbd">Space</span> 재생/정지</span>
         </div>
+
+        <div class="chunk-bar" id="chunk-bar" style="display:none;"></div>
     </div>
 
     <div class="panel">
@@ -2008,6 +2250,16 @@ function loadState() {
                 s.passes[id] = [false, false, false, false, false];
             }
         });
+
+        // Migrate flat keys → chunk keys (e.g., 'gordon-ramsay' → 'gordon-ramsay__c0')
+        Object.keys(s.passes).forEach(key => {
+            if (key.includes('__c')) return; // already chunk-keyed
+            const arr = s.passes[key];
+            if (!Array.isArray(arr)) return;
+            const newKey = `${key}__c0`;
+            if (!s.passes[newKey]) s.passes[newKey] = arr;
+            delete s.passes[key];
+        });
         s.schema = SCHEMA_NAME;
         if (!s.version) s.version = 1; // legacy v1 detected
 
@@ -2167,6 +2419,15 @@ async function pullFromCloud(silent) {
                 while (arr.length < 5) arr.push(false);
             }
         });
+        // Migrate flat keys → chunk keys
+        Object.keys(state.passes).forEach(key => {
+            if (key.includes('__c')) return;
+            const arr = state.passes[key];
+            if (!Array.isArray(arr)) return;
+            const newKey = `${key}__c0`;
+            if (!state.passes[newKey]) state.passes[newKey] = arr;
+            delete state.passes[key];
+        });
         saveState(state);
         window._suppressAutoPush = false;
 
@@ -2263,7 +2524,7 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
         if (btn.dataset.tab === 'stats') renderStats();
         if (btn.dataset.tab === 'calendar') renderCalendar();
         if (btn.dataset.tab === 'notes') renderNotes();
-        if (btn.dataset.tab === 'player') { renderRecentVideos(); renderMarkers(); }
+        if (btn.dataset.tab === 'player') { renderRecentVideos(); renderMarkers(); renderChunkBar(); }
     });
 });
 
@@ -2277,7 +2538,6 @@ function renderEpisodes(level = 'all') {
     const filtered = level === 'all' ? EPISODES : EPISODES.filter(e => e.level === level);
 
     grid.innerHTML = filtered.map(ep => {
-        const passes = state.passes[ep.id] || [false, false, false, false, false];
         const badgeClass = `badge-${ep.level}`;
         const levelLabel = { easy: 'EASY', medium: 'MEDIUM', hard: 'HARD' }[ep.level];
         const customId = state.episodeUrls[ep.id];
@@ -2295,28 +2555,58 @@ function renderEpisodes(level = 'all') {
                 ${ep.tags.map(t => `<span class="ep-tag">${t}</span>`).join('')}
             </div>
             <div class="ep-actions">
-                <div class="ep-passes">
-                    ${[1, 2, 3, 4, 5].map(n => `
-                        <div class="pass-dot ${passes[n-1] ? 'done' : ''}" data-ep="${ep.id}" data-pass="${n-1}" title="Pass ${n}">${n}</div>
-                    `).join('')}
-                </div>
-                <div class="ep-buttons">
-                    <button class="ep-icon-btn" data-action="changeurl" data-ep="${ep.id}" title="다른 영상으로 변경">🔄</button>
-                    <button class="play-btn" data-action="play" data-ep="${ep.id}" title="플레이어에서 재생">▶ 재생</button>
+                ${(() => {
+                    const dur = (state.videos[effectiveId] && state.videos[effectiveId].duration) || 1320;
+                    const customChunks = state.videos[effectiveId] && state.videos[effectiveId].chunks;
+                    const chunks = getChunks(dur, customChunks);
+                    const isMulti = chunks.length > 1;
+                    const totalMin = Math.round(dur / 60);
+                    const isCustomChunks = !!customChunks;
+                    const chunkRows = chunks.map(c => {
+                        const cPasses = getChunkPasses(ep.id, c.idx);
+                        const labelHtml = isMulti
+                            ? `<span class="ep-chunk-label">${c.label}<br><span class="ep-chunk-time">${formatTime(c.start)}</span></span>`
+                            : '';
+                        const rowClass = isMulti ? 'ep-chunk-row' : 'ep-chunk-row single';
+                        return `
+                            <div class="${rowClass}">
+                                ${labelHtml}
+                                <div class="ep-passes">
+                                    ${[1,2,3,4,5].map(n => `
+                                        <div class="pass-dot ${cPasses[n-1] ? 'done' : ''}" data-ep="${ep.id}" data-chunk="${c.idx}" data-pass="${n-1}" title="청크 ${c.label} · Pass ${n}">${n}</div>
+                                    `).join('')}
+                                </div>
+                                <button class="play-btn-chunk" data-action="play" data-ep="${ep.id}" data-start="${c.start}" title="${formatTime(c.start)} ~ ${formatTime(c.end)} 재생">▶</button>
+                            </div>
+                        `;
+                    }).join('');
+                    return chunkRows;
+                })()}
+                <div class="ep-bottom-row">
+                    <button class="ep-full-play" data-action="play" data-ep="${ep.id}" data-start="0" title="처음부터 끝까지 재생 (마지막 체크용)">▶ 전체 재생 (${(() => { const d = (state.videos[effectiveId] && state.videos[effectiveId].duration) || 1320; return Math.round(d/60); })()}분)</button>
+                    ${(() => {
+                        const dur = (state.videos[effectiveId] && state.videos[effectiveId].duration) || 1320;
+                        if (dur <= 360) return ''; // single chunk, no edit needed
+                        const isCustom = !!(state.videos[effectiveId] && state.videos[effectiveId].chunks);
+                        return `<button class="ep-icon-btn" data-action="editchunks" data-ep="${ep.id}" title="청크 분할 시각 직접 편집">✂️ 청크 편집${isCustom ? ' •' : ''}</button>`;
+                    })()}
+                    <button class="ep-icon-btn" data-action="changeurl" data-ep="${ep.id}" title="다른 영상으로 변경">🔄 영상 변경</button>
                 </div>
             </div>
         </div>
         `;
     }).join('');
 
-    // Pass dots
+    // Pass dots (per chunk)
     grid.querySelectorAll('.pass-dot').forEach(dot => {
         dot.addEventListener('click', () => {
-            const id = dot.dataset.ep;
+            const epId = dot.dataset.ep;
+            const chunkIdx = parseInt(dot.dataset.chunk) || 0;
             const pass = parseInt(dot.dataset.pass);
-            if (!state.passes[id]) state.passes[id] = [false, false, false, false, false];
-            state.passes[id][pass] = !state.passes[id][pass];
-            if (state.passes[id][pass]) recordStudy({ activity: 'pass', episode: id });
+            const key = chunkPassKey(epId, chunkIdx);
+            if (!state.passes[key]) state.passes[key] = [false, false, false, false, false];
+            state.passes[key][pass] = !state.passes[key][pass];
+            if (state.passes[key][pass]) recordStudy({ activity: 'pass', episode: epId });
             saveState(state);
             renderEpisodes(currentEpFilter);
         });
@@ -2332,9 +2622,12 @@ function renderEpisodes(level = 'all') {
             if (!ep) return;
 
             if (action === 'play') {
-                playEpisode(epId);
+                const startSec = btn.dataset.start ? parseFloat(btn.dataset.start) : 0;
+                playEpisode(epId, startSec);
             } else if (action === 'changeurl') {
                 promptForEpisodeUrl(ep);
+            } else if (action === 'editchunks') {
+                promptForChunkEdit(epId);
             }
         });
     });
@@ -2370,13 +2663,168 @@ function promptForEpisodeUrl(ep) {
     playEpisode(ep.id);
 }
 
-function playEpisode(epId) {
+// ============ CHUNK SYSTEM ============
+// Default: split video into ~5 minute chunks
+// Custom: state.videos[videoId].chunks = [splitTime1, splitTime2, ...] overrides default
+function getChunks(durationSec, customSplits) {
+    const dur = durationSec && durationSec > 0 ? durationSec : 1320;
+
+    let splits;
+    if (customSplits && Array.isArray(customSplits) && customSplits.length > 0) {
+        // User-defined splits
+        splits = customSplits.filter(s => s > 0 && s < dur).sort((a, b) => a - b);
+    } else if (dur <= 360) {
+        // ≤ 6 min: single chunk, no split needed
+        return [{ start: 0, end: Math.floor(dur), label: '전체', idx: 0, total: 1 }];
+    } else {
+        // Default: ~5 min chunks (300s target), snap to nearest 30 sec
+        const PREFER = 300;
+        const n = Math.max(2, Math.round(dur / PREFER));
+        splits = [];
+        for (let i = 1; i < n; i++) {
+            splits.push(Math.round(dur * i / n / 30) * 30);
+        }
+    }
+
+    const total = splits.length + 1;
+    const chunks = [];
+    let prev = 0;
+    for (let i = 0; i < total; i++) {
+        const end = i === total - 1 ? Math.floor(dur) : Math.floor(splits[i]);
+        chunks.push({ start: prev, end: end, label: `${i+1}/${total}`, idx: i, total: total });
+        prev = end;
+    }
+    return chunks;
+}
+
+// Helper: get effective chunks for an episode (with any custom splits applied)
+function getChunksForEp(epId) {
+    const ep = EPISODES.find(x => x.id === epId);
+    if (!ep) return [];
+    const vidId = state.episodeUrls[ep.id] || ep.videoId;
+    const dur = (state.videos[vidId] && state.videos[vidId].duration) || 1320;
+    const custom = state.videos[vidId] && state.videos[vidId].chunks;
+    return getChunks(dur, custom);
+}
+
+// Per-chunk pass storage helpers
+function chunkPassKey(epId, chunkIdx) {
+    return `${epId}__c${chunkIdx}`;
+}
+
+function getChunkPasses(epId, chunkIdx) {
+    const key = chunkPassKey(epId, chunkIdx);
+    return state.passes[key] || [false, false, false, false, false];
+}
+
+function playEpisode(epId, startSec) {
     const ep = EPISODES.find(x => x.id === epId);
     if (!ep) return;
     const videoId = state.episodeUrls[epId] || ep.videoId;
     if (!videoId) return;
     document.querySelector('[data-tab="player"]').click();
-    createPlayer(videoId);
+    createPlayer(videoId, false, startSec || 0);
+}
+
+// Manual chunk editor
+function promptForChunkEdit(epId) {
+    const ep = EPISODES.find(x => x.id === epId);
+    if (!ep) return;
+    const vidId = state.episodeUrls[ep.id] || ep.videoId;
+    const dur = (state.videos[vidId] && state.videos[vidId].duration) || 1320;
+    const current = state.videos[vidId] && state.videos[vidId].chunks;
+
+    const currentSplits = current && current.length > 0
+        ? current
+        : getChunks(dur).slice(0, -1).map(c => c.end);
+    const currentDisplay = currentSplits.map(s => formatTime(s)).join(', ');
+
+    const msg = `${ep.name}의 청크 분할 시각 편집\n\n` +
+                `MM:SS 형식 또는 분 단위로 콤마 구분 입력\n` +
+                `  예) 5, 10, 15, 20\n` +
+                `  예) 5:30, 11:00, 16:30\n\n` +
+                `빈칸 + 확인 → 기본 5분 단위로 복원\n\n` +
+                `총 영상 길이: ${formatTime(dur)}\n` +
+                `현재 ${current ? '(사용자 지정)' : '(자동)'}: ${currentDisplay}`;
+
+    const input = prompt(msg, current ? currentDisplay : '');
+    if (input === null) return;
+
+    const trimmed = input.trim();
+    if (trimmed === '') {
+        // Reset to default
+        if (state.videos[vidId] && state.videos[vidId].chunks) {
+            delete state.videos[vidId].chunks;
+            saveState(state);
+            renderEpisodes(currentEpFilter);
+            if (state.currentVideo === vidId) renderChunkBar();
+        }
+        return;
+    }
+
+    const splits = trimmed.split(',').map(s => s.trim()).map(s => {
+        if (!s) return NaN;
+        if (s.includes(':')) {
+            const parts = s.split(':').map(Number);
+            return parts[0] * 60 + (parts[1] || 0);
+        }
+        return parseFloat(s) * 60;
+    }).filter(s => !isNaN(s) && s > 0 && s < dur).sort((a, b) => a - b);
+
+    if (splits.length === 0) {
+        alert('유효한 분할 시각이 없습니다.\n예: "5, 10, 15" 또는 "5:30, 11:00"');
+        return;
+    }
+
+    // Dedupe (within 5 sec)
+    const deduped = splits.filter((s, i) => i === 0 || s - splits[i-1] >= 5);
+
+    ensureVideoState(vidId);
+    state.videos[vidId].chunks = deduped;
+    saveState(state);
+    renderEpisodes(currentEpFilter);
+    if (state.currentVideo === vidId) renderChunkBar();
+}
+
+// Add a split at current playback time
+function splitAtCurrentTime() {
+    if (!ytPlayer || !ytPlayer.getCurrentTime || !state.currentVideo) {
+        alert('영상이 재생 중일 때만 사용 가능합니다.');
+        return;
+    }
+    const t = Math.floor(ytPlayer.getCurrentTime());
+    const vidId = state.currentVideo;
+    const dur = (state.videos[vidId] && state.videos[vidId].duration) || 0;
+    if (t <= 5 || (dur > 0 && t >= dur - 5)) {
+        alert('영상 처음/끝 5초 이내에는 분할을 추가할 수 없습니다.');
+        return;
+    }
+
+    const existing = (state.videos[vidId] && state.videos[vidId].chunks)
+        || getChunks(dur).slice(0, -1).map(c => c.end);
+
+    // Avoid duplicates within 5 seconds
+    if (existing.some(s => Math.abs(s - t) < 5)) {
+        alert(`${formatTime(t)} 근처에 이미 분할이 있습니다.`);
+        return;
+    }
+
+    const newSplits = [...existing, t].sort((a, b) => a - b);
+
+    ensureVideoState(vidId);
+    state.videos[vidId].chunks = newSplits;
+    saveState(state);
+    renderChunkBar();
+    if (document.getElementById('episodes').classList.contains('active')) {
+        renderEpisodes(currentEpFilter);
+    }
+
+    const splitBtn = document.getElementById('split-here-btn');
+    if (splitBtn) {
+        const orig = splitBtn.textContent;
+        splitBtn.textContent = `✓ ${formatTime(t)} 분할`;
+        setTimeout(() => { splitBtn.textContent = orig; }, 1500);
+    }
 }
 
 let currentEpFilter = 'all';
@@ -2699,18 +3147,44 @@ function renderStats() {
 
     let totalPasses = 0;
     let completedEps = 0;
-    Object.values(state.passes).forEach(p => {
-        totalPasses += p.filter(Boolean).length;
-        if (p.every(Boolean)) completedEps++;
+    let startedEps = 0;
+    let completedChunks = 0;
+
+    EPISODES.forEach(ep => {
+        const vidId = state.episodeUrls[ep.id] || ep.videoId;
+        const dur = (state.videos[vidId] && state.videos[vidId].duration) || 1320;
+        const customSplits = state.videos[vidId] && state.videos[vidId].chunks;
+        const chunks = getChunks(dur, customSplits);
+        const numChunks = chunks.length;
+
+        let epPassCount = 0;
+        let epAllChunksDone = true;
+        let epAnyPass = false;
+
+        for (let c = 0; c < numChunks; c++) {
+            const arr = state.passes[chunkPassKey(ep.id, c)] || [];
+            const done = arr.filter(Boolean).length;
+            epPassCount += done;
+            if (done > 0) epAnyPass = true;
+            if (done < 5) epAllChunksDone = false;
+            if (done === 5) completedChunks++;
+        }
+
+        totalPasses += epPassCount;
+        if (epAnyPass) startedEps++;
+        if (epAllChunksDone) completedEps++;
     });
 
-    const startedEps = Object.values(state.passes).filter(p => p.some(Boolean)).length;
     const totalNotes = (state.notes || []).length;
 
     grid.innerHTML = `
         <div class="stat-card">
             <div class="stat-num">${completedEps}</div>
-            <div class="stat-label">완료한 에피소드 (5-Step)</div>
+            <div class="stat-label">완료한 에피소드 (모든 청크)</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num">${completedChunks}</div>
+            <div class="stat-label">완료한 청크 (5-Step)</div>
         </div>
         <div class="stat-card">
             <div class="stat-num">${startedEps}</div>
@@ -2842,7 +3316,7 @@ function ensureVideoState(videoId) {
     saveState(state);
 }
 
-function createPlayer(videoId, suppressAutoplay) {
+function createPlayer(videoId, suppressAutoplay, startSec) {
     ensureVideoState(videoId);
     state.currentVideo = videoId;
     saveState(state);
@@ -2853,30 +3327,44 @@ function createPlayer(videoId, suppressAutoplay) {
     document.getElementById('video-id-display').textContent = videoId;
     document.getElementById('video-title').textContent = state.videos[videoId].title || '제목 불러오는 중…';
 
+    const startSeconds = (typeof startSec === 'number' && startSec > 0) ? Math.floor(startSec) : 0;
+
     whenYTReady(function() {
         if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
-            if (suppressAutoplay) ytPlayer.cueVideoById(videoId);
-            else ytPlayer.loadVideoById(videoId);
+            const opts = { videoId: videoId };
+            if (startSeconds > 0) opts.startSeconds = startSeconds;
+            if (suppressAutoplay) ytPlayer.cueVideoById(opts);
+            else ytPlayer.loadVideoById(opts);
             setTimeout(() => updateVideoTitle(videoId), 1500);
+            setTimeout(() => captureDuration(videoId), 2000);
         } else {
             try {
+                const playerVars = {
+                    rel: 0,
+                    modestbranding: 1,
+                    autoplay: suppressAutoplay ? 0 : 1,
+                    playsinline: 1
+                };
+                if (startSeconds > 0) playerVars.start = startSeconds;
                 ytPlayer = new YT.Player('yt-player', {
                     host: 'https://www.youtube-nocookie.com',
                     width: '100%',
                     height: '100%',
                     videoId: videoId,
-                    playerVars: {
-                        rel: 0,
-                        modestbranding: 1,
-                        autoplay: suppressAutoplay ? 0 : 1,
-                        playsinline: 1
-                    },
+                    playerVars: playerVars,
                     events: {
-                        onReady: () => { updateVideoTitle(videoId); setActiveRate(1); },
+                        onReady: () => {
+                            updateVideoTitle(videoId);
+                            setActiveRate(1);
+                            setTimeout(() => captureDuration(videoId), 1000);
+                        },
                         onStateChange: (e) => {
                             if (e.data === YT.PlayerState.PLAYING) {
                                 updateVideoTitle(state.currentVideo);
                                 startWatchTracking();
+                                if (!state.videos[state.currentVideo].duration) {
+                                    captureDuration(state.currentVideo);
+                                }
                             } else {
                                 stopWatchTracking();
                             }
@@ -2893,6 +3381,63 @@ function createPlayer(videoId, suppressAutoplay) {
 
     renderMarkers();
     renderRecentVideos();
+    renderChunkBar();
+}
+
+function captureDuration(videoId) {
+    if (!ytPlayer || typeof ytPlayer.getDuration !== 'function') return;
+    const d = ytPlayer.getDuration();
+    if (d > 0 && state.videos[videoId]) {
+        const prev = state.videos[videoId].duration;
+        if (Math.abs((prev || 0) - d) > 0.5) {
+            state.videos[videoId].duration = d;
+            saveState(state);
+            renderChunkBar();
+            // If episode tab visible, refresh it to show new chunks
+            if (document.getElementById('episodes').classList.contains('active')) {
+                renderEpisodes(currentEpFilter);
+            }
+        }
+    }
+}
+
+function renderChunkBar() {
+    const bar = document.getElementById('chunk-bar');
+    if (!bar) return;
+    if (!state.currentVideo || !state.videos[state.currentVideo]) {
+        bar.style.display = 'none';
+        return;
+    }
+    const dur = state.videos[state.currentVideo].duration || 0;
+    const customSplits = state.videos[state.currentVideo].chunks;
+    if (!dur || (dur <= 360 && (!customSplits || customSplits.length === 0))) {
+        bar.style.display = 'none';
+        return;
+    }
+    const chunks = getChunks(dur, customSplits);
+    if (chunks.length <= 1) {
+        bar.style.display = 'none';
+        return;
+    }
+    bar.style.display = 'flex';
+    const isCustom = !!(customSplits && customSplits.length > 0);
+    bar.innerHTML = `
+        <span class="chunk-bar-label">청크 점프${isCustom ? ' (사용자 지정)' : ''}:</span>
+        ${chunks.map(c => `
+            <button class="chunk-bar-btn" data-start="${c.start}" title="${formatTime(c.start)} ~ ${formatTime(c.end)}">
+                ${c.label} (${formatTime(c.start)})
+            </button>
+        `).join('')}
+    `;
+    bar.querySelectorAll('.chunk-bar-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const start = parseFloat(btn.dataset.start);
+            if (ytPlayer && ytPlayer.seekTo) {
+                ytPlayer.seekTo(start, true);
+                ytPlayer.playVideo();
+            }
+        });
+    });
 }
 
 function showPlayerError(msg, videoId) {
@@ -3003,6 +3548,7 @@ function addMarker() {
 }
 
 document.getElementById('mark-difficult-btn').addEventListener('click', addMarker);
+document.getElementById('split-here-btn').addEventListener('click', splitAtCurrentTime);
 
 // Keyboard shortcuts
 document.addEventListener('keydown', (e) => {
@@ -3127,6 +3673,31 @@ renderNotes();
 renderStats();
 renderRecentVideos();
 renderMarkers();
+
+// ============ PWA INSTALL HINT ============
+(function showPWAHint() {
+    const hint = document.getElementById('pwa-install-hint');
+    if (!hint) return;
+    const closeBtn = document.getElementById('pwa-hint-close');
+
+    // Detect iOS Safari (not in standalone mode)
+    const ua = navigator.userAgent;
+    const isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+    const isStandalone = window.navigator.standalone === true ||
+                         window.matchMedia('(display-mode: standalone)').matches;
+    const dismissed = localStorage.getItem('pwa-hint-dismissed') === '1';
+
+    if (isIOS && !isStandalone && !dismissed) {
+        hint.style.display = 'flex';
+    }
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            hint.style.display = 'none';
+            localStorage.setItem('pwa-hint-dismissed', '1');
+        });
+    }
+})();
 
 // ============ SYNC UI HANDLERS ============
 (function setupSyncUI() {
