@@ -883,6 +883,25 @@ body {
 
 .note-delete:hover { color: var(--hot); }
 
+/* v9: 메모 → 타임스탬프 점프 배지 */
+.note-jump {
+    background: var(--bg);
+    color: var(--accent-bright);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.12s;
+}
+.note-jump:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+
 .empty-state {
     text-align: center;
     padding: 32px 16px;
@@ -1162,72 +1181,6 @@ body {
 .footer a { color: var(--text-muted); text-decoration: none; }
 .footer a:hover { color: var(--accent-bright); }
 
-.version-info {
-    margin-top: 14px;
-    padding-top: 12px;
-    border-top: 1px dashed var(--border);
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--text-muted);
-}
-.version-info strong {
-    color: var(--accent-bright);
-    font-weight: 600;
-}
-.version-sep {
-    margin: 0 8px;
-    color: var(--text-dim);
-}
-.version-changelog-btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text-muted);
-    padding: 3px 10px;
-    border-radius: 4px;
-    font-family: var(--font-kr);
-    font-size: 11px;
-    cursor: pointer;
-    transition: all 0.15s;
-}
-.version-changelog-btn:hover {
-    color: var(--accent-bright);
-    border-color: var(--accent-bright);
-}
-.changelog-panel {
-    margin-top: 16px;
-    padding: 16px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    text-align: left;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    font-family: var(--font-kr);
-    font-size: 12px;
-    line-height: 1.7;
-}
-.changelog-entry {
-    padding: 8px 0;
-    border-bottom: 1px dashed var(--border);
-}
-.changelog-entry:last-child { border-bottom: none; }
-.changelog-entry strong {
-    display: block;
-    color: var(--accent-bright);
-    font-family: var(--font-mono);
-    font-size: 11px;
-    margin-bottom: 4px;
-}
-.changelog-entry ul {
-    margin: 0;
-    padding-left: 18px;
-    color: var(--text-muted);
-}
-.changelog-entry li {
-    margin-bottom: 2px;
-}
-
 /* === Player === */
 .player-input-row {
     display: flex;
@@ -1434,6 +1387,191 @@ body {
 
 .marker-del:hover { color: var(--hot); background: var(--bg); }
 
+/* v9: 데일리 미션 + 스트릭 + 약점 큐 패널 */
+.daily-panel {
+    background: linear-gradient(135deg, rgba(255,107,53,0.08), rgba(239,68,68,0.04));
+    border-color: var(--accent-dim);
+}
+.daily-row {
+    display: flex;
+    align-items: stretch;
+    gap: 14px;
+    margin-bottom: 12px;
+}
+.daily-mission {
+    flex: 1;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    padding: 12px 14px;
+    min-width: 0;
+}
+.daily-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent-bright);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+.daily-title {
+    font-family: var(--font-kr);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 2px;
+}
+.daily-sub {
+    font-family: var(--font-kr);
+    font-size: 12px;
+    color: var(--text-muted);
+}
+.daily-streak {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    text-align: center;
+    min-width: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.streak-num {
+    font-family: var(--font-mono);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--hot);
+    line-height: 1;
+}
+.streak-label {
+    font-family: var(--font-kr);
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+.daily-nudge {
+    background: rgba(245,158,11,0.1);
+    border: 1px solid rgba(245,158,11,0.3);
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    font-family: var(--font-kr);
+    font-size: 12px;
+    color: var(--text);
+}
+.weak-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.weak-info {
+    font-family: var(--font-kr);
+    font-size: 12px;
+    color: var(--text-muted);
+}
+.weak-session {
+    background: var(--bg-elev);
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    font-family: var(--font-kr);
+    font-size: 13px;
+}
+.weak-session .ws-progress {
+    color: var(--accent-bright);
+    font-weight: 600;
+}
+.weak-session .ws-time {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 12px;
+}
+.weak-session button {
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 5px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+.weak-session button:hover { background: var(--bg-hover); }
+.weak-list {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.weak-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-family: var(--font-kr);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.12s;
+}
+.weak-item:hover {
+    border-color: var(--accent);
+    background: var(--bg-hover);
+}
+.weak-item .wi-num {
+    font-family: var(--font-mono);
+    color: var(--accent-bright);
+    font-weight: 700;
+    width: 22px;
+}
+.weak-item .wi-ep {
+    color: var(--text);
+    font-weight: 600;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.weak-item .wi-meta {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 11px;
+}
+@media (max-width: 640px) {
+    .daily-row { flex-direction: row; gap: 10px; }
+    .daily-streak { min-width: 64px; padding: 8px 10px; }
+    .streak-num { font-size: 22px; }
+}
+
+/* v9: 시간 미세조정 버튼 (마커, 메모) */
+.marker-nudge, .marker-edit {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-size: 12px;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    transition: all 0.12s;
+    flex-shrink: 0;
+}
+.marker-nudge:hover, .marker-edit:hover {
+    color: var(--accent-bright);
+    border-color: var(--border);
+    background: var(--bg);
+}
+.marker-nudge:active { transform: scale(0.95); }
+
 .video-info {
     background: var(--bg-elev);
     border: 1px solid var(--border);
@@ -1595,18 +1733,6 @@ body {
 
 .sync-form input:focus { outline: none; border-color: var(--accent); }
 
-.sync-token-status {
-    background: rgba(255, 107, 53, 0.08);
-    border: 1px solid var(--accent-dim);
-    color: var(--accent-bright);
-    padding: 6px 10px;
-    border-radius: 5px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    margin-bottom: 10px;
-    margin-top: 2px;
-}
-
 .sync-actions {
     display: flex;
     gap: 8px;
@@ -1702,6 +1828,28 @@ body {
     <div class="section-header">
         <h2>플레이어 — 보면서 어려운 곳 마킹</h2>
         <p>YouTube URL 붙여넣고, 안 들리는 순간마다 <strong style="color:var(--accent-bright);">🚨 어려움</strong> 버튼을 누르세요. 나중에 클릭해서 그 순간으로 바로 점프할 수 있습니다.</p>
+    </div>
+
+    <!-- v9: 데일리 미션 + 약점 큐 패널 -->
+    <div class="panel daily-panel" id="daily-panel" style="display:none;">
+        <div class="daily-row">
+            <div class="daily-mission" id="daily-mission">
+                <div class="daily-label">오늘의 미션</div>
+                <div class="daily-title" id="daily-mission-title">—</div>
+                <div class="daily-sub" id="daily-mission-sub">—</div>
+            </div>
+            <div class="daily-streak" id="daily-streak">
+                <div class="streak-num">0</div>
+                <div class="streak-label">일째</div>
+            </div>
+        </div>
+        <div id="daily-nudge" class="daily-nudge" style="display:none;"></div>
+        <div class="weak-row">
+            <button class="btn btn-primary" id="weak-start-btn">🔥 오늘 5분 시작</button>
+            <span class="weak-info" id="weak-info">약점 청크를 자동으로 골라드려요</span>
+        </div>
+        <div id="weak-session-ui" class="weak-session" style="display:none;"></div>
+        <div id="weak-list" class="weak-list" style="display:none;"></div>
     </div>
 
     <div class="panel">
@@ -2011,7 +2159,6 @@ body {
             <div class="sync-form">
                 <label>GitHub Personal Access Token <span style="color:var(--text-dim); font-weight:400;">(gist 권한 필요)</span></label>
                 <input type="text" id="sync-token-input" placeholder="ghp_... 또는 github_pat_..." autocomplete="off" spellcheck="false">
-                <div id="sync-token-status" class="sync-token-status" style="display:none;"></div>
                 <div style="font-size:11px; color:var(--text-dim); margin-bottom:10px; line-height:1.6;">
                     아직 없으면 → <a href="https://github.com/settings/tokens/new?scopes=gist&description=Hot%20Ones%20English%20Sync" target="_blank" style="color:var(--accent-bright);">여기서 발급 받기 (gist 권한만, Expiration: No expiration 권장)</a><br>
                     토큰은 이 브라우저의 localStorage에만 저장되며 GitHub 외부로는 전송되지 않습니다.
@@ -2019,7 +2166,6 @@ body {
 
                 <label>Gist ID <span style="color:var(--text-dim); font-weight:400;">(처음이면 비워두면 자동 생성)</span></label>
                 <input type="text" id="sync-gist-input" placeholder="자동 생성됨 (다른 기기와 공유하려면 이 ID 복사)" autocomplete="off" spellcheck="false">
-                <div id="sync-gist-status" class="sync-token-status" style="display:none;"></div>
 
                 <div style="display:flex; gap:8px; margin-top:10px;">
                     <button class="btn btn-primary" id="sync-save-btn">저장</button>
@@ -2058,61 +2204,6 @@ body {
 <footer class="footer">
     <p>Hot Ones English Trainer · 매일 1편씩, 두 달이면 귀가 트입니다 🌶️</p>
     <p style="margin-top:6px;">Sungshin Women's University · made with focus on conversational English</p>
-    <div class="version-info">
-        <span>빌드 <strong id="app-build">2026-05-08-v8</strong></span>
-        <span class="version-sep">·</span>
-        <button class="version-changelog-btn" id="changelog-btn" type="button">변경 내역 보기</button>
-    </div>
-    <div id="changelog-panel" class="changelog-panel" style="display:none;">
-        <div class="changelog-entry">
-            <strong>v8 (2026-05-08)</strong>
-            <ul>
-                <li>토큰 저장 시 "토큰을 입력해주세요" 팝업 뜨던 버그 수정 (iOS blur-before-click 이슈)</li>
-                <li>저장된 토큰 별도 status 박스로 명확히 표시</li>
-                <li>버전 정보 푸터 추가 (이 항목)</li>
-            </ul>
-        </div>
-        <div class="changelog-entry">
-            <strong>v7 (2026-05-08)</strong>
-            <ul>
-                <li>PWA 지원 — iOS Safari "홈 화면에 추가"로 풀스크린 앱 모드</li>
-                <li>앱 아이콘, safe-area, 노치 대응</li>
-            </ul>
-        </div>
-        <div class="changelog-entry">
-            <strong>v6 (2026-05-08)</strong>
-            <ul>
-                <li>5분 단위 자동 청크 분할 (이전 15분 대신)</li>
-                <li>✂️ 청크 편집 (수동 분할 시각 입력)</li>
-                <li>✂️ 여기서 자르기 (재생 중 현재 시각에 분할 추가)</li>
-                <li>▶ 전체 재생 버튼 (마지막 체크용)</li>
-            </ul>
-        </div>
-        <div class="changelog-entry">
-            <strong>v5 (2026-05-08)</strong>
-            <ul>
-                <li>청크별 Pass dot (각 청크가 독립된 5단계 트래킹)</li>
-                <li>대화 흐름 기반 분할 (Hot Ones 윙 구조 반영)</li>
-                <li>모바일 레이아웃 개선 (가로 overflow 수정)</li>
-            </ul>
-        </div>
-        <div class="changelog-entry">
-            <strong>v4 (2026-05-08)</strong>
-            <ul>
-                <li>3-Pass → 5-Step 학습법 전환 (Pass dot 5개)</li>
-                <li>학습 달력 (GitHub-style heatmap + streak)</li>
-                <li>영상 청크 시스템 도입</li>
-            </ul>
-        </div>
-        <div class="changelog-entry">
-            <strong>v1-3 (2026-05-07)</strong>
-            <ul>
-                <li>초기 130편 에피소드 큐레이션</li>
-                <li>YouTube IFrame 플레이어, 마커, 메모, 동기화</li>
-                <li>5개 인터랙티브 학습 도구 (어휘 사전, Reduction 드릴 등)</li>
-            </ul>
-        </div>
-    </div>
 </footer>
 
 <script>
@@ -2341,7 +2432,9 @@ const SYNC_AUTO_KEY = 'hotones-sync-auto';
 const SYNC_LAST_PUSH_KEY = 'hotones-sync-lastpush';
 const SYNC_LAST_PULL_KEY = 'hotones-sync-lastpull';
 const SCHEMA_NAME = 'hot-ones-english';
-const SCHEMA_VERSION = 2;
+const SCHEMA_VERSION = 3; // v9: notes에 videoId/seconds 필드 추가, v2 직전 상태 1회 자동 백업
+const V2_BACKUP_CACHE_KEY = 'hotones-v2-backup-cached'; // 마이그레이션 1회차 v2 상태 임시 보관 (Gist 백업 후 삭제)
+const V2_BACKUP_FILENAME = 'hot-ones-english-v2-backup.json';
 
 // Default state factory
 function defaultState() {
@@ -2397,6 +2490,27 @@ function loadState() {
         });
         s.schema = SCHEMA_NAME;
         if (!s.version) s.version = 1; // legacy v1 detected
+
+        // v2 → v3: notes에 videoId/seconds 필드 추가, 마이그레이션 직전 상태를 백업용으로 캐시
+        const fromVersion = s.version || 1;
+        if (fromVersion < 3) {
+            // 마이그레이션 1회차에 한해, 변경 전 raw state를 localStorage에 캐시 (Gist 백업 시도용)
+            // 이미 캐시된 경우 덮어쓰지 않음 (사고 시 첫 백업이 가장 중요)
+            try {
+                if (!localStorage.getItem(V2_BACKUP_CACHE_KEY)) {
+                    localStorage.setItem(V2_BACKUP_CACHE_KEY, raw);
+                }
+            } catch (e) {
+                console.warn('v2 backup cache 저장 실패 (저장공간 부족?):', e);
+            }
+            // notes: videoId/seconds 필드 보강
+            s.notes = (s.notes || []).map(n => ({
+                ...n,
+                videoId: (typeof n.videoId === 'string' && n.videoId) ? n.videoId : null,
+                seconds: (typeof n.seconds === 'number' && n.seconds >= 0) ? n.seconds : null,
+            }));
+            s.version = 3;
+        }
 
         return s;
     } catch (e) {
@@ -2476,6 +2590,27 @@ async function gistRequest(method, path, body) {
         throw new Error(`GitHub API ${res.status}: ${text}`);
     }
     return res.json();
+}
+
+// v2 → v3 마이그레이션 직후, 캐시된 v2 state를 Gist에 별도 파일로 1회 백업
+// 실패해도 조용히 종료 (다음 sync 시 재시도). 성공 시 캐시 삭제.
+async function backupV2ToGistOnce() {
+    const cached = localStorage.getItem(V2_BACKUP_CACHE_KEY);
+    if (!cached) return;
+    if (!isSyncConfigured()) return;
+    const gistId = getSyncGistId();
+    if (!gistId) return; // 기존 Gist에만 추가. 신규 생성은 첫 push가 알아서.
+    try {
+        const body = {
+            description: GIST_DESCRIPTION,
+            files: { [V2_BACKUP_FILENAME]: { content: cached } }
+        };
+        await gistRequest('PATCH', `/gists/${gistId}`, body);
+        localStorage.removeItem(V2_BACKUP_CACHE_KEY);
+        console.log('v2 백업이 Gist에 저장되었습니다 (' + V2_BACKUP_FILENAME + ').');
+    } catch (e) {
+        console.warn('v2 Gist 백업 실패 (다음 동기화 시 재시도):', e.message || e);
+    }
 }
 
 async function pushToCloud(silent) {
@@ -2613,53 +2748,23 @@ function updateSyncStatus(state, message) {
     updateSyncUI();
 }
 
-function escapeHtml(str) {
-    return String(str).replace(/[&<>"']/g, c => ({
-        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-    })[c]);
-}
-
 function updateSyncUI() {
     const cfg = isSyncConfigured();
     const tokenInput = document.getElementById('sync-token-input');
     const gistInput = document.getElementById('sync-gist-input');
-    const tokenStatus = document.getElementById('sync-token-status');
-    const gistStatus = document.getElementById('sync-gist-status');
     const autoCheck = document.getElementById('sync-auto-checkbox');
     const timeEl = document.getElementById('sync-status-time');
     const statusText = document.getElementById('sync-status-text');
     const dot = document.getElementById('sync-status-dot');
 
-    // Token: NEVER touch input.value here (blur-before-click bug on iOS)
-    // Just update the saved-state status panel + placeholder
-    if (tokenStatus) {
+    if (tokenInput && document.activeElement !== tokenInput) {
         const t = getSyncToken();
-        if (t) {
-            tokenStatus.style.display = 'block';
-            tokenStatus.innerHTML = `✓ 저장된 토큰: <strong>${escapeHtml(t.slice(0, 7))}</strong> ··· <strong>${escapeHtml(t.slice(-4))}</strong> (${t.length}자)`;
-        } else {
-            tokenStatus.style.display = 'none';
-        }
+        tokenInput.value = t ? t.slice(0, 4) + '••••••••' + t.slice(-4) : '';
+        tokenInput.dataset.masked = '1';
     }
-    if (tokenInput) {
-        const t = getSyncToken();
-        tokenInput.placeholder = t ? '새 토큰을 입력하면 교체됩니다 (빈칸 유지 OK)' : 'ghp_... 또는 github_pat_...';
-    }
-
-    // Gist ID status (the input shows current value — set only when not focused)
-    if (gistStatus) {
-        const g = getSyncGistId();
-        if (g) {
-            gistStatus.style.display = 'block';
-            gistStatus.innerHTML = `✓ 저장된 Gist ID — <a href="https://gist.github.com/${escapeHtml(g)}" target="_blank" style="color:var(--accent-bright);">GitHub에서 보기</a>`;
-        } else {
-            gistStatus.style.display = 'none';
-        }
-    }
-    if (gistInput && document.activeElement !== gistInput && !gistInput.value) {
+    if (gistInput && document.activeElement !== gistInput) {
         gistInput.value = getSyncGistId();
     }
-
     if (autoCheck) autoCheck.checked = getSyncAuto();
 
     if (timeEl) {
@@ -2689,7 +2794,8 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
         if (btn.dataset.tab === 'stats') renderStats();
         if (btn.dataset.tab === 'calendar') renderCalendar();
         if (btn.dataset.tab === 'notes') renderNotes();
-        if (btn.dataset.tab === 'player') { renderRecentVideos(); renderMarkers(); renderChunkBar(); }
+        if (btn.dataset.tab === 'player') { renderRecentVideos(); renderMarkers(); renderChunkBar(); renderDailyMission(); }
+        if (btn.dataset.tab === 'phrases') tickPhrasesMission(); // v9: 표현사전 탭 진입 = 미션 카운트
     });
 });
 
@@ -3047,6 +3153,279 @@ document.getElementById('drill-next').addEventListener('click', () => {
     renderDrill();
 });
 
+// ============ v9: 약점 큐 + 오늘 5분 + 데일리 미션 + 스트릭 ============
+// 모든 에피소드에서 약점 청크 N개를 점수 순으로 추출.
+// 점수 = (마커 수 × 2) + (미완 Pass 수 × 1).
+// 임계점: 점수 ≥ 3 또는 마커 ≥ 3
+function getWeakChunks(maxN = 5) {
+    const out = [];
+    EPISODES.forEach(ep => {
+        const vidId = state.episodeUrls[ep.id] || ep.videoId;
+        const vidState = state.videos[vidId];
+        if (!vidState) return;
+        const dur = vidState.duration || 1320;
+        const chunks = getChunks(dur, vidState.chunks);
+        const markers = vidState.markers || [];
+        chunks.forEach(ch => {
+            const inChunk = markers.filter(m => m.time >= ch.start && m.time < ch.end);
+            const passes = state.passes[`${ep.id}__c${ch.idx}`] || [false,false,false,false,false];
+            const missingPasses = passes.filter(p => !p).length;
+            const score = inChunk.length * 2 + missingPasses;
+            const qualifies = score >= 3 || inChunk.length >= 3;
+            if (!qualifies) return;
+            out.push({
+                epId: ep.id,
+                epName: ep.name,
+                videoId: vidId,
+                chunkIdx: ch.idx,
+                chunkStart: ch.start,
+                chunkEnd: ch.end,
+                chunkLabel: ch.label,
+                markerCount: inChunk.length,
+                missingPasses,
+                score,
+            });
+        });
+    });
+    out.sort((a, b) => b.score - a.score);
+    return out.slice(0, maxN);
+}
+
+// 오늘 5분 세션 상태
+let weakSession = null; // { chunks, currentIdx, startedAt, completedCount, lastTickT }
+
+function startWeakSession() {
+    const chunks = getWeakChunks(5);
+    if (chunks.length === 0) {
+        alert('아직 약점 청크가 부족합니다. 영상 보면서 마커(🚨)를 더 쌓고 다시 와주세요.\n\n청크당 마커 3개 이상이거나 미완 Pass가 많을 때 약점으로 분류됩니다.');
+        return;
+    }
+    weakSession = {
+        chunks,
+        currentIdx: 0,
+        startedAt: Date.now(),
+        completedCount: 0,
+    };
+    playWeakChunk(weakSession.chunks[0]);
+    renderWeakSessionUI();
+}
+
+function playWeakChunk(wc) {
+    const startSec = Math.max(0, wc.chunkStart - 0.5);
+    if (state.currentVideo === wc.videoId && ytPlayer && ytPlayer.seekTo) {
+        ytPlayer.seekTo(startSec, true);
+        try { ytPlayer.playVideo(); } catch (e) {}
+    } else {
+        createPlayer(wc.videoId, false, startSec);
+        state.currentVideo = wc.videoId;
+        ensureVideoState(wc.videoId);
+        saveState(state);
+        renderMarkers();
+        renderRecentVideos();
+    }
+}
+
+function tickWeakSession() {
+    if (!weakSession) return;
+    if (!ytPlayer || typeof ytPlayer.getCurrentTime !== 'function') return;
+    const elapsed = (Date.now() - weakSession.startedAt) / 1000;
+    if (elapsed > 300) {
+        endWeakSession('5분 완료');
+        return;
+    }
+    let t;
+    try { t = ytPlayer.getCurrentTime(); } catch (e) { return; }
+    if (typeof t !== 'number') return;
+    const cur = weakSession.chunks[weakSession.currentIdx];
+    if (state.currentVideo !== cur.videoId) return; // 사용자가 다른 영상으로 이동한 경우 멈춤
+    if (t >= cur.chunkEnd - 0.3) {
+        weakSession.completedCount++;
+        if (weakSession.currentIdx + 1 >= weakSession.chunks.length) {
+            endWeakSession('전체 완료');
+        } else {
+            weakSession.currentIdx++;
+            playWeakChunk(weakSession.chunks[weakSession.currentIdx]);
+            renderWeakSessionUI();
+        }
+    }
+    // 매 tick에서 시간 표시 갱신
+    const elapsedEl = document.querySelector('#weak-session-ui .ws-time');
+    if (elapsedEl) {
+        const remain = Math.max(0, 300 - Math.floor(elapsed));
+        elapsedEl.textContent = '⏱ ' + Math.floor(remain/60) + ':' + String(remain%60).padStart(2,'0') + ' 남음';
+    }
+}
+setInterval(tickWeakSession, 700);
+
+function endWeakSession(reason) {
+    if (weakSession) {
+        recordStudy({ activity: 'weak-session', episode: state.currentVideo || 'session' });
+        markMissionDone('weak-session');
+    }
+    weakSession = null;
+    if (ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
+        try { ytPlayer.pauseVideo(); } catch (e) {}
+    }
+    renderWeakSessionUI();
+    renderDailyMission();
+    setTimeout(() => alert('🔥 ' + reason + '! 오늘의 미션이 완료됐습니다.'), 50);
+}
+
+function renderWeakSessionUI() {
+    const ui = document.getElementById('weak-session-ui');
+    const list = document.getElementById('weak-list');
+    if (!ui) return;
+    if (weakSession) {
+        const cur = weakSession.chunks[weakSession.currentIdx];
+        ui.style.display = 'flex';
+        ui.innerHTML = `
+            <span class="ws-progress">${weakSession.currentIdx + 1} / ${weakSession.chunks.length}</span>
+            <span style="color:var(--text-muted);">현재: <b style="color:var(--text);">${escapeHTML(cur.epName)}</b> · ${cur.chunkLabel}</span>
+            <span class="ws-time">⏱ —</span>
+            <button id="ws-skip">건너뛰기</button>
+            <button id="ws-end">종료</button>
+        `;
+        document.getElementById('ws-skip').addEventListener('click', () => {
+            if (!weakSession) return;
+            if (weakSession.currentIdx + 1 >= weakSession.chunks.length) {
+                endWeakSession('건너뛰기로 종료');
+            } else {
+                weakSession.currentIdx++;
+                playWeakChunk(weakSession.chunks[weakSession.currentIdx]);
+                renderWeakSessionUI();
+            }
+        });
+        document.getElementById('ws-end').addEventListener('click', () => endWeakSession('수동 종료'));
+        if (list) list.style.display = 'none';
+    } else {
+        ui.style.display = 'none';
+        // 세션 아닐 때는 약점 목록 표시
+        renderWeakList();
+    }
+}
+
+function renderWeakList() {
+    const list = document.getElementById('weak-list');
+    if (!list) return;
+    const chunks = getWeakChunks(5);
+    if (chunks.length === 0) {
+        list.style.display = 'none';
+        return;
+    }
+    list.style.display = 'flex';
+    list.innerHTML = chunks.map((c, i) => `
+        <div class="weak-item" data-idx="${i}">
+            <span class="wi-num">${i+1}</span>
+            <span class="wi-ep">${escapeHTML(c.epName)} · ${c.chunkLabel}</span>
+            <span class="wi-meta">🚨 ${c.markerCount}  Pass ${5 - c.missingPasses}/5</span>
+        </div>
+    `).join('');
+    list.querySelectorAll('.weak-item').forEach(el => {
+        el.addEventListener('click', () => {
+            const idx = parseInt(el.dataset.idx, 10);
+            playWeakChunk(chunks[idx]);
+        });
+    });
+}
+
+// ===== 데일리 미션 =====
+// 미션 종류: 'weak-session' (약점 1개 복습) / 'marker' (마커 1개 새로 찍기) / 'phrases' (표현 5장 훑기)
+// 매일 자정 갱신. 어제 같은 종류 회피.
+const MISSION_DEFS = {
+    'weak-session': { title: '약점 청크 1개 복습', sub: '오늘 5분 시작 → 자동으로 골라드려요' },
+    'marker': { title: '새 마커 1개 찍기', sub: '영상 보면서 안 들리는 곳에 🚨' },
+    'phrases': { title: '표현사전 5장 훑기', sub: '표현 사전 탭에서 카드 5개 보기' },
+};
+
+function pickDailyMission() {
+    const today = todayDateKey();
+    const data = state.studyDates[today] || {};
+    if (data.mission && data.mission.type) return data.mission;
+
+    // 어제 미션 종류 확인
+    const yk = (() => { const d = new Date(); d.setDate(d.getDate() - 1); return formatDateKey(d); })();
+    const yMission = (state.studyDates[yk] && state.studyDates[yk].mission) || null;
+    const yType = yMission && yMission.type;
+
+    // 약점 큐 비어있으면 weak-session 안 추천
+    const hasWeak = getWeakChunks(1).length > 0;
+    let candidates = ['marker', 'phrases'];
+    if (hasWeak) candidates = ['weak-session', 'marker', 'phrases'];
+    if (yType) candidates = candidates.filter(c => c !== yType);
+    if (candidates.length === 0) candidates = ['marker'];
+
+    const type = candidates[Math.floor(Math.random() * candidates.length)];
+    const mission = { type, completed: false };
+    if (!state.studyDates[today]) state.studyDates[today] = { duration: 0, activities: [], episodes: [] };
+    state.studyDates[today].mission = mission;
+    saveState(state);
+    return mission;
+}
+
+function markMissionDone(triggerType) {
+    const today = todayDateKey();
+    const data = state.studyDates[today];
+    if (!data || !data.mission || data.mission.completed) return;
+    // 트리거가 미션 종류와 일치할 때만 완료. 단, 약점 세션은 marker 미션도 자동 완료시킴 (마커 위에서 활동)
+    const m = data.mission;
+    let done = false;
+    if (m.type === triggerType) done = true;
+    if (m.type === 'marker' && triggerType === 'weak-session') done = true;
+    if (done) {
+        m.completed = true;
+        saveState(state);
+    }
+}
+
+// 표현사전 탭 전환 시 phrases 미션 진행 카운트
+let _phrasesViewedToday = 0;
+function tickPhrasesMission() {
+    _phrasesViewedToday++;
+    if (_phrasesViewedToday >= 5) markMissionDone('phrases');
+}
+
+function renderDailyMission() {
+    const panel = document.getElementById('daily-panel');
+    const titleEl = document.getElementById('daily-mission-title');
+    const subEl = document.getElementById('daily-mission-sub');
+    const streakNumEl = document.querySelector('#daily-streak .streak-num');
+    if (!panel) return;
+    panel.style.display = 'block';
+
+    const mission = pickDailyMission();
+    const def = MISSION_DEFS[mission.type] || { title: '오늘 학습 한 번', sub: '뭐든 좋아요' };
+    titleEl.textContent = (mission.completed ? '✓ 완료 — ' : '') + def.title;
+    subEl.textContent = mission.completed ? '내일 새 미션이 갱신됩니다' : def.sub;
+    titleEl.style.color = mission.completed ? 'var(--easy)' : '';
+
+    // 스트릭
+    const stats = calcStudyStats();
+    if (streakNumEl) streakNumEl.textContent = stats.current;
+
+    // 부드러운 nudge: 마지막 학습일이 24h+ 지났을 때
+    const nudgeEl = document.getElementById('daily-nudge');
+    if (nudgeEl) {
+        const dates = Object.keys(state.studyDates || {}).filter(k => /^\d{4}-\d{2}-\d{2}$/.test(k)).sort();
+        if (dates.length === 0) {
+            nudgeEl.style.display = 'block';
+            nudgeEl.innerHTML = '👋 <b>처음이시네요!</b> 영상 하나 골라서 마커 한 개만 찍어봐도 시작입니다.';
+        } else {
+            const last = dates[dates.length - 1];
+            const lastDate = new Date(last + 'T00:00:00');
+            const today = new Date(); today.setHours(0,0,0,0);
+            const diffDays = Math.round((today - lastDate) / 86400000);
+            if (diffDays >= 1 && stats.current === 0) {
+                nudgeEl.style.display = 'block';
+                nudgeEl.innerHTML = `🌶️ <b>${diffDays}일</b> 만이에요. 작은 미션 하나로 다시 시작해볼까요?`;
+            } else {
+                nudgeEl.style.display = 'none';
+            }
+        }
+    }
+
+    renderWeakSessionUI();
+}
+
 // ============ NOTES ============
 function populateNoteEpisodes() {
     const sel = document.getElementById('note-episode');
@@ -3067,11 +3446,17 @@ function renderNotes() {
         const ep = EPISODES.find(e => e.id === n.epId);
         const epName = ep ? ep.name : (n.epId === 'general' ? '일반' : n.epId);
         const date = new Date(n.ts).toLocaleDateString('ko-KR');
+        // v9: videoId+seconds 있으면 점프 배지 노출
+        const hasJump = n.videoId && typeof n.seconds === 'number';
+        const jumpBadge = hasJump
+            ? `<button class="note-jump" data-vid="${escapeAttr(n.videoId)}" data-sec="${n.seconds}" title="이 시점으로 점프">🎬 ${formatTime(n.seconds)}</button>`
+            : '';
         return `
             <div class="note-item">
                 <div class="note-meta">
                     <span class="note-ep">🌶️ ${epName}</span>
                     <div style="display:flex; align-items:center; gap:10px;">
+                        ${jumpBadge}
                         <span class="note-date">${date}</span>
                         <button class="note-delete" data-id="${n.id}" title="삭제">✕</button>
                     </div>
@@ -3091,6 +3476,30 @@ function renderNotes() {
             }
         });
     });
+
+    // v9: 메모 → 타임스탬프 점프
+    list.querySelectorAll('.note-jump').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const vid = btn.dataset.vid;
+            const sec = parseFloat(btn.dataset.sec);
+            if (!vid) return;
+            // 플레이어 탭으로 전환
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === 'player'));
+            document.querySelectorAll('.section').forEach(s => s.classList.toggle('active', s.id === 'player'));
+            // 같은 영상이면 seek만, 다르면 새로 로드
+            if (state.currentVideo === vid && ytPlayer && ytPlayer.seekTo) {
+                ytPlayer.seekTo(Math.max(0, sec - 1), true);
+                ytPlayer.playVideo();
+            } else {
+                createPlayer(vid, false, Math.max(0, sec - 1));
+                state.currentVideo = vid;
+                ensureVideoState(vid);
+                saveState(state);
+                renderMarkers();
+                renderRecentVideos();
+            }
+        });
+    });
 }
 
 function escapeHTML(s) {
@@ -3103,10 +3512,24 @@ document.getElementById('note-save').addEventListener('click', () => {
     if (!epId) { alert('에피소드를 선택해주세요.'); return; }
     if (!content) { alert('내용을 입력해주세요.'); return; }
 
+    // v9: 현재 재생 중인 영상이 있으면 videoId + currentTime 자동 첨부
+    let videoId = null;
+    let seconds = null;
+    try {
+        if (state.currentVideo && ytPlayer && typeof ytPlayer.getCurrentTime === 'function') {
+            const t = ytPlayer.getCurrentTime();
+            if (typeof t === 'number' && t >= 0) {
+                videoId = state.currentVideo;
+                seconds = Math.floor(t);
+            }
+        }
+    } catch (e) { /* 플레이어 미초기화 등 — 그냥 null 유지 */ }
+
     state.notes = state.notes || [];
     state.notes.push({
         id: 'n_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7),
         epId, content,
+        videoId, seconds,
         ts: Date.now()
     });
     recordStudy({ activity: 'note', episode: epId });
@@ -3703,9 +4126,11 @@ function addMarker() {
         ts: Date.now()
     });
     recordStudy({ activity: 'marker', episode: vid });
+    markMissionDone('marker'); // v9: 마커 미션 완료 처리
     saveState(state);
     renderMarkers();
     renderRecentVideos();
+    renderDailyMission(); // v9: 미션 상태 갱신
     const btn = document.getElementById('mark-difficult-btn');
     const originalText = btn.textContent;
     btn.textContent = '✓ 저장됨 (' + formatTime(t) + ')';
@@ -3714,6 +4139,12 @@ function addMarker() {
 
 document.getElementById('mark-difficult-btn').addEventListener('click', addMarker);
 document.getElementById('split-here-btn').addEventListener('click', splitAtCurrentTime);
+
+// v9: 오늘 5분 시작 버튼
+(function attachWeakStart() {
+    const btn = document.getElementById('weak-start-btn');
+    if (btn) btn.addEventListener('click', startWeakSession);
+})();
 
 // Keyboard shortcuts
 document.addEventListener('keydown', (e) => {
@@ -3764,20 +4195,39 @@ function renderMarkers() {
     }
 
     list.innerHTML = markers.map(m => `
-        <div class="marker">
-            <button class="marker-time" data-time="${m.time}">⏱ ${formatTime(m.time)}</button>
+        <div class="marker" data-id="${m.id}">
+            <button class="marker-nudge" data-id="${m.id}" data-delta="-0.5" title="-0.5초">◀</button>
+            <button class="marker-time" data-id="${m.id}" data-time="${m.time}">⏱ ${formatTime(m.time)}</button>
+            <button class="marker-nudge" data-id="${m.id}" data-delta="0.5" title="+0.5초">▶</button>
             <input class="marker-note" type="text" placeholder="메모 (선택사항)…" value="${escapeAttr(m.note || '')}" data-id="${m.id}">
             <button class="marker-del" data-id="${m.id}" title="삭제">✕</button>
         </div>
     `).join('');
 
-    // Attach handlers
+    // 시간 클릭 → 점프
     list.querySelectorAll('.marker-time').forEach(btn => {
         btn.addEventListener('click', () => {
             const t = parseFloat(btn.dataset.time);
             if (ytPlayer && ytPlayer.seekTo) {
                 ytPlayer.seekTo(Math.max(0, t - 1), true); // -1s for context
                 ytPlayer.playVideo();
+            }
+        });
+    });
+
+    // v9: 시간 미세조정 (±0.5초)
+    list.querySelectorAll('.marker-nudge').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const id = btn.dataset.id;
+            const delta = parseFloat(btn.dataset.delta);
+            const marker = state.videos[state.currentVideo].markers.find(x => x.id === id);
+            if (!marker) return;
+            marker.time = Math.max(0, marker.time + delta);
+            saveState(state);
+            renderMarkers();
+            // 조정 후 그 위치로 점프
+            if (ytPlayer && ytPlayer.seekTo) {
+                ytPlayer.seekTo(Math.max(0, marker.time - 1), true);
             }
         });
     });
@@ -3793,6 +4243,9 @@ function renderMarkers() {
     list.querySelectorAll('.marker-del').forEach(btn => {
         btn.addEventListener('click', () => {
             const id = btn.dataset.id;
+            // v9: 메모가 있으면 확인. 없으면 즉시 삭제 (UX 마찰 줄이기)
+            const marker = state.videos[state.currentVideo].markers.find(x => x.id === id);
+            if (marker && marker.note && !confirm('이 마커에 메모가 있습니다. 정말 삭제할까요?\n\n메모: ' + marker.note)) return;
             state.videos[state.currentVideo].markers =
                 state.videos[state.currentVideo].markers.filter(x => x.id !== id);
             saveState(state);
@@ -3838,6 +4291,7 @@ renderNotes();
 renderStats();
 renderRecentVideos();
 renderMarkers();
+renderDailyMission(); // v9: 데일리 미션 + 스트릭 + 약점 큐 초기 렌더
 
 // ============ PWA INSTALL HINT ============
 (function showPWAHint() {
@@ -3864,18 +4318,6 @@ renderMarkers();
     }
 })();
 
-// ============ CHANGELOG TOGGLE ============
-(function setupChangelog() {
-    const btn = document.getElementById('changelog-btn');
-    const panel = document.getElementById('changelog-panel');
-    if (!btn || !panel) return;
-    btn.addEventListener('click', () => {
-        const isOpen = panel.style.display !== 'none';
-        panel.style.display = isOpen ? 'none' : 'block';
-        btn.textContent = isOpen ? '변경 내역 보기' : '변경 내역 닫기';
-    });
-})();
-
 // ============ SYNC UI HANDLERS ============
 (function setupSyncUI() {
     const tokenInput = document.getElementById('sync-token-input');
@@ -3888,51 +4330,28 @@ renderMarkers();
 
     if (!tokenInput) return;
 
-    // Capture token/gist values BEFORE blur fires (iOS dispatches blur before click)
-    let pendingToken = '';
-    let pendingGist = '';
-    saveBtn.addEventListener('mousedown', () => {
-        pendingToken = tokenInput.value.trim();
-        pendingGist = gistInput.value.trim();
+    // Unmask on focus, remask on blur
+    tokenInput.addEventListener('focus', () => {
+        if (tokenInput.dataset.masked === '1') {
+            tokenInput.value = getSyncToken();
+            tokenInput.dataset.masked = '0';
+        }
     });
-    saveBtn.addEventListener('touchstart', () => {
-        pendingToken = tokenInput.value.trim();
-        pendingGist = gistInput.value.trim();
-    }, { passive: true });
+    tokenInput.addEventListener('blur', () => updateSyncUI());
 
     saveBtn.addEventListener('click', () => {
-        // Use captured values (from mousedown/touchstart) OR current input value as fallback
-        const tNew = pendingToken || tokenInput.value.trim();
-        const gNew = pendingGist || gistInput.value.trim();
-        const tOld = getSyncToken();
-        const gOld = getSyncGistId();
-
-        const t = tNew || tOld;
-        const g = gNew || gOld;
-
-        if (tNew && tNew.length < 20) { alert('토큰이 너무 짧습니다. 다시 확인해주세요.'); return; }
-        if (!t) { alert('토큰을 입력해주세요.'); return; }
-
+        const t = tokenInput.value.trim();
+        const g = gistInput.value.trim();
+        if (t && t.length < 20) { alert('토큰이 너무 짧습니다. 다시 확인해주세요.'); return; }
         setSyncToken(t);
         if (g) setSyncGistId(g);
-
-        // Clear inputs ONLY after successful save
-        if (tNew) tokenInput.value = '';
-        if (gNew) gistInput.value = '';
-        pendingToken = '';
-        pendingGist = '';
-
         updateSyncUI();
-
-        if (tNew) {
-            updateSyncStatus('synced', '설정 저장됨 — 첫 푸시 중...');
+        if (t) {
+            updateSyncStatus('synced', '설정 저장됨 — 첫 푸시를 시작합니다');
             pushToCloud().then(r => {
-                if (r.ok) alert('✅ 토큰 저장 완료\nGist ID: ' + getSyncGistId() + '\n\n다른 기기에서 같은 토큰 + 이 Gist ID 입력 후 풀 하시면 동기화됩니다.');
-                else alert('⚠️ 토큰은 저장됐지만 푸시 실패: ' + r.error);
+                if (r.ok) alert('설정 완료! Gist ID: ' + getSyncGistId() + '\n\n다른 기기에서 같은 토큰 + 이 Gist ID 입력 후 풀 하시면 동기화됩니다.');
                 updateSyncUI();
             });
-        } else {
-            alert('✅ 설정 저장됨');
         }
     });
 
@@ -3971,10 +4390,14 @@ renderMarkers();
             pullFromCloud(true).then(r => {
                 updateSyncUI();
                 if (!r.ok) console.warn('Auto-pull failed:', r.error);
+                // pull 후 (또는 실패해도) v2→v3 마이그레이션 백업 시도
+                backupV2ToGistOnce();
             });
         }, 500);
     } else if (isSyncConfigured()) {
         updateSyncStatus('synced', '설정됨');
+        // 동기화 설정은 됐지만 auto-pull 비활성/Gist ID 없을 때도 시도
+        setTimeout(backupV2ToGistOnce, 800);
     }
 
     updateSyncUI();
