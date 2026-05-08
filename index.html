@@ -1162,6 +1162,72 @@ body {
 .footer a { color: var(--text-muted); text-decoration: none; }
 .footer a:hover { color: var(--accent-bright); }
 
+.version-info {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--border);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+}
+.version-info strong {
+    color: var(--accent-bright);
+    font-weight: 600;
+}
+.version-sep {
+    margin: 0 8px;
+    color: var(--text-dim);
+}
+.version-changelog-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-family: var(--font-kr);
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+.version-changelog-btn:hover {
+    color: var(--accent-bright);
+    border-color: var(--accent-bright);
+}
+.changelog-panel {
+    margin-top: 16px;
+    padding: 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-align: left;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: var(--font-kr);
+    font-size: 12px;
+    line-height: 1.7;
+}
+.changelog-entry {
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border);
+}
+.changelog-entry:last-child { border-bottom: none; }
+.changelog-entry strong {
+    display: block;
+    color: var(--accent-bright);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    margin-bottom: 4px;
+}
+.changelog-entry ul {
+    margin: 0;
+    padding-left: 18px;
+    color: var(--text-muted);
+}
+.changelog-entry li {
+    margin-bottom: 2px;
+}
+
 /* === Player === */
 .player-input-row {
     display: flex;
@@ -1992,6 +2058,61 @@ body {
 <footer class="footer">
     <p>Hot Ones English Trainer · 매일 1편씩, 두 달이면 귀가 트입니다 🌶️</p>
     <p style="margin-top:6px;">Sungshin Women's University · made with focus on conversational English</p>
+    <div class="version-info">
+        <span>빌드 <strong id="app-build">2026-05-08-v8</strong></span>
+        <span class="version-sep">·</span>
+        <button class="version-changelog-btn" id="changelog-btn" type="button">변경 내역 보기</button>
+    </div>
+    <div id="changelog-panel" class="changelog-panel" style="display:none;">
+        <div class="changelog-entry">
+            <strong>v8 (2026-05-08)</strong>
+            <ul>
+                <li>토큰 저장 시 "토큰을 입력해주세요" 팝업 뜨던 버그 수정 (iOS blur-before-click 이슈)</li>
+                <li>저장된 토큰 별도 status 박스로 명확히 표시</li>
+                <li>버전 정보 푸터 추가 (이 항목)</li>
+            </ul>
+        </div>
+        <div class="changelog-entry">
+            <strong>v7 (2026-05-08)</strong>
+            <ul>
+                <li>PWA 지원 — iOS Safari "홈 화면에 추가"로 풀스크린 앱 모드</li>
+                <li>앱 아이콘, safe-area, 노치 대응</li>
+            </ul>
+        </div>
+        <div class="changelog-entry">
+            <strong>v6 (2026-05-08)</strong>
+            <ul>
+                <li>5분 단위 자동 청크 분할 (이전 15분 대신)</li>
+                <li>✂️ 청크 편집 (수동 분할 시각 입력)</li>
+                <li>✂️ 여기서 자르기 (재생 중 현재 시각에 분할 추가)</li>
+                <li>▶ 전체 재생 버튼 (마지막 체크용)</li>
+            </ul>
+        </div>
+        <div class="changelog-entry">
+            <strong>v5 (2026-05-08)</strong>
+            <ul>
+                <li>청크별 Pass dot (각 청크가 독립된 5단계 트래킹)</li>
+                <li>대화 흐름 기반 분할 (Hot Ones 윙 구조 반영)</li>
+                <li>모바일 레이아웃 개선 (가로 overflow 수정)</li>
+            </ul>
+        </div>
+        <div class="changelog-entry">
+            <strong>v4 (2026-05-08)</strong>
+            <ul>
+                <li>3-Pass → 5-Step 학습법 전환 (Pass dot 5개)</li>
+                <li>학습 달력 (GitHub-style heatmap + streak)</li>
+                <li>영상 청크 시스템 도입</li>
+            </ul>
+        </div>
+        <div class="changelog-entry">
+            <strong>v1-3 (2026-05-07)</strong>
+            <ul>
+                <li>초기 130편 에피소드 큐레이션</li>
+                <li>YouTube IFrame 플레이어, 마커, 메모, 동기화</li>
+                <li>5개 인터랙티브 학습 도구 (어휘 사전, Reduction 드릴 등)</li>
+            </ul>
+        </div>
+    </div>
 </footer>
 
 <script>
@@ -2509,34 +2630,34 @@ function updateSyncUI() {
     const statusText = document.getElementById('sync-status-text');
     const dot = document.getElementById('sync-status-dot');
 
-    // Token: keep input empty (for entering new), show saved state separately
-    if (tokenInput && document.activeElement !== tokenInput) {
+    // Token: NEVER touch input.value here (blur-before-click bug on iOS)
+    // Just update the saved-state status panel + placeholder
+    if (tokenStatus) {
         const t = getSyncToken();
-        tokenInput.value = '';
         if (t) {
-            tokenInput.placeholder = '새 토큰을 입력하면 교체됩니다';
-            if (tokenStatus) {
-                tokenStatus.style.display = 'block';
-                tokenStatus.innerHTML = `✓ 저장된 토큰: <strong>${escapeHtml(t.slice(0, 7))}</strong> ··· <strong>${escapeHtml(t.slice(-4))}</strong> (${t.length}자)`;
-            }
+            tokenStatus.style.display = 'block';
+            tokenStatus.innerHTML = `✓ 저장된 토큰: <strong>${escapeHtml(t.slice(0, 7))}</strong> ··· <strong>${escapeHtml(t.slice(-4))}</strong> (${t.length}자)`;
         } else {
-            tokenInput.placeholder = 'ghp_... 또는 github_pat_...';
-            if (tokenStatus) tokenStatus.style.display = 'none';
+            tokenStatus.style.display = 'none';
         }
     }
+    if (tokenInput) {
+        const t = getSyncToken();
+        tokenInput.placeholder = t ? '새 토큰을 입력하면 교체됩니다 (빈칸 유지 OK)' : 'ghp_... 또는 github_pat_...';
+    }
 
-    // Gist ID: show saved value in input directly (it's not a secret)
-    if (gistInput && document.activeElement !== gistInput) {
+    // Gist ID status (the input shows current value — set only when not focused)
+    if (gistStatus) {
         const g = getSyncGistId();
-        gistInput.value = g;
-        if (gistStatus) {
-            if (g) {
-                gistStatus.style.display = 'block';
-                gistStatus.innerHTML = `✓ 저장된 Gist ID — <a href="https://gist.github.com/${escapeHtml(g)}" target="_blank" style="color:var(--accent-bright);">GitHub에서 보기</a>`;
-            } else {
-                gistStatus.style.display = 'none';
-            }
+        if (g) {
+            gistStatus.style.display = 'block';
+            gistStatus.innerHTML = `✓ 저장된 Gist ID — <a href="https://gist.github.com/${escapeHtml(g)}" target="_blank" style="color:var(--accent-bright);">GitHub에서 보기</a>`;
+        } else {
+            gistStatus.style.display = 'none';
         }
+    }
+    if (gistInput && document.activeElement !== gistInput && !gistInput.value) {
+        gistInput.value = getSyncGistId();
     }
 
     if (autoCheck) autoCheck.checked = getSyncAuto();
@@ -3743,6 +3864,18 @@ renderMarkers();
     }
 })();
 
+// ============ CHANGELOG TOGGLE ============
+(function setupChangelog() {
+    const btn = document.getElementById('changelog-btn');
+    const panel = document.getElementById('changelog-panel');
+    if (!btn || !panel) return;
+    btn.addEventListener('click', () => {
+        const isOpen = panel.style.display !== 'none';
+        panel.style.display = isOpen ? 'none' : 'block';
+        btn.textContent = isOpen ? '변경 내역 보기' : '변경 내역 닫기';
+    });
+})();
+
 // ============ SYNC UI HANDLERS ============
 (function setupSyncUI() {
     const tokenInput = document.getElementById('sync-token-input');
@@ -3755,17 +3888,25 @@ renderMarkers();
 
     if (!tokenInput) return;
 
-    // Re-render saved-state UI when input loses focus
-    tokenInput.addEventListener('blur', () => updateSyncUI());
-    gistInput.addEventListener('blur', () => updateSyncUI());
+    // Capture token/gist values BEFORE blur fires (iOS dispatches blur before click)
+    let pendingToken = '';
+    let pendingGist = '';
+    saveBtn.addEventListener('mousedown', () => {
+        pendingToken = tokenInput.value.trim();
+        pendingGist = gistInput.value.trim();
+    });
+    saveBtn.addEventListener('touchstart', () => {
+        pendingToken = tokenInput.value.trim();
+        pendingGist = gistInput.value.trim();
+    }, { passive: true });
 
     saveBtn.addEventListener('click', () => {
-        const tNew = tokenInput.value.trim();
-        const gNew = gistInput.value.trim();
+        // Use captured values (from mousedown/touchstart) OR current input value as fallback
+        const tNew = pendingToken || tokenInput.value.trim();
+        const gNew = pendingGist || gistInput.value.trim();
         const tOld = getSyncToken();
         const gOld = getSyncGistId();
 
-        // Use new value if entered, otherwise keep old
         const t = tNew || tOld;
         const g = gNew || gOld;
 
@@ -3774,10 +3915,16 @@ renderMarkers();
 
         setSyncToken(t);
         if (g) setSyncGistId(g);
+
+        // Clear inputs ONLY after successful save
+        if (tNew) tokenInput.value = '';
+        if (gNew) gistInput.value = '';
+        pendingToken = '';
+        pendingGist = '';
+
         updateSyncUI();
 
         if (tNew) {
-            // New token entered → push to ensure it works
             updateSyncStatus('synced', '설정 저장됨 — 첫 푸시 중...');
             pushToCloud().then(r => {
                 if (r.ok) alert('✅ 토큰 저장 완료\nGist ID: ' + getSyncGistId() + '\n\n다른 기기에서 같은 토큰 + 이 Gist ID 입력 후 풀 하시면 동기화됩니다.');
