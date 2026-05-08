@@ -1529,6 +1529,18 @@ body {
 
 .sync-form input:focus { outline: none; border-color: var(--accent); }
 
+.sync-token-status {
+    background: rgba(255, 107, 53, 0.08);
+    border: 1px solid var(--accent-dim);
+    color: var(--accent-bright);
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    margin-bottom: 10px;
+    margin-top: 2px;
+}
+
 .sync-actions {
     display: flex;
     gap: 8px;
@@ -1933,6 +1945,7 @@ body {
             <div class="sync-form">
                 <label>GitHub Personal Access Token <span style="color:var(--text-dim); font-weight:400;">(gist 권한 필요)</span></label>
                 <input type="text" id="sync-token-input" placeholder="ghp_... 또는 github_pat_..." autocomplete="off" spellcheck="false">
+                <div id="sync-token-status" class="sync-token-status" style="display:none;"></div>
                 <div style="font-size:11px; color:var(--text-dim); margin-bottom:10px; line-height:1.6;">
                     아직 없으면 → <a href="https://github.com/settings/tokens/new?scopes=gist&description=Hot%20Ones%20English%20Sync" target="_blank" style="color:var(--accent-bright);">여기서 발급 받기 (gist 권한만, Expiration: No expiration 권장)</a><br>
                     토큰은 이 브라우저의 localStorage에만 저장되며 GitHub 외부로는 전송되지 않습니다.
@@ -1940,6 +1953,7 @@ body {
 
                 <label>Gist ID <span style="color:var(--text-dim); font-weight:400;">(처음이면 비워두면 자동 생성)</span></label>
                 <input type="text" id="sync-gist-input" placeholder="자동 생성됨 (다른 기기와 공유하려면 이 ID 복사)" autocomplete="off" spellcheck="false">
+                <div id="sync-gist-status" class="sync-token-status" style="display:none;"></div>
 
                 <div style="display:flex; gap:8px; margin-top:10px;">
                     <button class="btn btn-primary" id="sync-save-btn">저장</button>
@@ -2478,23 +2492,53 @@ function updateSyncStatus(state, message) {
     updateSyncUI();
 }
 
+function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, c => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[c]);
+}
+
 function updateSyncUI() {
     const cfg = isSyncConfigured();
     const tokenInput = document.getElementById('sync-token-input');
     const gistInput = document.getElementById('sync-gist-input');
+    const tokenStatus = document.getElementById('sync-token-status');
+    const gistStatus = document.getElementById('sync-gist-status');
     const autoCheck = document.getElementById('sync-auto-checkbox');
     const timeEl = document.getElementById('sync-status-time');
     const statusText = document.getElementById('sync-status-text');
     const dot = document.getElementById('sync-status-dot');
 
+    // Token: keep input empty (for entering new), show saved state separately
     if (tokenInput && document.activeElement !== tokenInput) {
         const t = getSyncToken();
-        tokenInput.value = t ? t.slice(0, 4) + '••••••••' + t.slice(-4) : '';
-        tokenInput.dataset.masked = '1';
+        tokenInput.value = '';
+        if (t) {
+            tokenInput.placeholder = '새 토큰을 입력하면 교체됩니다';
+            if (tokenStatus) {
+                tokenStatus.style.display = 'block';
+                tokenStatus.innerHTML = `✓ 저장된 토큰: <strong>${escapeHtml(t.slice(0, 7))}</strong> ··· <strong>${escapeHtml(t.slice(-4))}</strong> (${t.length}자)`;
+            }
+        } else {
+            tokenInput.placeholder = 'ghp_... 또는 github_pat_...';
+            if (tokenStatus) tokenStatus.style.display = 'none';
+        }
     }
+
+    // Gist ID: show saved value in input directly (it's not a secret)
     if (gistInput && document.activeElement !== gistInput) {
-        gistInput.value = getSyncGistId();
+        const g = getSyncGistId();
+        gistInput.value = g;
+        if (gistStatus) {
+            if (g) {
+                gistStatus.style.display = 'block';
+                gistStatus.innerHTML = `✓ 저장된 Gist ID — <a href="https://gist.github.com/${escapeHtml(g)}" target="_blank" style="color:var(--accent-bright);">GitHub에서 보기</a>`;
+            } else {
+                gistStatus.style.display = 'none';
+            }
+        }
     }
+
     if (autoCheck) autoCheck.checked = getSyncAuto();
 
     if (timeEl) {
@@ -3711,28 +3755,37 @@ renderMarkers();
 
     if (!tokenInput) return;
 
-    // Unmask on focus, remask on blur
-    tokenInput.addEventListener('focus', () => {
-        if (tokenInput.dataset.masked === '1') {
-            tokenInput.value = getSyncToken();
-            tokenInput.dataset.masked = '0';
-        }
-    });
+    // Re-render saved-state UI when input loses focus
     tokenInput.addEventListener('blur', () => updateSyncUI());
+    gistInput.addEventListener('blur', () => updateSyncUI());
 
     saveBtn.addEventListener('click', () => {
-        const t = tokenInput.value.trim();
-        const g = gistInput.value.trim();
-        if (t && t.length < 20) { alert('토큰이 너무 짧습니다. 다시 확인해주세요.'); return; }
+        const tNew = tokenInput.value.trim();
+        const gNew = gistInput.value.trim();
+        const tOld = getSyncToken();
+        const gOld = getSyncGistId();
+
+        // Use new value if entered, otherwise keep old
+        const t = tNew || tOld;
+        const g = gNew || gOld;
+
+        if (tNew && tNew.length < 20) { alert('토큰이 너무 짧습니다. 다시 확인해주세요.'); return; }
+        if (!t) { alert('토큰을 입력해주세요.'); return; }
+
         setSyncToken(t);
         if (g) setSyncGistId(g);
         updateSyncUI();
-        if (t) {
-            updateSyncStatus('synced', '설정 저장됨 — 첫 푸시를 시작합니다');
+
+        if (tNew) {
+            // New token entered → push to ensure it works
+            updateSyncStatus('synced', '설정 저장됨 — 첫 푸시 중...');
             pushToCloud().then(r => {
-                if (r.ok) alert('설정 완료! Gist ID: ' + getSyncGistId() + '\n\n다른 기기에서 같은 토큰 + 이 Gist ID 입력 후 풀 하시면 동기화됩니다.');
+                if (r.ok) alert('✅ 토큰 저장 완료\nGist ID: ' + getSyncGistId() + '\n\n다른 기기에서 같은 토큰 + 이 Gist ID 입력 후 풀 하시면 동기화됩니다.');
+                else alert('⚠️ 토큰은 저장됐지만 푸시 실패: ' + r.error);
                 updateSyncUI();
             });
+        } else {
+            alert('✅ 설정 저장됨');
         }
     });
 
