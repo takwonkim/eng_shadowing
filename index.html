@@ -1783,17 +1783,8 @@ body {
         border-right: 0;
         border-top: 0;
         box-shadow: 0 4px 16px rgba(0,0,0,0.5);
-        /* v9: 자막이 YouTube 컨트롤바에 안 가리도록 영상 비율을 살짝 세로로 늘림.
-           영상 자체는 16:9로 letterbox(상하 검은 띠) 표시되고, 자막은 영상 영역 끝에,
-           YouTube 컨트롤바는 아래 검은 띠에 위치 → 겹침 없음 */
-        aspect-ratio: 16 / 10.5;
+        aspect-ratio: 16 / 9;
         max-width: 100vw;
-        background: #000;
-    }
-    /* 모바일 inline 모드도 약간만 세로로 — 자막 잘림 예방 */
-    .player-wrap.is-loaded:not(.is-fixed) {
-        aspect-ratio: 16 / 10;
-        background: #000;
     }
     /* fixed 모드 placeholder — 원래 자리 유지해서 콘텐츠 점프 방지 */
     .player-placeholder { background: transparent; }
@@ -3959,6 +3950,11 @@ function createPlayer(videoId, suppressAutoplay, startSec) {
             setTimeout(() => captureDuration(videoId), 2000);
         } else {
             try {
+                // v9: 모바일에서는 풀스크린 버튼 숨김.
+                // 이유: iOS Safari/PWA에서 풀스크린 누르면 iOS 네이티브 비디오 플레이어가
+                // 영상을 가로채서 재생함. 이때 YouTube의 JavaScript 자막은 렌더링 안 됨.
+                // 가로 모드(폰 회전)는 인라인 그대로 유지되니 자막 살아있음.
+                const isMobileViewport = window.matchMedia('(max-width: 640px)').matches;
                 const playerVars = {
                     rel: 0,
                     modestbranding: 1,
@@ -3966,6 +3962,7 @@ function createPlayer(videoId, suppressAutoplay, startSec) {
                     playsinline: 1,
                     cc_load_policy: 1,   // v9: 자막 기본 ON
                     cc_lang_pref: 'en',  // v9: 영어 자막 우선
+                    fs: isMobileViewport ? 0 : 1, // v9: 모바일은 풀스크린 버튼 숨김
                 };
                 if (startSeconds > 0) playerVars.start = startSeconds;
                 ytPlayer = new YT.Player('yt-player', {
